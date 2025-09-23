@@ -4,17 +4,92 @@
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-};
+}
+
+.emblema-one-regular {
+    font-family: "Emblema One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+  
 
 body{
-    background-color: #CC9DA7;
-};
+    background-color: #d6a3ae !important;
+}
+
+h1{
+    font-family: "Emblema One", system-ui;
+    font-size: 50px;
+    color: #F2E0C7 !important;
+    text-align: center;
+    text-transform: capitalize !important;
+}
+
+h2{
+    font-family: "Emblema One", system-ui;
+    font-size: 24px;
+    color: #F2E0C7;
+    text-align: center;
+}
+
+button{
+ border-color: transparent;
+ background-color: transparent;
+ border: none !important;
+}
+
+.navbar-toggler{
+    border: none;
+    padding: 0;
+    border: 0;
+}
+
+.navbar-toggler img{
+    height: 89px;
+    border-radius: 15px;
+}
 
 .navbar-profile{
     font-family: "Comfortaa", sans-serif;
     font-size: 20px;
-    color: #303030;
+    color: #F2E0C7;
     background-color: #303030;
-    padding: 1%;
-};
+    padding: 2%;
+    padding-right: 5%;
+    border-radius: 15px;
+    height: 89px;
 
+    display: flex;
+    align-items: center;
+}
+
+.navbar-header{
+    background-color: #303030;
+    margin: 0;
+    padding-top: 5%;
+    color: #F2E0C7;
+    text-transform: capitalize;
+}
+
+.navbar-header img{
+    height: 89px;
+}
+
+.offcanvas-body{
+    background-color: #303030;
+}
+
+.movieFeature{
+    width: 1196px;
+    height: 439px;
+}
+
+.movie-feature{
+    position: relative;
+}
+
+.feature-title{
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+}
