@@ -11,7 +11,6 @@
     font-weight: 400;
     font-style: normal;
 }
-  
 
 body{
     background-color: #d6a3ae !important;
@@ -38,13 +37,13 @@ button{
  border: none !important;
 }
 
-.navbar-toggler{
+.navbar-toggle{
     border: none;
     padding: 0;
     border: 0;
 }
 
-.navbar-toggler img{
+.navbar-toggle img{
     height: 89px;
     border-radius: 15px;
 }
@@ -79,17 +78,69 @@ button{
     background-color: #303030;
 }
 
+/* DO NOT TOUCH THIS PLEASE, THIS IS FOR THE STAR TO APEAR WHEN YOU HOVER ON NAV, PLEASE NO TOUCHY TOUCHY */
+
+.navbar-nav .nav-item {
+    position: relative;
+  }
+  
+  .navbar-nav .nav-link {
+    display: inline-flex;       
+    align-items: center;       
+    gap: 6px;                   
+  }
+  
+  .navbar-nav .nav-link h2 {
+    display: inline;           
+    margin: 0;                  
+  }
+  
+  .navbar-nav .nav-icon {
+    height: 23px;
+    opacity: 0;
+  }
+  
+  .navbar-nav .nav-link:hover .nav-icon {
+    opacity: 1;                     
+  }  
+  
+  
 .movieFeature{
     width: 1196px;
     height: 439px;
+
 }
 
 .movie-feature{
     position: relative;
+    border-radius: 15px;
+
 }
+
+.feature-item img{
+    width: 1196px;
+    height: 439px;
+}
+
+.carousel-button{
+    height: 32px;
+}
+
+.watchlistIcon{
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    height: 57px;
+}
+
+.watchlistIcon img{
+    height: 57px;
+}
+
 
 .feature-title{
     position: absolute;
-    bottom: 8px;
-    right: 16px;
+    bottom: 30px;
+    left: 16px;
 }
+
