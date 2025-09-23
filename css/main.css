@@ -80,6 +80,13 @@ button{
 
 /* DO NOT TOUCH THIS PLEASE, THIS IS FOR THE STAR TO APEAR WHEN YOU HOVER ON NAV, PLEASE NO TOUCHY TOUCHY */
 
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  
 .navbar-nav .nav-item {
     position: relative;
   }
@@ -91,7 +98,7 @@ button{
   }
   
   .navbar-nav .nav-link h2 {
-    display: inline;           
+    display: inline;        
     margin: 0;                  
   }
   
