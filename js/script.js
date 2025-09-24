@@ -1,9 +1,9 @@
     //ICONS HOVER + CLICK ACTIVE + TOGGLER
-    const iconBookmark = document.querySelector(".watchlistIcon");
+    const iconBookmarks = document.querySelectorAll(".watchlistIcon");
 
-    let isActive = false;
-
-    // hover
+    iconBookmarks.forEach((iconBookmark) => {
+      let isActive = false;
+    
     iconBookmark.addEventListener("mouseenter", () => {
       if (!isActive) {
         iconBookmark.src = iconBookmark.dataset.hover;
@@ -20,6 +20,7 @@
     iconBookmark.addEventListener("click", () => {
       isActive = !isActive;
       iconBookmark.src = isActive ? iconBookmark.dataset.active : iconBookmark.dataset.default;
+    });
     });
 
     
