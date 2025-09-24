@@ -34,11 +34,25 @@ h2{/* this is for subheadings */
     text-align: center;
 }
 
-h3{
+
+h3{ /* movie titles */
     font-family: "Emblema One", system-ui;
     font-size: 35px;
     color: #F2E0C7;
     text-align: center;
+    display: inline;
+    background-color: #303030;
+
+    margin: 0;
+    margin-top: 9px;
+    bottom: 10px;
+    padding: 7px;
+}
+
+.movie-title{/* MAKE TITLES INLINE WITH THE BUTTON HALVES */
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
 }
 
 button{
@@ -155,20 +169,27 @@ input[type="search"]:focus {
     width: 1196px;
     height: 439px;
 }
+
 .feature-item img{
     border-radius: 15px;
     width: 1196px;
     height: 439px;
 }
 
+.feature-title{
+    bottom: 30px;
+    left: 16px;
+}
+  
 .carousel-button{
     height: 32px;
 }
 
+/* CSS FOR BOOKMARK ICON */
 .watchlistIcon{
     position: absolute;
     top: 20px;
-    right: 16px;
+    right: 35px;
     height: 57px;
 }
 
@@ -177,9 +198,4 @@ input[type="search"]:focus {
 }
 
 
-.feature-title{
-    position: absolute;
-    bottom: 30px;
-    left: 16px;
-}
 
