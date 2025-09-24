@@ -180,9 +180,10 @@ input[type="search"]:focus {
     bottom: 30px;
     left: 16px;
 }
-  
+
 .carousel-button{
     height: 32px;
+    top: 50%;
 }
 
 /* CSS FOR BOOKMARK ICON */
