@@ -124,8 +124,8 @@ input[type="search"]:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    padding: 0 !;
+    gap: 20px !important;
+    padding: 0;
 }
   
 .navbar-nav .nav-item {
@@ -159,7 +159,7 @@ input[type="search"]:focus {
     background-color: transparent;
     border: none;
     min-width: unset;
-    width: auto;  
+    width: auto;
 }
 
 /* this is for the carousel on the home page */
