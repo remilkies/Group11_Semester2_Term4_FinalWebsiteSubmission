@@ -14,9 +14,11 @@
 
 body{
     background-color: #d6a3ae !important;
+    font-family: font-family: "Comfortaa", sans-serif; /* default font */
 }
 
-h1{
+
+h1{ /* this is for page titles */
     font-family: "Emblema One", system-ui;
     font-size: 50px;
     color: #F2E0C7 !important;
@@ -24,9 +26,17 @@ h1{
     text-transform: capitalize !important;
 }
 
-h2{
+
+h2{/* this is for subheadings */
     font-family: "Emblema One", system-ui;
     font-size: 24px;
+    color: #F2E0C7;
+    text-align: center;
+}
+
+h3{
+    font-family: "Emblema One", system-ui;
+    font-size: 35px;
     color: #F2E0C7;
     text-align: center;
 }
@@ -78,6 +88,22 @@ button{
     background-color: #303030;
 }
 
+input[type="search"],
+input[type="search"]:focus {
+    border-radius: 15px;
+    background-color: #F2E0C7;
+    width: 300px;
+
+    font-family: "Comfortaa", sans-serif;
+    font-size: 20px;
+    color: #303030;
+
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+
 /* DO NOT TOUCH THIS PLEASE, THIS IS FOR THE STAR TO APEAR WHEN YOU HOVER ON NAV, PLEASE NO TOUCHY TOUCHY */
 
 .navbar-nav {
@@ -85,46 +111,52 @@ button{
     justify-content: center;
     align-items: center;
     gap: 20px;
-  }
+}
   
 .navbar-nav .nav-item {
     position: relative;
-  }
+    gap: 20px;
+}
   
-  .navbar-nav .nav-link {
+.navbar-nav .nav-link {
     display: inline-flex;       
-    align-items: center;       
-    gap: 6px;                   
-  }
+    align-items: center;                         
+}
   
-  .navbar-nav .nav-link h2 {
+.navbar-nav .nav-link h2 {
     display: inline;        
     margin: 0;                  
-  }
-  
-  .navbar-nav .nav-icon {
+}
+
+.navbar-nav .nav-icon {
     height: 23px;
     opacity: 0;
-  }
+    margin-right: 8px;
+}
   
-  .navbar-nav .nav-link:hover .nav-icon {
+.navbar-nav .nav-link:hover .nav-icon {
     opacity: 1;                     
-  }  
-  
+}  
+
+/* this is for the carousel on the home page */
   
 .movieFeature{
-    width: 1196px;
-    height: 439px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .movie-feature{
     position: relative;
-    border-radius: 15px;
 
 }
 
+.feature-item{
+    width: 1196px;
+    height: 439px;
+}
 .feature-item img{
+    border-radius: 15px;
     width: 1196px;
     height: 439px;
 }
