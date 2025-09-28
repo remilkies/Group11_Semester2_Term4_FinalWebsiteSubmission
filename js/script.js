@@ -23,4 +23,6 @@
     });
     });
 
+    const movieCard = document.querySelectorAll(".movieCard")
+
     

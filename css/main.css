@@ -17,6 +17,11 @@ body{
     font-family: "Comfortaa", sans-serif; /* default font */
 }
 
+section{
+    margin: 4%;
+    margin-top: 0;
+}
+
 
 h1{ /* this is for page titles */
     font-family: "Emblema One", system-ui;
@@ -163,7 +168,7 @@ input[type="search"]:focus {
 }
 
 /* this is for the carousel on the home page */
-  
+ 
 .movieFeature{
     display: flex;
     justify-content: center;
@@ -174,9 +179,16 @@ input[type="search"]:focus {
     position: relative;
 
 }
-
-.feature-item{
+@media (min-width: 992px) {
+    .feature-item{
     width: 1196px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px){
+    .feature-item{
+        width: 850px;
+    }
 }
 
 .feature-img img{
@@ -196,16 +208,99 @@ input[type="search"]:focus {
 }
 
 /* CSS FOR BOOKMARK ICON */
-.watchlistIcon{
+.watchlistIconFeature{
     position: absolute;
     top: 35px;
     right: 15px;
     height: 57px;
 }
 
+
 .watchlistIcon img{
     height: 57px;
 }
 
+.movieCard-container{
+    gap: 1px;
+}
+
+@media (min-width: 992px) {
+    .movieCard{
+        position: relative;
+        height: 326px;
+        width: 222px;
+        background-color: #9F9F9F;
+        border-radius: 15px;
+    }
+
+    .moviePoster img{
+        height: 326px;
+        width: 222px;
+        border-radius: 15px;
+        object-fit: cover;
+        display: block;
+    }
+    
+    .watchlistIcon{
+    height: 57px;
+    position: absolute;
+    left: 155px;
+    top: 10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px){
+
+    .movieCard{
+        position: relative;
+        height: 236px;
+        width: 160px;
+        background-color: #9F9F9F;
+        border-radius: 15px;
+    }
+
+    .moviePoster img{
+        height: 236px;
+        width: 160px;
+        border-radius: 15px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .watchlistIcon{
+    height: 57px;
+    position: absolute;
+    left: 93px;
+    top: 10px;
+    }
+}
 
 
+
+/* // No media query necessary for xs breakpoint as it’s effectively `@media (min-width: 0) { ... }`
+@include media-breakpoint-up(sm) { ... }
+@include media-breakpoint-up(md) { ... }
+@include media-breakpoint-up(lg) { ... }
+@include media-breakpoint-up(xl) { ... }
+@include media-breakpoint-up(xxl) { ... }
+
+// Usage
+
+// Example: Hide starting at `min-width: 0`, and then show at the `sm` breakpoint */
+/* // X-Small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) { ... } */
