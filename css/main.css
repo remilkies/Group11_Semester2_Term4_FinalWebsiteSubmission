@@ -215,6 +215,10 @@ input[type="search"]:focus {
     height: 57px;
 }
 
+.watchlistIcon{
+    height: 57px;
+    position: absolute;
+}
 
 .watchlistIcon img{
     height: 57px;
@@ -224,26 +228,67 @@ input[type="search"]:focus {
     gap: 1px;
 }
 
+.moviePoster img{
+    border-radius: 15px;
+    object-fit: cover;
+    display: block;
+}
+
+.movieCard {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+
+    border-radius: 15px;
+    transition: width 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    background-color: #9F9F9F;
+  }
+  
+  .movieCard:hover {
+    position: absolute;
+    transform: scale(1.09);
+    z-index: 2;
+    width: 500px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+  
+  /* overlay info panel */
+  .movieInfo{
+    position: relative;
+    left: 0;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+  
+    background-color: #d6a3ae;
+    color: #F2E0C7;
+    padding: 15px;
+  
+    transform: translateX(100%);  
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .movieCard:hover .movieInfo {
+    transform: translateX(0);
+  }
+  
 @media (min-width: 992px) {
     .movieCard{
-        position: relative;
         height: 326px;
         width: 222px;
-        background-color: #9F9F9F;
-        border-radius: 15px;
     }
 
     .moviePoster img{
         height: 326px;
         width: 222px;
-        border-radius: 15px;
-        object-fit: cover;
-        display: block;
     }
     
     .watchlistIcon{
-    height: 57px;
-    position: absolute;
     left: 155px;
     top: 10px;
     }
@@ -252,24 +297,17 @@ input[type="search"]:focus {
 @media (min-width: 768px) and (max-width: 991.98px){
 
     .movieCard{
-        position: relative;
         height: 236px;
         width: 160px;
-        background-color: #9F9F9F;
-        border-radius: 15px;
     }
 
     .moviePoster img{
         height: 236px;
         width: 160px;
-        border-radius: 15px;
-        object-fit: cover;
-        display: block;
+
     }
 
     .watchlistIcon{
-    height: 57px;
-    position: absolute;
     left: 93px;
     top: 10px;
     }
