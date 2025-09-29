@@ -15,6 +15,7 @@
 body{
     background-color: #d6a3ae !important;
     font-family: "Comfortaa", sans-serif; /* default font */
+    color: #F2E0C7;
 }
 
 section{
@@ -60,10 +61,21 @@ h3{ /* movie titles */
     align-items: center;
 }
 
+.movieTitle{
+    display: inline-flex;
+    align-items: center;
+}
+
 button{
  border-color: transparent;
  background-color: transparent;
  border: none !important;
+}
+
+h4{
+    font-size: 14px;
+    font-family: "Comfortaa", sans-serif;
+    color: #F2E0C7;
 }
 
 .navbar-toggle{
@@ -179,6 +191,10 @@ input[type="search"]:focus {
     position: relative;
 
 }
+
+.feature-item{
+    width: 100%;
+}
 @media (min-width: 992px) {
     .feature-item{
     width: 1196px;
@@ -235,28 +251,35 @@ input[type="search"]:focus {
 }
 
 .movieCard {
-    position: relative;
+    position: relative;    
+    overflow: hidden;
+    /* for long */
     display: flex;
     align-items: stretch;
-    overflow: hidden;
+    transition: width 0.3s ease, box-shadow 0.3s ease;
+
+    /* for normal pop */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     border-radius: 15px;
-    transition: width 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     background-color: #9F9F9F;
   }
   
   .movieCard:hover {
     position: absolute;
-    transform: scale(1.09);
-    z-index: 2;
-    width: 500px;
+    transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+
+    /* lon one */
+    z-index: 2;
+    width: 600px;
+    
   }
   
-  /* overlay info panel */
+  
   .movieInfo{
-    position: relative;
+    position: absolute;
     left: 0;
     bottom: 0;
 
@@ -268,14 +291,30 @@ input[type="search"]:focus {
     background-color: #d6a3ae;
     color: #F2E0C7;
     padding: 15px;
-  
+
+    /* pop out */
+    transform: translateY(100%);
+  /* long one */
     transform: translateX(100%);  
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
   
   .movieCard:hover .movieInfo {
+
+    /* pop out */
+    transform: translateY(100%);
+
+    /* pop to the side */
     transform: translateX(0);
   }
+
+  .moviePoster img{
+    border-radius: 15px;
+    object-fit: cover;
+    display: block;
+}
+
+
   
 @media (min-width: 992px) {
     .movieCard{
@@ -313,7 +352,47 @@ input[type="search"]:focus {
     }
 }
 
+/* THIS IS FOR THE INDIVIDUAL MOVIE PAGE */
+.movie-container{
+    margin-top: 3em;
+}
+.movie-poster{
+    width: 346px;
+    height: 492px;
+    border-radius: 15px;
+    background-color: #9F9F9F;
+}
+.movie-info{
+    display: flex;
+    gap: 1em;
+    size: 100%;
+    margin-left: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
 
+.movie-info h4{
+    padding: 10px;
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: #303030;
+    border-radius: 50px;
+}
+
+.movie-description{
+    padding: 1em;
+    margin-left: 1%;
+    border-radius: 15px;
+    background-color: #303030;
+}
+
+.movie-description h2{
+    text-align: start;
+}
+
+.watchButton{
+    height: 66px;
+}
 
 /* // No media query necessary for xs breakpoint as it’s effectively `@media (min-width: 0) { ... }`
 @include media-breakpoint-up(sm) { ... }
