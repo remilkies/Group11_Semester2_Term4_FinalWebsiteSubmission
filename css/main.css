@@ -381,8 +381,13 @@ input[type="search"]:focus {
     background-color: #9F9F9F;
 }
 
+.individual-watchlistIcon{
+    height: 66px;
+    position: absolute;
+}
+
 .watchButton{
-    margin-top: 1rem;
+    margin-top: 2rem;
     height: 66px;
     display: flex;
     justify-content: center;
@@ -424,7 +429,7 @@ input[type="search"]:focus {
     padding: 1em;
     margin-left: 1%;
     margin-top: 3%;
-    border-radius: 15px;
+    border-radius: 60px;
     background-color: #303030;
 }
 
@@ -440,8 +445,9 @@ input[type="search"]:focus {
 }
 
 .trailerButton{
-    margin-top: 2em;
+    margin-top: 1em;
 }
+
 
 
 
