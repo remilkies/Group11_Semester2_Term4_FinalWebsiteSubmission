@@ -78,6 +78,15 @@ h4{
     color: #F2E0C7;
 }
 
+.pageTitle{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+      
+
 .navbar-toggle{
     border: none;
     padding: 0;
@@ -355,6 +364,7 @@ input[type="search"]:focus {
 /* THIS IS FOR THE INDIVIDUAL MOVIE PAGE */
 .movie-container{
     margin-top: 3em;
+    margin-bottom: 3em;
 }
 
 .poster-container{
@@ -379,8 +389,11 @@ input[type="search"]:focus {
     align-items: center;
 }
 
+.trailerButton{
+    height: 66px;
+}
+
 .movie-info{
-    display: flex;
     gap: 1em;
     size: 100%;
     margin-left: 1%;
@@ -388,10 +401,10 @@ input[type="search"]:focus {
     margin-bottom: 2%;
 }
 
-.movie-info h4{
+.category{
     padding: 10px;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 2em !important;
+    padding-right: 2em !important;
     background-color: #303030;
     border-radius: 50px;
 }
@@ -405,6 +418,29 @@ input[type="search"]:focus {
 
 .movie-description h2{
     text-align: start;
+}
+
+.movie-actors{
+    padding: 1em;
+    margin-left: 1%;
+    margin-top: 3%;
+    border-radius: 15px;
+    background-color: #303030;
+}
+
+.movie-actors h2{
+    margin-right: 5%;
+    margin-bottom: 0;
+}
+
+.actor{
+    margin-bottom: 0 !important;
+    align-content: center;
+    
+}
+
+.trailerButton{
+    margin-top: 2em;
 }
 
 
