@@ -1,4 +1,4 @@
-    //ICONS HOVER + CLICK ACTIVE + TOGGLER
+    //BOOKMARK, WISHLIST, ICON HOVER + CLICK ACTIVE + TOGGLER
     const iconBookmarks = document.querySelectorAll(".watchlistIcon");
 
     iconBookmarks.forEach((iconBookmark) => {
@@ -21,6 +21,18 @@
       isActive = !isActive;
       iconBookmark.src = isActive ? iconBookmark.dataset.active : iconBookmark.dataset.default;
     });
+    });
+
+    // this is for the watch button toggled to watchedButton
+    const watchButton = document.querySelectorAll(".watchButton");
+
+    watchButton.forEach((watchButton) => {
+        let isActive = false;
+
+        watchButton.addEventListener("click", () => {
+            isActive = !isActive;
+            watchButton.src = isActive ? watchButton.dataset.active : watchButton.dataset.default;
+        });
     });
 
     const movieCard = document.querySelectorAll(".movieCard")
