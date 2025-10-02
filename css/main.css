@@ -15,6 +15,12 @@
 body{
     background-color: #d6a3ae !important;
     font-family: "Comfortaa", sans-serif; /* default font */
+    color: #F2E0C7;
+}
+
+section{
+    margin: 4%;
+    margin-top: 0;
 }
 
 
@@ -55,11 +61,31 @@ h3{ /* movie titles */
     align-items: center;
 }
 
+.movieTitle{
+    display: inline-flex;
+    align-items: center;
+}
+
 button{
  border-color: transparent;
  background-color: transparent;
  border: none !important;
 }
+
+h4{
+    font-size: 14px;
+    font-family: "Comfortaa", sans-serif;
+    color: #F2E0C7;
+}
+
+.pageTitle{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+      
 
 .navbar-toggle{
     border: none;
@@ -163,7 +189,7 @@ input[type="search"]:focus {
 }
 
 /* this is for the carousel on the home page */
-  
+ 
 .movieFeature{
     display: flex;
     justify-content: center;
@@ -176,7 +202,18 @@ input[type="search"]:focus {
 }
 
 .feature-item{
+    width: 100%;
+}
+@media (min-width: 992px) {
+    .feature-item{
     width: 1196px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px){
+    .feature-item{
+        width: 850px;
+    }
 }
 
 .feature-img img{
@@ -196,16 +233,275 @@ input[type="search"]:focus {
 }
 
 /* CSS FOR BOOKMARK ICON */
-.watchlistIcon{
+.watchlistIconFeature{
     position: absolute;
     top: 35px;
     right: 15px;
     height: 57px;
 }
 
+.watchlistIcon{
+    height: 57px;
+    position: absolute;
+}
+
 .watchlistIcon img{
     height: 57px;
 }
 
+.movieCard {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #9F9F9F;
+    overflow: hidden; /* keep it */
+    width: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movieInfo {
+    position: absolute; /* absolute inside card */
+    top: 0;
+    left: 200px; /* start just outside poster */
+    width: 400px;
+    height: 100%;
+    background-color: #d6a3ae;
+    color: #F2E0C7;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.movieCard:hover .movieInfo {
+    transform: translateX(0);
+    opacity: 1;
+}
 
 
+.movieCard-container{
+    gap: 1px;
+}
+
+.moviePoster img{
+    border-radius: 15px;
+    object-fit: cover;
+    display: block;
+}
+
+/* .movieCard {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #9F9F9F;
+    overflow: hidden;
+  
+
+    width: 200px;  
+    transition: width 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+   */
+  .movieCard:hover {
+    width: 600px; /* grow to reveal info */
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+  
+  /* poster stays fixed */
+  .moviePoster {
+    flex: 0 0 200px; 
+  }
+  .moviePoster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px 0 0 15px;
+    display: block;
+  }
+  
+  /* info panel */
+  /* .movieInfo {
+    flex: 1;
+    background-color: #d6a3ae;
+    color: #F2E0C7;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+  
+    /* hide off-screen until hover */
+    /* transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.3s ease; */
+  /* } */
+  
+  /* reveal when hovered */
+  /* .movieCard:hover .movieInfo {
+    transform: translateX(0);
+    opacity: 1;
+  } */
+  
+  
+@media (min-width: 992px) {
+    .movieCard{
+        height: 326px;
+        width: 222px;
+    }
+
+    .moviePoster img{
+        height: 326px;
+        width: 222px;
+    }
+    
+    .watchlistIcon{
+    left: 155px;
+    top: 10px;
+    }
+}
+
+
+
+@media (min-width: 768px) and (max-width: 991.98px){
+
+    .movieCard{
+        height: 236px;
+        width: 160px;
+    }
+
+    .moviePoster img{
+        height: 236px;
+        width: 160px;
+
+    }
+
+    .watchlistIcon{
+    left: 93px;
+    top: 10px;
+    }
+}
+
+/* THIS IS FOR THE INDIVIDUAL MOVIE PAGE */
+.movie-container{
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
+.poster-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centers horizontally */
+    justify-content: center;
+}
+
+.movie-poster{
+    width: 346px;
+    height: 492px;
+    border-radius: 15px;
+    background-color: #9F9F9F;
+}
+
+.individual-watchlistIcon{
+    height: 66px;
+    position: absolute;
+}
+
+.watchButton{
+    margin-top: 2rem;
+    height: 66px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trailerButton{
+    height: 66px;
+}
+
+.movie-info{
+    gap: 1em;
+    size: 100%;
+    margin-left: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.category{
+    padding: 10px;
+    padding-left: 2em !important;
+    padding-right: 2em !important;
+    background-color: #303030;
+    border-radius: 50px;
+}
+
+.movie-description{
+    padding: 1em;
+    margin-left: 1%;
+    border-radius: 15px;
+    background-color: #303030;
+}
+
+.movie-description h2{
+    text-align: start;
+}
+
+.movie-actors{
+    padding: 1em;
+    margin-left: 1%;
+    margin-top: 3%;
+    border-radius: 60px;
+    background-color: #303030;
+}
+
+.movie-actors h2{
+    margin-right: 5%;
+    margin-bottom: 0;
+}
+
+.actor{
+    margin-bottom: 0 !important;
+    align-content: center;
+    
+}
+
+.trailerButton{
+    margin-top: 1em;
+}
+
+
+
+
+/* // No media query necessary for xs breakpoint as it’s effectively `@media (min-width: 0) { ... }`
+@include media-breakpoint-up(sm) { ... }
+@include media-breakpoint-up(md) { ... }
+@include media-breakpoint-up(lg) { ... }
+@include media-breakpoint-up(xl) { ... }
+@include media-breakpoint-up(xxl) { ... }
+
+// Usage
+
+// Example: Hide starting at `min-width: 0`, and then show at the `sm` breakpoint */
+/* // X-Small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) { ... } */
