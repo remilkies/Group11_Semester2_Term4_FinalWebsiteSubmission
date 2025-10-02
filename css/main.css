@@ -249,6 +249,42 @@ input[type="search"]:focus {
     height: 57px;
 }
 
+.movieCard {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #9F9F9F;
+    overflow: hidden; /* keep it */
+    width: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movieInfo {
+    position: absolute; /* absolute inside card */
+    top: 0;
+    left: 200px; /* start just outside poster */
+    width: 400px;
+    height: 100%;
+    background-color: #d6a3ae;
+    color: #F2E0C7;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.movieCard:hover .movieInfo {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+
 .movieCard-container{
     gap: 1px;
 }
@@ -259,71 +295,60 @@ input[type="search"]:focus {
     display: block;
 }
 
-.movieCard {
-    position: relative;    
-    overflow: hidden;
-    /* for long */
+/* .movieCard {
+    position: relative;
     display: flex;
     align-items: stretch;
-    transition: width 0.3s ease, box-shadow 0.3s ease;
-
-    /* for normal pop */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
     border-radius: 15px;
     cursor: pointer;
     background-color: #9F9F9F;
-  }
+    overflow: hidden;
   
+
+    width: 200px;  
+    transition: width 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+   */
   .movieCard:hover {
-    position: absolute;
-    transform: scale(1.05);
+    width: 600px; /* grow to reveal info */
+    transform: scale(1.02);
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-
-    /* lon one */
-    z-index: 2;
-    width: 600px;
-    
   }
   
+  /* poster stays fixed */
+  .moviePoster {
+    flex: 0 0 200px; 
+  }
+  .moviePoster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px 0 0 15px;
+    display: block;
+  }
   
-  .movieInfo{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: end;
-  
+  /* info panel */
+  /* .movieInfo {
+    flex: 1;
     background-color: #d6a3ae;
     color: #F2E0C7;
     padding: 15px;
-
-    /* pop out */
-    transform: translateY(100%);
-  /* long one */
-    transform: translateX(100%);  
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
   
-  .movieCard:hover .movieInfo {
-
-    /* pop out */
-    transform: translateY(100%);
-
-    /* pop to the side */
+    /* hide off-screen until hover */
+    /* transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.3s ease; */
+  /* } */
+  
+  /* reveal when hovered */
+  /* .movieCard:hover .movieInfo {
     transform: translateX(0);
-  }
-
-  .moviePoster img{
-    border-radius: 15px;
-    object-fit: cover;
-    display: block;
-}
-
-
+    opacity: 1;
+  } */
+  
   
 @media (min-width: 992px) {
     .movieCard{
@@ -341,6 +366,8 @@ input[type="search"]:focus {
     top: 10px;
     }
 }
+
+
 
 @media (min-width: 768px) and (max-width: 991.98px){
 

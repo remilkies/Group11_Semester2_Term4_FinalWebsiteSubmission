@@ -1,6 +1,7 @@
     //BOOKMARK, WISHLIST, ICON HOVER + CLICK ACTIVE + TOGGLER
     const iconBookmarks = document.querySelectorAll(".watchlistIcon");
 
+    
     iconBookmarks.forEach((iconBookmark) => {
       let isActive = false;
     
