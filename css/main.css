@@ -250,15 +250,17 @@ input[type="search"]:focus {
 }
 
 .movieCard {
-    position: relative;
+    position: absolute;
     display: flex;
     align-items: stretch;
     border-radius: 15px;
     cursor: pointer;
-    background-color: #d6a3ae;
+    background-color: #9F9F9F;
     overflow: hidden; /* keep it */
     width: 200px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    z-index: 4;
 }
 
 .movieInfo {
@@ -274,6 +276,7 @@ input[type="search"]:focus {
     justify-content: space-between;
 
     transform: translateX(100%);
+    z-index: 3;
     opacity: 0;
     transition: transform 0.4s ease, opacity 0.3s ease;
 }
@@ -294,20 +297,6 @@ input[type="search"]:focus {
     display: block;
 }
 
-/* .movieCard {
-    position: relative;
-    display: flex;
-    align-items: stretch;
-    border-radius: 15px;
-    cursor: pointer;
-    background-color: #9F9F9F;
-    overflow: hidden;
-  
-
-    width: 200px;  
-    transition: width 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  }
-   */
   .movieCard:hover {
     width: 600px; /* grow to reveal info */
     transform: scale(1.02);
@@ -326,27 +315,7 @@ input[type="search"]:focus {
     display: block;
   }
   
-  /* info panel */
-  /* .movieInfo {
-    flex: 1;
-    background-color: #d6a3ae;
-    color: #F2E0C7;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; */
-  
-    /* hide off-screen until hover */
-    /* transform: translateX(100%);
-    opacity: 0;
-    transition: transform 0.4s ease, opacity 0.3s ease; */
-  /* } */
-  
-  /* reveal when hovered */
-  /* .movieCard:hover .movieInfo {
-    transform: translateX(0);
-    opacity: 1;
-  } */
+
   
   
 @media (min-width: 992px) {

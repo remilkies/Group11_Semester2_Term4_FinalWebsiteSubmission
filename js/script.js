@@ -36,6 +36,25 @@
         });
     });
 
-    const movieCard = document.querySelectorAll(".movieCard")
+
+   
+        $(".movieCard").on("mouseenter", function() {
+          const card = $(this);
+      
+          // Bring above others
+          card.css("z-index", 10);
+        });
+      
+        $(".movieCard").on("mouseleave", function() {
+          const card = $(this);
+      
+          // Return z-index after animation
+          setTimeout(() => {
+            card.css("z-index", 1);
+          }, 300);
+        });
+      
+//make card extend
+
 
     
