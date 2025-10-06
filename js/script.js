@@ -38,7 +38,6 @@
 
     const movieCard = document.querySelectorAll(".movieCard")
 
-
 /*    The Home Page / Landing Page brief instructions
  ● This page must contain an automatic slider header that is 
 populated dynamically using the movie content from the API.
@@ -64,32 +63,29 @@ class Movies {
     //API request
 
     !async function(){
-const url = 'https://youtube138.p.rapidapi.com/auto-complete/?q=desp&hl=en&gl=US';
 const options = {
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': '4a2c683a26mshe55148b0462dfc4p159903jsn25e1e7480bae',
-		'x-rapidapi-host': 'youtube138.p.rapidapi.com'
-	}
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWM4YWRiNmE3NGIyZDViNTA1MmE3ZjBlMTA0NDA1ZiIsIm5iZiI6MTc1ODI5Mjg1NS43NzEwMDAxLCJzdWIiOiI2OGNkNmI3NzI1NjVlMzcxOTMxNDk2NDciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.AoEE9Ow4n3Zun2dAOqNR-kWFa3MW5RQ3DWYzRGSuZOc'
+  }
 };
 
-let data = await fetch(url, options)
+let data = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
         .then((response)=> response.json())
         .then((result)=> {return result})
         .catch((error)=> console.log(error));
 
-}();
 
+        let movieList = [];
 
-let movieList = [];
+    for (i = 0; i < data.results.length; i++){
 
-    for (i = 0; i < data.movies.length; i++){
-
-        let newMovies = data.movies[i].now_playing;
-        let title = data.movies[i].title;
-        let poster = data.movies[i].poster_path;
-       //can't find endpoint let director = data.movies[i].tbd;
-        let rating = data.movies[i].vote_average;
+        let newMovies = data.results[i].now_playing;
+        let title = data.results[i].title;
+        let poster = data.results[i].poster_path;
+        let director = data.results[i].known_for_department;
+        let rating = data.results[i].vote_average;
 
         movieList.push(window["movie_" + i] = new Movies(newMovies, title, poster,director, rating)); //names object as movie_0, then movie_1, then movie_2 ect.
     }
@@ -99,3 +95,4 @@ let movieList = [];
 
 
     //get new released movies
+}();
