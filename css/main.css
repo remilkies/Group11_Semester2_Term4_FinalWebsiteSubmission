@@ -194,15 +194,17 @@ input[type="search"]:focus {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 15px;
 }
 
 .movie-feature{
     position: relative;
-
+    border-radius: 15px;
 }
 
 .feature-item{
     width: 100%;
+    border-radius: 15px;
 }
 @media (min-width: 992px) {
     .feature-item{
@@ -298,7 +300,6 @@ input[type="search"]:focus {
 }
 
   .movieCard:hover {
-    width: 600px; /* grow to reveal info */
     transform: scale(1.02);
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   }

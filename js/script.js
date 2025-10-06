@@ -42,12 +42,15 @@
           const card = $(this);
       
           // Bring above others
+          card.animate({width: '600px'}, 500);
+          
           card.css("z-index", 10);
         });
       
         $(".movieCard").on("mouseleave", function() {
           const card = $(this);
-      
+
+          card.animate({width: '222px'}, 100);
           // Return z-index after animation
           setTimeout(() => {
             card.css("z-index", 1);
