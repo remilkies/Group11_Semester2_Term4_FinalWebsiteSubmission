@@ -251,6 +251,20 @@ input[type="search"]:focus {
     height: 57px;
 }
 
+.starPicks{
+    height: 400px;
+}
+
+.starPicks h2{
+    margin-bottom: 2em;
+}
+
+.movieCard-container{
+    gap: 1px;
+    margin-top: 1em;
+    align-content: center;
+}
+
 .movieCard {
     position: absolute;
     display: flex;
@@ -284,10 +298,6 @@ input[type="search"]:focus {
     opacity: 1;
 }
 
-
-.movieCard-container{
-    gap: 1px;
-}
 
 .moviePoster img{
     border-radius: 15px;
@@ -352,6 +362,9 @@ input[type="search"]:focus {
     }
 }
 
+.homeLibrary{
+    position: relative;
+}
 /* THIS IS FOR THE INDIVIDUAL MOVIE PAGE */
 .movie-container{
     margin-top: 3em;
