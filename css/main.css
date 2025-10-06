@@ -194,15 +194,17 @@ input[type="search"]:focus {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 15px;
 }
 
 .movie-feature{
     position: relative;
-
+    border-radius: 15px;
 }
 
 .feature-item{
     width: 100%;
+    border-radius: 15px;
 }
 @media (min-width: 992px) {
     .feature-item{
@@ -249,16 +251,29 @@ input[type="search"]:focus {
     height: 57px;
 }
 
+.starPicks{
+    height: 400px;
+}
+
+.starPicks h2{
+    margin-bottom: 2em;
+}
+
+.movieCard-container{
+    gap: 1px;
+    margin-top: 1em;
+    align-content: center;
+}
+
 .movieCard {
-    position: relative;
+    position: absolute;
     display: flex;
     align-items: stretch;
     border-radius: 15px;
     cursor: pointer;
-    background-color: #d6a3ae;
+    background-color: #9F9F9F;
     overflow: hidden; /* keep it */
     width: 200px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .movieInfo {
@@ -274,8 +289,8 @@ input[type="search"]:focus {
     justify-content: space-between;
 
     transform: translateX(100%);
+    z-index: 3;
     opacity: 0;
-    transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
 .movieCard:hover .movieInfo {
@@ -284,33 +299,13 @@ input[type="search"]:focus {
 }
 
 
-.movieCard-container{
-    gap: 1px;
-}
-
 .moviePoster img{
     border-radius: 15px;
     object-fit: cover;
     display: block;
 }
 
-/* .movieCard {
-    position: relative;
-    display: flex;
-    align-items: stretch;
-    border-radius: 15px;
-    cursor: pointer;
-    background-color: #9F9F9F;
-    overflow: hidden;
-  
-
-    width: 200px;  
-    transition: width 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  }
-   */
   .movieCard:hover {
-    width: 600px; /* grow to reveal info */
-    transform: scale(1.02);
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   }
   
@@ -326,27 +321,7 @@ input[type="search"]:focus {
     display: block;
   }
   
-  /* info panel */
-  /* .movieInfo {
-    flex: 1;
-    background-color: #d6a3ae;
-    color: #F2E0C7;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; */
-  
-    /* hide off-screen until hover */
-    /* transform: translateX(100%);
-    opacity: 0;
-    transition: transform 0.4s ease, opacity 0.3s ease; */
-  /* } */
-  
-  /* reveal when hovered */
-  /* .movieCard:hover .movieInfo {
-    transform: translateX(0);
-    opacity: 1;
-  } */
+
   
   
 @media (min-width: 992px) {
@@ -387,6 +362,9 @@ input[type="search"]:focus {
     }
 }
 
+.homeLibrary{
+    position: relative;
+}
 /* THIS IS FOR THE INDIVIDUAL MOVIE PAGE */
 .movie-container{
     margin-top: 3em;
