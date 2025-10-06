@@ -36,28 +36,32 @@
         });
     });
 
-
+//make card extend
    
         $(".movieCard").on("mouseenter", function() {
           const card = $(this);
+          const info = $(".movieInfo");
       
           // Bring above others
           card.animate({width: '600px'}, 500);
+          info.animate({})
           
           card.css("z-index", 10);
+          card.css("scale", 1.25);
         });
       
         $(".movieCard").on("mouseleave", function() {
           const card = $(this);
 
           card.animate({width: '222px'}, 100);
-          // Return z-index after animation
+          card.css("scale", 1);
+          // after animation
           setTimeout(() => {
             card.css("z-index", 1);
           }, 300);
         });
       
-//make card extend
+
 
 
     

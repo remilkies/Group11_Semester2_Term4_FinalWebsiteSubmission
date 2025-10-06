@@ -51,7 +51,8 @@ class Movies{
       let title = data.original_title || "title error";
       let rating = data.vote_average || "rating error";
       let year = data.release_date || "year error";
-      let genre = data.genres || "genre error";
+      let genre = data.genres[0] || "genre error";
+      let genreName = genre.name;
       let description = data.overview || "desc error";
 
     let individualMovie = new Movies(poster, title, rating, year, genre, description)
@@ -59,8 +60,13 @@ class Movies{
     console.log(individualMovie);
     
     document.getElementById('individualTitle').innerHTML = individualMovie.title;
+
     document.getElementById('individualPoster').src = individualMovie.poster;
 
+    document.getElementById('genre').innerHTML = genreName;
+
+    document.getElementById('rating').innerHTML = 
+    `<img src="../../assets/icons/starIcon.png" style="height: 15px"> ` + rating;
     document.getElementById('movieDesc').innerHTML = description;
 }();
 

@@ -260,9 +260,6 @@ input[type="search"]:focus {
     background-color: #9F9F9F;
     overflow: hidden; /* keep it */
     width: 200px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    z-index: 4;
 }
 
 .movieInfo {
@@ -280,7 +277,6 @@ input[type="search"]:focus {
     transform: translateX(100%);
     z-index: 3;
     opacity: 0;
-    transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
 .movieCard:hover .movieInfo {
@@ -300,7 +296,6 @@ input[type="search"]:focus {
 }
 
   .movieCard:hover {
-    transform: scale(1.02);
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   }
   
