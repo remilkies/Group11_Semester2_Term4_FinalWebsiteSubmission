@@ -56,12 +56,6 @@ h3{ /* movie titles */
 }
 
 .movie-title{/* MAKE TITLES INLINE WITH THE BUTTON HALVES */
-    position: absolute;
-    display: inline-flex;
-    align-items: center;
-}
-
-.movieTitle{
     display: inline-flex;
     align-items: center;
 }
@@ -227,6 +221,25 @@ input[type="search"]:focus {
 .feature-title{
     bottom: 30px;
     left: 16px;
+}
+.feature-img {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  /* Overlay container over the image */
+  .feature-overlay {
+    position: absolute;
+    bottom: 5%; /* adjust height placement */
+    color: white;
+  } 
+
+.feature-info{
+    margin: 0 !important;
+    padding-bottom: 0 !important;
+    margin-left: 15px !important;
 }
 
 .carousel-button{

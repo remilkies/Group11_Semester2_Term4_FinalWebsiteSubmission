@@ -61,12 +61,15 @@ class Movies{
     
     document.getElementById('individualTitle').innerHTML = individualMovie.title;
 
+    document.getElementById('rating').innerHTML = 
+    `<img src="../../assets/icons/starIcon.png" style="height: 15px">  ${rating.toFixed(0)}`;
+
+    document.getElementById('year').innerHTML = year.slice(0, 4);
+
     document.getElementById('individualPoster').src = individualMovie.poster;
 
     document.getElementById('genre').innerHTML = genreName;
 
-    document.getElementById('rating').innerHTML = 
-    `<img src="../../assets/icons/starIcon.png" style="height: 15px"> ` + rating;
     document.getElementById('movieDesc').innerHTML = description;
 }();
 

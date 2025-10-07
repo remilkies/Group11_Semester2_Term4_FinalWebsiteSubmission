@@ -59,8 +59,10 @@
           // after animation
           setTimeout(() => {
             card.css("z-index", 1);
-          }, 300);
+          }, 100);
         });
+
+        
       
 
 
