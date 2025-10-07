@@ -252,7 +252,7 @@ input[type="search"]:focus {
 }
 
 .starPicks{
-    height: 400px;
+    height: 450px;
 }
 
 .starPicks h2{
@@ -430,23 +430,25 @@ input[type="search"]:focus {
 }
 
 .movie-actors{
-    padding: 1em;
+    /* padding: 1em;
     margin-left: 1%;
-    margin-top: 3%;
+    margin-top: 3%; */
     border-radius: 60px;
     background-color: #303030;
+    align-content: center;
+    margin-bottom: 0 !important;
 }
-
+/* 
 .movie-actors h2{
     margin-right: 5%;
     margin-bottom: 0;
-}
+} */
 
-.actor{
+/* .actor{
     margin-bottom: 0 !important;
     align-content: center;
     
-}
+} */
 
 .trailerButton{
     margin-top: 1em;
