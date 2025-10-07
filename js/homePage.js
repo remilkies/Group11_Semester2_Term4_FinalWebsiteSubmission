@@ -40,7 +40,7 @@ let data = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=
 
         let movieList = [];
 
-        for (i = 0; i < data.movies.length; i++){
+        for (i = 0; i < data.results.length; i++){
 
         let newMovies = data.results[i].now_playing;
         let title = data.results[i].title;
@@ -52,10 +52,19 @@ let data = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=
     }
 
     console.log(movieList);
+
+    document.getElementById("titleFeature1").innerHTML = movieList[0].title;
+    document.getElementById("titleFeature2").innerHTML = movieList[1].title;
+    document.getElementById("titleFeature3").innerHTML = movieList[2].title;
+    document.getElementById("titleFeature4").innerHTML = movieList[3].title;
     
-    document.getElementById('titleFeature1').innerHTML = "The title is " + movieList[0].title;
-    
+    document.getElementById("imageFeature1").innerHTML = movieList[0].poster;
+    document.getElementById("imageFeature2").innerHTML = movieList[1].poster;
+    document.getElementById("imageFeature3").innerHTML = movieList[2].poster;
+    document.getElementById("imageFeature4").innerHTML = movieList[3].poster;
+
 }();
+
 
 // Notes:
 // Get the right information for the director
@@ -87,16 +96,16 @@ let data = await fetch(url, options)
         .catch((error)=> console.log(error));
 
 
-        let popularMovies = [];
+        let popMovies = [];
 
-        for (i = 0; i < data.movies.length; i++){
+        for (i = 0; i < data.results.length; i++){
 
         let title = data.results[i].title;
         let poster = data.results[i].poster_path;
 
-        popularMovies.push(window["movie_" + i] = new popularMovies(title, poster));
+        popMovies.push(window["movie_" + i] = new PopularMovies(title, poster));
     }
 
-    console.log(popularMovies);
+    console.log(popMovies);
     
 }();
