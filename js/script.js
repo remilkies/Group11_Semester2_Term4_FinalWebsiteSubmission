@@ -1,5 +1,5 @@
     //BOOKMARK, WISHLIST, ICON HOVER + CLICK ACTIVE + TOGGLER
-    const iconBookmarks = document.querySelectorAll(".watchlistIcon");
+    const iconBookmarks = document.querySelectorAll(".watchlistIcon", ".watchlistIconFeature");
 
     
     iconBookmarks.forEach((iconBookmark) => {
@@ -47,7 +47,7 @@
           info.animate({})
           
           card.css("z-index", 10);
-          card.css("scale", 1.25);
+          card.css("scale", 1.15);
         });
       
         $(".movieCard").on("mouseleave", function() {

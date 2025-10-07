@@ -276,6 +276,10 @@ input[type="search"]:focus {
     width: 200px;
 }
 
+.card-title{
+    position: relative;
+}
+
 .movieInfo {
     position: absolute; /* absolute inside card */
     top: 0;
@@ -364,6 +368,7 @@ input[type="search"]:focus {
 
 .homeLibrary{
     position: relative;
+    padding-bottom: 5em;
 }
 /* THIS IS FOR THE INDIVIDUAL MOVIE PAGE */
 .movie-container{

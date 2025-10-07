@@ -98,7 +98,7 @@ let data = await fetch(url, options)
   let actor4 = cast [3].name;
 
 
-  document.getElementById('actor1').innerHTML = actor1;
+  document.getElementById('actor1').innerHTML = actor1
   document.getElementById('actor2').innerHTML = actor2;
   document.getElementById('actor3').innerHTML = actor3;
   document.getElementById('actor4').innerHTML = actor4;
