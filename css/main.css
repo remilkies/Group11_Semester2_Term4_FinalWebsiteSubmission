@@ -197,12 +197,12 @@ input[type="search"]:focus {
 }
 
 .feature-item{
-    width: 100%;
+    width: 80%;
     border-radius: 15px;
 }
 @media (min-width: 992px) {
     .feature-item{
-    width: 1196px;
+    width: 1300px;
     }
 }
 
