@@ -1,5 +1,5 @@
     //BOOKMARK, WISHLIST, ICON HOVER + CLICK ACTIVE + TOGGLER
-    const iconBookmarks = document.querySelectorAll(".watchlistIcon", ".watchlistIconFeature");
+    const iconBookmarks = document.querySelectorAll(".watchlistIconFeature, .watchlistIcon");
 
     
     iconBookmarks.forEach((iconBookmark) => {
@@ -24,6 +24,7 @@
     });
     });
 
+    
     // this is for the watch button toggled to watchedButton
     const watchButton = document.querySelectorAll(".watchButton");
 
