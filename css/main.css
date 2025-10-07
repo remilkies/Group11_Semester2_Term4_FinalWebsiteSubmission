@@ -258,6 +258,7 @@ input[type="search"]:focus {
     top: 35px;
     right: 15px;
     height: 57px;
+    z-index: 5;
 }
 
 .watchlistIcon{
@@ -281,6 +282,7 @@ input[type="search"]:focus {
     gap: 1px;
     margin-top: 1em;
     align-content: center;
+    position: relative;
 }
 
 .movieCard {
