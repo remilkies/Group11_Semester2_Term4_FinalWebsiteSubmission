@@ -236,11 +236,16 @@ input[type="search"]:focus {
     color: white;
   } 
 
+  .starIcon{
+    margin-right: 5px;
+  }
+
 .feature-info{
     margin: 0 !important;
     padding-bottom: 0 !important;
     margin-left: 15px !important;
 }
+
 
 .carousel-button{
     height: 32px;
@@ -308,6 +313,7 @@ input[type="search"]:focus {
     transform: translateX(100%);
     z-index: 3;
     opacity: 0;
+    margin: 1em;
 }
 
 .movieCard:hover .movieInfo {
@@ -434,6 +440,7 @@ input[type="search"]:focus {
     padding-right: 2em !important;
     background-color: #303030;
     border-radius: 50px;
+    text-align: center;
 }
 
 .movie-description{
