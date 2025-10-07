@@ -98,11 +98,13 @@ let data = await fetch(url, options)
   let actor1 = cast[0].name || "actor error";
   let actor2 = cast[1].name;
   let actor3 = cast[2].name;
-  let actor4 = cast [3].name;
+  let actor4 = cast[3].name;
 
 
-  document.getElementById('actor1').innerHTML = actor1
-  document.getElementById('actor2').innerHTML = actor2;
-  document.getElementById('actor3').innerHTML = actor3;
-  document.getElementById('actor4').innerHTML = actor4;
+
+  document.getElementById('actor').innerHTML = actor1
+  document.getElementById('actor1').innerHTML = actor2;
+  document.getElementById('actor2').innerHTML = actor3;
+  document.getElementById('actor3').innerHTML = actor4;
+
 }()
