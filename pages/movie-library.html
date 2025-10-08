@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width-device-width, initial-scale-1.0">
+    <meta name="author" content="Syntax Slayers, Kayleigh 251129">
+    <meta name="keywords" content="movie, movies, library, movie library">
+
+    <title> Movie Library </title>
+    <!--referenced from Remmy's work-->
+    <link rel="preconnect" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Emblema+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<!--referenced from Remmy's work-->
+<header>
+
+    <nav class="navbar">
+        <div class="container-fluid">
+
+          <a class="navbar-profile" href="#">Welcome <br> Please Login</a>
+
+          <div class="pageTitle">
+            <h1>DREAM STREAM</h1>
+            <h2>THE STRAEMING SERVICE OF YOUR DREAMS</h2>
+          </div>
+          <button class="navbar-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <img src="../assets/logo/logo.png">
+          </button>
+
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+
+              <h1 class="navbar-header inline-flex"><img src="../assets/logo/logo.png">Browse</h1> 
+              <!-- THIS WORKS SO WHY DOES THIS NOT -->
+              
+
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                </form>
+
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="../index.html"> 
+                    <img src="../assets/icons/starIcon.png" class="nav-icon">
+                    <h2>Home</h2>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="../pages/watchlist.html">
+                    <img src="../assets/icons/starIcon.png" class="nav-icon">
+                    <h2>Dream List</h2>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="../pages/movie-library.html">
+                    <img src="../assets/icons/starIcon.png" class="nav-icon">
+                    <h2>Library</h2>
+                  </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="../assets/icons/starIcon.png" class="nav-icon">
+                    <h2>Genres</h2>
+                  </a>
+
+                  <ul class="dropdown-menu">
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <img src="../assets/icons/starIcon.png" class="nav-icon">
+                        <h2>Action</h2>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <img src="../assets/icons/starIcon.png" class="nav-icon">
+                        <h2>Horror</h2>
+                      </a>
+                    </li>
+
+                  </ul>
+                </li>
+
+              </ul>
+            </div>
+
+          </div>
+        </div>
+    </nav>
+  </header>
+
+<!--Movie cards-->
+
+<body>
+    <!--Row 1-->
+    <div class="container-fluid">
+        <div class="row">
+            <!--Card 1-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 2-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 3-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 4-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 5-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+
+    <!--Row 2-->
+    <div class="container-fluid">
+        <div class="row">
+
+            <!--Card 1-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 2-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 3-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 4-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 5-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+
+    <!--Row 3-->
+    <div class="container-fluid">
+        <div class="row">
+
+            <!--Card 1-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 2-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 3-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 4-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 5-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+
+    <!--Row 4-->
+    <div class="container-fluid">
+        <div class="row">
+
+            <!--Card 1-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 2-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 3-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 4-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 5-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+
+    <!--Row 5-->
+    <div class="container-fluid">
+        <div class="row">
+
+            <!--Card 1-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 2-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 3-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 4-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 5-->
+            <div class="col">
+                <div class="card movieCard">
+                    <div class="moviePoster">
+                        <img src="insert movie poster">
+                    </div>
+                    <button>
+                        <img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png"
+                            data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png"
+                            class="watchlistIcon">
+                    </button>
+                    <div class="card-body movieInfo">
+                        <a class="movie-title card-title" href="link to page movie is">
+                            <img src="../assets/buttons/leftButton.png" height="66px">
+                            <h3> Movie Title </h3>
+                            <img src="../assets/buttons/rightButton.png" height="66px">
+                        </a>
+                        <p class="card-text"> insert movie description </p>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+
+
+</body>
+<script src="../js/jQuery.js"></script>
+<script src="../js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"> </script>
+
+</html>

@@ -61,12 +61,15 @@ class Movies{
     
     document.getElementById('individualTitle').innerHTML = individualMovie.title;
 
+    document.getElementById('rating').innerHTML = 
+    `<img src="../../assets/icons/starIcon.png" style="height: 15px">  ${rating.toFixed(0)}`;
+
+    document.getElementById('year').innerHTML = year.slice(0, 4);
+
     document.getElementById('individualPoster').src = individualMovie.poster;
 
     document.getElementById('genre').innerHTML = genreName;
 
-    document.getElementById('rating').innerHTML = 
-    `<img src="../../assets/icons/starIcon.png" style="height: 15px"> ` + rating;
     document.getElementById('movieDesc').innerHTML = description;
 }();
 
@@ -83,8 +86,25 @@ class Movies{
 
 let data = await fetch(url, options)
   .then(res => res.json())
-  .then(json => console.log(json))
+  .then(json => {
+    console.log(json);
+    return json;
+  })
   .catch(err => console.error(err));
     
-    
+  console.log(data);
+
+  let cast = data.cast || "cast error";
+  let actor1 = cast[0].name || "actor error";
+  let actor2 = cast[1].name;
+  let actor3 = cast[2].name;
+  let actor4 = cast[3].name;
+
+
+
+  document.getElementById('actor').innerHTML = actor1
+  document.getElementById('actor1').innerHTML = actor2;
+  document.getElementById('actor2').innerHTML = actor3;
+  document.getElementById('actor3').innerHTML = actor4;
+
 }()

@@ -108,11 +108,11 @@
         <div class="col-md-4">
             <div class="poster-container">
                 <div class="movie-poster">
-                <img src="../../js/scriptMovie.js">
+                <img id="individualPoster" src="../../js/scriptMovie.js" >
                 
                 </div>
 
-                <button ><img src="../../assets/icons/watchlistIcon.png" data-default="../../assets/icons/watchlistIcon.png" data-hover="../../assets/icons/watchlistAdded.png" data-active="../../assets/icons/watchlistAdded.png" class="individual-watchlistIcon"></button>
+                <button ><img src="../../assets/icons/watchlistIcon.png" data-default="../../assets/icons/watchlistIcon.png" data-hover="../../assets/icons/watchlistAdded.png" data-active="../../assets/icons/watchlistAdded.png" class="watchlistIcon individual-watchlistIcon"></button>
 
                 <button class="watchButton">
                     <img src="../../assets/buttons/watchButton.png" data-default="../../assets/buttons/watchButton.png" data-active="../../assets/buttons/watchedButton.png" height="66px" class="watchButton individual-watchButton">
@@ -123,25 +123,25 @@
         </div>
 
         <div class="col-md-8">
-            <div class="movieTitle">
+            <div class="movie-title">
                 <img src="../../assets/buttons/leftButton.png" height="66px">
-                <h3>Movie Title</h3>
+                <h3 id="individualTitle">Movie Title</h3>
                 <img src="../../assets/buttons/rightButton.png" height="66px">
             </div>
 
             <div class="movie-info d-flex flex-row">
-                <h4 class="p-2 category">Rating</h4>
-                <h4 class="p-2 category">Year</h4>
-                <h4 class="p-2 category">Genre</h4>
+                <h4 class="p-2 category" id="rating"><img src="../../assets/icons/starIcon.png" style="height: 15px" class="starIcon">Rating</h4>
+                <h4 class="p-2 category" id="year">Year</h4>
+                <h4 class="p-2 category" id="genre">Genre</h4>
             </div>
 
             <div class="movie-description">
                 <h2 >Description</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.</p>
+                <p id="movieDesc">Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.</p>
             </div>
 
-            <div class="movie-actors d-flex flex-row mb-3">
-              <h2 class="p-2">STARING</h2>
+            <div class=" d-flex align-items-center mb-5 movie-actors">
+              <h2 class="me-auto p-2 actor">STARING</h2>
               <p class="p-2 actor">Lorem,</p>
               <p class="p-2 actor"> Ipsum,</p>  
               <p class="p-2 actor"> Dolor,</p> 

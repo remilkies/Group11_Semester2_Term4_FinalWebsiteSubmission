@@ -1,5 +1,5 @@
     //BOOKMARK, WISHLIST, ICON HOVER + CLICK ACTIVE + TOGGLER
-    const iconBookmarks = document.querySelectorAll(".watchlistIcon");
+    const iconBookmarks = document.querySelectorAll(".watchlistIconFeature, .watchlistIcon");
 
     
     iconBookmarks.forEach((iconBookmark) => {
@@ -24,6 +24,7 @@
     });
     });
 
+    
     // this is for the watch button toggled to watchedButton
     const watchButton = document.querySelectorAll(".watchButton");
 
@@ -47,7 +48,7 @@
           info.animate({})
           
           card.css("z-index", 10);
-          card.css("scale", 1.25);
+          card.css("scale", 1.15);
         });
       
         $(".movieCard").on("mouseleave", function() {
@@ -58,8 +59,10 @@
           // after animation
           setTimeout(() => {
             card.css("z-index", 1);
-          }, 300);
+          }, 100);
         });
+
+        
       
 
 

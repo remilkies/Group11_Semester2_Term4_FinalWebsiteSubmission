@@ -112,10 +112,10 @@
                 
                 </div>
 
-                <button ><img src="../../assets/icons/watchlistIcon.png" data-default="../../assets/icons/watchlistIcon.png" data-hover="../../assets/icons/watchlistAdded.png" data-active="../../assets/icons/watchlistAdded.png" class="individual-watchlistIcon"></button>
+                <button ><img src="../../assets/icons/watchlistIcon.png" data-default="../../assets/icons/watchlistIcon.png" data-hover="../../assets/icons/watchlistAdded.png" data-active="../../assets/icons/watchlistAdded.png" class="watchlistIcon individual-watchlistIcon"></button>
 
                 <button class="watchButton">
-                    <img src="../../assets/buttons/watchButton.png" data-default="../../assets/buttons/watchButton.png" data-active="../../assets/buttons/watchedButton.png" height="66px" class="watchButton individual-watchButton">
+                    <img src="../../assets/buttons/watchButton.png" data-default="../../assets/buttons/watchButton.png" data-active="../../assets/buttons/watchedButton.png" height="66px" class="watchButton">
                 </button> 
                 
                 <button><img src="../../assets/buttons/trailerButton.png" class="trailerButton"></button>
@@ -123,7 +123,7 @@
         </div>
 
         <div class="col-md-8">
-            <div class="movieTitle">
+            <div class="movie-title">
                 <img src="../../assets/buttons/leftButton.png" height="66px">
                 <h3 id="individualTitle">Movie Title</h3>
                 <img src="../../assets/buttons/rightButton.png" height="66px">
@@ -131,7 +131,7 @@
 
             <div class="movie-info d-flex flex-row">
                 <h4 class="p-2 category" id="rating"></h4>
-                <h4 class="p-2 category"></h4>
+                <h4 class="p-2 category" id="year"></h4>
                 <h4 class="p-2 category" id="genre"></h4>
             </div>
 
@@ -140,13 +140,13 @@
                 <p id="movieDesc"></p>
             </div>
 
-            <div class="movie-actors d-flex flex-row mb-3">
-              <h2 class="p-2">STARING</h2>
-              <p class="p-2 actor">Lorem,</p>
-              <p class="p-2 actor"> Ipsum,</p>  
-              <p class="p-2 actor"> Dolor,</p> 
-              <p class="p-2 actor"> Sit,</p> 
-              <p class="p-2 actor"> Amet</p>
+            <div class=" d-flex align-items-center movie-actors">
+              <h2 class="me-auto p-2 actor">STARRING</h2>
+              <p class="p-2 actor" id="actor"></p>
+              <p class="p-2 actor" id="actor1"> ,</p>  
+              <p class="p-2 actor" id="actor2"> ,</p> 
+              <p class="p-2 actor" id="actor3"> ,</p> 
+              <p class="p-2 actor" id="actor4"> </p>
             </div>
             </div>
         </div>
