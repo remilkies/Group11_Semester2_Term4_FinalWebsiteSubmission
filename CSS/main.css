@@ -288,7 +288,7 @@ input[type="search"]:focus {
 
 .movieCard {
     position: absolute;
-    display: flex;
+    /* display: flex; */
     align-items: stretch;
     border-radius: 15px;
     cursor: pointer;
@@ -350,7 +350,7 @@ input[type="search"]:focus {
 
   
   
-
+@media (min-width: 992px) {
     .movieCard{
         height: 326px;
         width: 222px;
@@ -365,7 +365,28 @@ input[type="search"]:focus {
     left: 155px;
     top: 10px;
     }
+}
 
+
+
+@media (min-width: 768px) and (max-width: 991.98px){
+
+    .movieCard{
+        height: 236px;
+        width: 160px;
+    }
+
+    .moviePoster img{
+        height: 236px;
+        width: 160px;
+
+    }
+
+    .watchlistIcon{
+    left: 93px;
+    top: 10px;
+    }
+}
 
 .homeLibrary{
     position: relative;
@@ -384,14 +405,15 @@ input[type="search"]:focus {
     justify-content: center;
 }
 
-.movie-poster #individualPoster img{
-    width: 346px !important;
-    height: 492px !important;
-    border-radius: 15px !important;
+.movie-poster .movie-poster img{
+    width: 100%;
+    border-radius: 15px;
     background-color: #9F9F9F;
 }
 
-
+#individualPoster{
+    width: 100%;
+}
 
 .individual-watchlistIcon{
     position: absolute;
@@ -463,8 +485,7 @@ padding: 1em;
     margin-top: 1em;
 }
 
-
-
+/* display flex not on div around card > display block margin left auto margin right auto */
 
 /* // No media query necessary for xs breakpoint as it’s effectively `@media (min-width: 0) { ... }`
 @include media-breakpoint-up(sm) { ... }
