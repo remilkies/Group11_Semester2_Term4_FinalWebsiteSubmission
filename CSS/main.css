@@ -284,12 +284,12 @@ input[type="search"]:focus {
 } */
 /*DO NOT TOUCH A THING*/
 .movieCard { /*needs to be absolute for animation to work*/
-    /* position: absolute;
+    /* position: absolute; */
     border-radius: 15px;
-    cursor: pointer; */
+    cursor: pointer;
     background-color: #9F9F9F;
-    /* overflow: hidden;
-    width: 200px; */
+    overflow: hidden;
+    /* width: 200px; */
 }
 
 .card-title{
