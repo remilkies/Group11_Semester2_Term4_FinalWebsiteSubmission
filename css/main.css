@@ -309,9 +309,6 @@ input[type="search"]:focus {
     height: 100%;
     color: #F2E0C7;
     padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
     transform: translateX(100%);
     z-index: 3;
@@ -346,11 +343,7 @@ input[type="search"]:focus {
     border-radius: 15px 0 0 15px;
     display: block;
   }
-  
 
-  
-  
-@media (min-width: 992px) {
     .movieCard{
         height: 326px;
         width: 222px;
@@ -365,28 +358,8 @@ input[type="search"]:focus {
     left: 155px;
     top: 10px;
     }
-}
 
 
-
-@media (min-width: 768px) and (max-width: 991.98px){
-
-    .movieCard{
-        height: 236px;
-        width: 160px;
-    }
-
-    .moviePoster img{
-        height: 236px;
-        width: 160px;
-
-    }
-
-    .watchlistIcon{
-    left: 93px;
-    top: 10px;
-    }
-}
 
 .homeLibrary{
     position: relative;
