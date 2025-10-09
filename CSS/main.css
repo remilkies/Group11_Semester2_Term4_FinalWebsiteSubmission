@@ -271,30 +271,25 @@ input[type="search"]:focus {
     height: 57px;
 }
 
-.starPicks{
+/* .starPicks{
     height: 450px;
-}
+} */
 
 .starPicks h2{
     margin-bottom: 2em;
 }
 
-.movieCard-container{
-    gap: 1px;
-    margin-top: 1em;
-    align-content: center;
-    position: relative;
-}
+/* .movieCard-container{
 
-.movieCard {
-    position: absolute;
-    /* display: flex; */
-    align-items: stretch;
+} */
+/*DO NOT TOUCH A THING*/
+.movieCard { /*needs to be absolute for animation to work*/
+    /* position: absolute;
     border-radius: 15px;
-    cursor: pointer;
+    cursor: pointer; */
     background-color: #9F9F9F;
-    overflow: hidden; /* keep it */
-    width: 200px;
+    /* overflow: hidden;
+    width: 200px; */
 }
 
 .card-title{
@@ -304,13 +299,13 @@ input[type="search"]:focus {
 .movieInfo {
     position: absolute; /* absolute inside card */
     top: 0;
-    left: 200px; /* start just outside poster */
+    left: 200px;
     width: 400px;
     height: 100%;
     color: #F2E0C7;
     padding: 15px;
 
-    transform: translateX(100%);
+    transform: translateX(100%); /*keep thingy hidden*/
     z-index: 3;
     opacity: 0;
     margin: 1em;
@@ -354,7 +349,7 @@ input[type="search"]:focus {
         width: 222px;
     }
     
-    .watchlistIcon{
+    .watchlistIcon{ /*THIS IS TO POSITION ON THE CARD*/
     left: 155px;
     top: 10px;
     }
@@ -365,6 +360,10 @@ input[type="search"]:focus {
     position: relative;
     padding-bottom: 5em;
 }
+
+
+
+
 /* THIS IS FOR THE INDIVIDUAL MOVIE PAGE */
 .movie-container{
     margin-top: 3em;
