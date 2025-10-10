@@ -455,22 +455,23 @@ input[type="search"]:focus {
     text-align: start;
 }
 
-.movie-actors{
-padding: 1em;
+.movie-actors, .movie-directors{
+    padding: 1em;
     margin-left: 1%;
     margin-top: 3%;
     border-radius: 60px;
     background-color: #303030;
     margin-bottom: 0 !important;
-
 }
+
+
 /* 
 .movie-actors h2{
     margin-right: 5%;
     margin-bottom: 0;
 } */
 
-.actor{
+.actor, .director{
     margin-bottom: 0 !important;
     
 }
