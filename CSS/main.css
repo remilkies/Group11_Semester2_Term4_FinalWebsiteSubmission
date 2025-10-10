@@ -416,15 +416,14 @@ input[type="search"]:focus {
 }
 
 .watchButton{
-    margin-top: 2rem;
     height: 66px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left: 1%;
+    margin-top: 2%;
 }
 
 .trailerButton{
     height: 66px;
+    margin-top: 2%;
 }
 
 .movie-info{
@@ -472,13 +471,9 @@ input[type="search"]:focus {
 } */
 
 .actor, .director{
-    margin-bottom: 0 !important;
-    
+    margin-bottom: 0 !important; 
 }
 
-.trailerButton{
-    margin-top: 1em;
-}
 
 /* display flex not on div around card > display block margin left auto margin right auto */
 
