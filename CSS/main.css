@@ -19,11 +19,9 @@ body{
     margin: 0;
 }
 
-/* section{
-    margin: 4%;
-    margin-top: 0;
-} */
-
+section{
+    margin-top: 1%;
+}
 
 h1{ /* this is for page titles */
     font-family: "Emblema One", system-ui;
@@ -306,12 +304,13 @@ input[type="search"]:focus {
     white-space: nowrap;
     width: 100%;
     height: 500%;
+    padding-top: 3%;
+    padding-bottom: 3%;
   }
 
   .scrolling-wrapper .movieCard {
     display: inline-block;
   }
-
 .movieCard {
     border-radius: 15px;
     cursor: pointer;
