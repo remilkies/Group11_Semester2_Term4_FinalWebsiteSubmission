@@ -312,11 +312,13 @@ input[type="search"]:focus {
     display: inline-block;
   }
 
-.movie-container{ /*keeps cards in place*/
-    margin-left:auto;
-    margin-right:auto;
-    width:960px;
-} 
+
+
+.movieContainer h2{
+    position: absolute;
+    margin-left:2%;
+    text-align: start !important;
+}
 .movieCard {
     border-radius: 15px;
     cursor: pointer;
