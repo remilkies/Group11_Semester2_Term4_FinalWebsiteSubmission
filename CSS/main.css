@@ -70,6 +70,7 @@ h3{ /* movie titles */
 .movie-title{/* MAKE TITLES INLINE WITH THE BUTTON HALVES */
     display: inline-flex;
     align-items: center;
+    align-self: stretch;
 }
 
 button{
@@ -90,6 +91,12 @@ h4{
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+}
+
+@media (max-width: 991.98px){
+    .pageTitle{
+        opacity: 0;
+    }
 }
       
 
@@ -289,10 +296,6 @@ input[type="search"]:focus {
     height: 450px;
 } */
 
-.starPicks h2{
-    margin-bottom: 2em;
-}
-
 /* .movieCard-container{
 
 } */
@@ -311,7 +314,6 @@ input[type="search"]:focus {
   .scrolling-wrapper .movieCard {
     display: inline-block;
   }
-
 
 
 .movieContainer h2{
@@ -396,7 +398,21 @@ input[type="search"]:focus {
     padding-bottom: 5em;
 }
 
+/* THIS IS FOR THE MOVIE LIBRARY/WISHLIST PAGES */
+.filter-bar{
+    background-color: #F2E0C7;
+    color: #303030;
+    margin: 2%;
+    border-radius: 30px;
+    padding: 1%;
+}
 
+.movie-searchBar, .movie-searchBar input[type="search"],
+input[type="search"]:focus {
+    border-radius: 15px;
+    background-color: #303030;
+    color: #F2E0C7 !important;
+}
 
 
 /* THIS IS FOR THE INDIVIDUAL MOVIE PAGE */
@@ -429,6 +445,13 @@ input[type="search"]:focus {
     position: absolute;
     top: 21%;
     left: 29%;
+}
+
+@media (max-width: 765px){
+    .individual-watchlistIcon{
+        top: 21%;
+        left: 78%;
+    }
 }
 
 .watchButton{
