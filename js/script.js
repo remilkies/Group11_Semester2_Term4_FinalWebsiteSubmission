@@ -1,220 +1,170 @@
-/*  Dream Stream – Individual Movie Page Loader
- */
+/* Dream Stream - DEBUG VERSION */
+console.log('🏠 SCRIPT REACHES CARDS:', document.querySelectorAll('.movieCard').length);
 
-// Wait for the entire page to load before running our script
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("Page loaded, initializing movie script...");
+    console.log("=== DOM CONTENT LOADED ===");
+    console.log('🏠 CARDS AFTER DOM LOAD:', document.querySelectorAll('.movieCard').length);
 
- 
-    // These are the settings that control which movie we load and how we connect to the API
-    const MOVIE_ID = 617126;  // The unique ID for the movie we want to display
-    const API_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZDE2OWZkMTg5MDg0NGZkNGZiMGMzYmI5YWIzOTkzMCIsIm5iZiI6MTc1OTQwNzA5MC41NDcwMDAyLCJzdWIiOiI2OGRlNmJmMjJkMGI0YTkwYjZkYTU3OWUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.H3q6GBug0aWNLQPpsTml0aQE9AAWo8QJzI2GBSxWuP4';
-    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';  // Base URL for movie images
+    const API_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZDE2OWZkMTg5MDg0NGZkNGZiMGMzYmI5YWIzOTkzMCIsIm5iZiI6MTc1OTQwNzA5MC41NDcwMDAyLCJzdWIiOiI2OGRlNmJmMjJkMGI0YTkwYjZkYTU3OWUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.H3q6GBug0aWNLQPpsTml0iQE9AAWo8QJzI2GBSxWuP4';
+    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
-    /* INTERACTIVE ICON HANDLING  */
-    // This section handles the hover and click effects for watchlist and watch buttons
-    console.log("Setting up interactive icons...");
-    
-    // Get all the interactive icons on the page
-    const interactiveIcons = document.querySelectorAll('.watchlistIcon, .watchButton');
-    
-    // Loop through each icon and set up its event listeners
-    interactiveIcons.forEach(function(iconElement) {
-        let isCurrentlyActive = false;  // Track whether this icon is in active state
+    //  MOVIE LIBRARY PAGE 
+    function initializeMovieLibraryPage() {
+        if (!window.location.pathname.includes('movie-library.html')) return;
         
-        // When mouse hovers over the icon
-        iconElement.addEventListener('mouseenter', function() {
-         
-            if (!isCurrentlyActive && iconElement.dataset.hover) {
-                iconElement.src = iconElement.dataset.hover;
-                console.log("Icon hover state activated");
-            }
-        });
-        
-        // When mouse leaves the icon
-        iconElement.addEventListener('mouseleave', function() {
-          
-            if (!isCurrentlyActive && iconElement.dataset.default) {
-                iconElement.src = iconElement.dataset.default;
-                console.log("Icon returned to default state");
-            }
-        });
-        
-        // When icon is clicked
-        iconElement.addEventListener('click', function() {
-            // Toggle between active and inactive states
-            isCurrentlyActive = !isCurrentlyActive;
-            
-            if (isCurrentlyActive) {
-                iconElement.src = iconElement.dataset.active;
-                console.log("Icon set to active state");
-            } else {
-                iconElement.src = iconElement.dataset.default;
-                console.log("Icon set to default state");
-            }
-        });
-    });
-
-    /*  MOVIE CARD ANIMATIONS */
-    // This uses jQuery for smooth animations when hovering over movie cards
-    console.log("Setting up movie card animations...");
-    
-    // When mouse enters a movie card
-    $('.movieCard').on('mouseenter', function() {
-        const currentCard = $(this);
-        console.log("Mouse entered movie card, expanding...");
-        
-        // Animate the card to be larger and bring it to front
-        currentCard.animate({ width: '600px' }, 500);
-        currentCard.css({ 
-            'z-index': 10,
-            'scale': 1.15
-        });
-    });
-    
-    // When mouse leaves a movie card
-    $('.movieCard').on('mouseleave', function() {
-        const currentCard = $(this);
-        console.log("Mouse left movie card, shrinking...");
-        
-       
-        currentCard.animate({ width: '222px' }, 100);
-        currentCard.css('scale', 1);
-        
-   
-        setTimeout(function() {
-            currentCard.css('z-index', 1);
-            console.log("Card animation complete");
-        }, 100);
-    });
-
-    /*  MOVIE DATA LOADING  */
-    // This section handles fetching movie data from the TMDB API
-    console.log("Starting movie data loading process...");
-    
-    // Main function to load all movie data
-    !async function loadMovieData() {
-        console.log("loadMovieData function called");
-        
-        // Define the API endpoints we need to call
-        const movieDetailsEndpoint = `https://api.themoviedb.org/3/movie/${MOVIE_ID}?language=en-US`;
-        const movieCreditsEndpoint = `https://api.themoviedb.org/3/movie/${MOVIE_ID}/credits?language=en-US`;
-        
-        // Set up the request options with our authorization
-        const requestOptions = {
-            method: 'GET',
-            headers: { 
-                'accept': 'application/json',
-                'Authorization': `Bearer ${API_TOKEN}`
-            }
-        };
-        
-        try {
-            console.log("Making API requests...");
-            
-            // Make both API calls at the same time for better performance
-            const [movieDetailsResponse, movieCreditsResponse] = await Promise.all([
-                fetch(movieDetailsEndpoint, requestOptions),
-                fetch(movieCreditsEndpoint, requestOptions)
-            ]);
-            
-            console.log("API responses received, parsing JSON...");
-            
-            // Convert responses to JSON format
-            const movieDetailsData = await movieDetailsResponse.json();
-            const movieCreditsData = await movieCreditsResponse.json();
-            
-            console.log("Data parsed successfully, updating page...");
-            
-            // Update the webpage with the fetched data
-            updatePageWithMovieData(movieDetailsData, movieCreditsData);
-            
-        } catch (error) {
-            // Handle any errors that occur during the API calls
-            console.error('Error loading movie data:', error);
-            alert('Sorry, there was a problem loading the movie data. Please try again later.');
-        }
-    }();
-
-    /*  PAGE UPDATE FUNCTIONS  */
-    // This function takes the API data and updates the HTML elements
-    function updatePageWithMovieData(movieDetails, creditsData) {
-        console.log("Updating page with movie data...");
-        
-        /*  Update Movie Poster  */
-        const posterElement = document.getElementById('individualPoster');
-        if (posterElement) {
-            // Build the full image URL from TMDB's partial path
-            const fullPosterUrl = movieDetails.poster_path 
-                ? IMAGE_BASE_URL + movieDetails.poster_path 
-                : '../../assets/images/default-poster.jpg';
-            posterElement.src = fullPosterUrl;
-            console.log("Poster image updated");
-        }
-        
-        /*  Update Movie Title */
-        const titleElement = document.getElementById('individualTitle');
-        if (titleElement) {
-            titleElement.textContent = movieDetails.original_title || 'Title not available';
-            console.log("Movie title updated: " + titleElement.textContent);
-        }
-        
-        /*  Update Rating  */
-        const ratingElement = document.getElementById('rating');
-        if (ratingElement) {
-            const movieRating = movieDetails.vote_average || 0;
-            ratingElement.innerHTML = 
-                `<img src="../../assets/icons/starIcon.png" style="height:15px"> ${movieRating.toFixed(1)}`;
-            console.log("Movie rating updated: " + movieRating);
-        }
-        
-        /*  Update Release Year  */
-        const yearElement = document.getElementById('year');
-        if (yearElement) {
-            const releaseYear = movieDetails.release_date ? movieDetails.release_date.slice(0, 4) : 'N/A';
-            yearElement.textContent = releaseYear;
-            console.log("Release year updated: " + releaseYear);
-        }
-        
-        /*  Update Genre  */
-        const genreElement = document.getElementById('genre');
-        if (genreElement) {
-            const primaryGenre = movieDetails.genres && movieDetails.genres[0] 
-                ? movieDetails.genres[0].name 
-                : 'Genre not available';
-            genreElement.textContent = primaryGenre;
-            console.log("Movie genre updated: " + primaryGenre);
-        }
-        
-        /* Update Description  */
-        const descriptionElement = document.getElementById('movieDesc');
-        if (descriptionElement) {
-            descriptionElement.textContent = movieDetails.overview || 'No description available.';
-            console.log("Movie description updated");
-        }
-        
-        /*  Update Cast Information  */
-        console.log("Updating cast information...");
-        const castMembers = creditsData.cast || [];
-        const topCastNames = castMembers.slice(0, 4).map(actor => actor.name);
-        
-        // Get all the actor elements on the page
-        const actorElements = document.querySelectorAll('.movie-actors p.actor');
-        
-        // Update each actor element with cast member names
-        actorElements.forEach(function(actorElement, index) {
-            if (topCastNames[index]) {
-                // Add comma after names except the last one
-                const separator = index < 3 ? ',' : '';
-                actorElement.textContent = topCastNames[index] + separator;
-            }
-        });
-        
-        console.log("All movie data successfully loaded and displayed!");
+        console.log("Library page initialised");
+        fixLibraryImagePaths();
+        fetchLibraryMovies();
     }
 
-    // Start the data loading process
-    loadMovieData();
+    function fixLibraryImagePaths() {
+        console.log("🖼️ Fixing image paths...");
+        document.querySelectorAll('.watchlistIcon').forEach(icon => {
+            icon.src = '../assets/icons/watchlistIcon.png';
+        });
+        document.querySelectorAll('.moviePoster img').forEach(img => {
+            if (img.src.includes('insert')) {
+                img.src = '../assets/images/default-poster.jpg';
+            }
+        });
+    }
+
+    async function fetchLibraryMovies() {
+    console.log("Fetching movies from API...");
     
-    console.log("Movie page initialization complete!");
+    // : Using mock data since API token is not working on my side ( might be "CORS/ Cross-Origin Resource Sharing" according to google and AI)
+    console.log(" API token not working - using mock data");
+    useMockMovieData();
+    
+    // commented until further notice
+    /*
+    try {
+        const response = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', {
+            headers: {
+                'Authorization': `Bearer ${API_TOKEN}`,
+                'accept': 'application/json'
+            }
+        });
+        
+        console.log(' API Response status:', response.status);
+        
+        if (!response.ok) throw new Error(`API error: ${response.status}`);
+        
+        const data = await response.json();
+        console.log(' Popular list arrived with', data.results.length, 'movies');
+        
+        fillCards(data.results.slice(0, 25));
+        
+    } catch (err) {
+        console.warn(' Fetch failed', err);
+        useMockMovieData();
+    }
+    */
+}
+
+function useMockMovieData() {
+    console.log("🎬 Using mock movie data");
+    
+    const mockMovies = [
+        { id: 617126, title: "Wish", overview: "A young girl saves her kingdom by making a wish.", poster_path: "/z1KkmFu53fMUX9aJ8FOGDHl41u.jpg" },
+        { id: 787699, title: "Wonka", overview: "The story of how Willy Wonka became the famous chocolatier.", poster_path: "/qhb1qOilapbapxWQn9jtRCMwXJF.jpg" },
+        { id: 565770, title: "Blue Beetle", overview: "A teenager gains superpowers from an alien scarab.", poster_path: "/mXLOHHc1Zeuwsl4xYKjKh2280oL.jpg" },
+        { id: 872585, title: "Oppenheimer", overview: "The story of American scientist J. Robert Oppenheimer.", poster_path: "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg" },
+        { id: 976573, title: "Elemental", overview: "In a city where fire, water, land and air residents live together.", poster_path: "/4Y1WNkd88JXmGfhtWR7dmDAo1T2.jpg" },
+        { id: 447365, title: "Guardians of the Galaxy 3", overview: "The Guardians embark on one last mission.", poster_path: "/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg" },
+        { id: 667538, title: "Transformers: Rise", overview: "Optimus Prime and the Autobots take on their biggest challenge.", poster_path: "/gPbM0MK8CP8A174rmUwGsADNYKD.jpg" },
+        { id: 298618, title: "The Flash", overview: "Barry Allen uses his super speed to change the past.", poster_path: "/rktDFPbfHfUbArZ6OOOKsXcv0Bm.jpg" },
+        { id: 502356, title: "Super Mario Bros", overview: "Mario and Luigi embark on an adventure in the Mushroom Kingdom.", poster_path: "/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" },
+        { id: 569094, title: "Spider-Man: Across", overview: "Miles Morales catapults across the Multiverse.", poster_path: "/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg" }
+    ];
+    
+    // Fill all 25+ cards by repeating the mock movies
+    const allMovies = [];
+    for (let i = 0; i < 25; i++) {
+        allMovies.push(mockMovies[i % mockMovies.length]);
+    }
+    
+    fillCards(allMovies);
+}
+
+    function fillCards(movies) {
+        console.log('🎬 fillCards called with', movies.length, 'movies');
+        
+        document.querySelectorAll('.movieCard').forEach((card, i) => {
+            console.log('🔍 Working on card index', i);
+            
+            if (movies[i]) {
+                const movie = movies[i];
+                
+                // Testing: trying dummy image 
+                const posterImg = card.querySelector('.moviePoster img');
+                if (posterImg) {
+                    posterImg.src = movie.poster_path
+  ? IMAGE_BASE_URL + movie.poster_path
+  : '../assets/images/movieKaz.jpg';
+                    console.log('✅ Dummy poster injected into card', i);
+                }
+                
+                // Test: I need to try updating title
+                const title = card.querySelector('.movie-title h3');
+                if (title) {
+                    title.textContent = 'TEST ' + (i+1) + ': ' + movie.title;
+                    console.log('✅ Title updated for card', i);
+                }
+                
+                // Update link
+                const link = card.querySelector('.movie-title');
+                if (link) {
+                    link.href = `individualMovie/movie-template.html?movieId=${movie.id}`;
+                }
+            }
+        });
+    }
+
+    // Universal Functions 
+    function setupIconInteractions() {
+        document.querySelectorAll(".watchlistIconFeature, .watchlistIcon, .watchButton").forEach((icon) => {
+            let isActive = false;
+            icon.addEventListener("mouseenter", () => { if (!isActive && icon.dataset.hover) icon.src = icon.dataset.hover; });
+            icon.addEventListener("mouseleave", () => { if (!isActive && icon.dataset.default) icon.src = icon.dataset.default; });
+            icon.addEventListener("click", () => {
+                isActive = !isActive;
+                icon.src = isActive ? icon.dataset.active : icon.dataset.default;
+            });
+        });
+    }
+
+    function setupCardAnimations() {
+        $(".movieCard").on("mouseenter", function() {
+            $(this).animate({width: '600px'}, 500).css({"z-index": 10, "scale": 1.15});
+        }).on("mouseleave", function() {
+            const card = $(this);
+            card.animate({width: '222px'}, 100).css("scale", 1);
+            setTimeout(() => card.css("z-index", 1), 100);
+        });
+    }
+
+    //  INDIVIDUAL MOVIE PAGE 
+    function initializeIndividualMoviePage() {
+        if (!document.getElementById('individualPoster')) return;
+        console.log("🎬 Individual movie page initialized");
+        // need to readd individual movie page code here
+    }
+
+    // Initialize Stage 
+    console.log(" Starting initialization...");
+    
+    setupIconInteractions();
+    setupCardAnimations();
+    initializeIndividualMoviePage();
+    initializeMovieLibraryPage();
+    
+    console.log("Initialization complete!");
+});
+
+document.querySelectorAll('.watchlistIcon').forEach(icon => {
+  icon.src = '../assets/icons/watchlistIcon.png';
+  icon.dataset.default = '../assets/icons/watchlistIcon.png';
+  icon.dataset.hover   = '../assets/icons/watchlistAdded.png';
+  icon.dataset.active  = '../assets/icons/watchlistAdded.png';
 });
