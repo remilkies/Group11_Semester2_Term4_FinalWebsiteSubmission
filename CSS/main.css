@@ -408,7 +408,7 @@ input[type="search"]:focus {
 }
 
 .movie-searchBar, .movie-searchBar input[type="search"],
-input[type="search"]:focus {
+input[type="search"]:focus, input[placeholder="Search"] {
     border-radius: 15px;
     background-color: #303030;
     color: #F2E0C7 !important;
