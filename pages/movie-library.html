@@ -24,7 +24,7 @@
         <div class="container-fluid">
           <a class="navbar-profile" href="#">Welcome <br> Please Login</a>
           
-          <div class="pageTitle">
+          <div class="pageTitle flex-fill">
             <h1>DREAM LIBRARY</h1>
             <h2>YOUR GATEWAT TO DREAMS WATING TO BE STREAMED</h2>
           </div>
@@ -104,7 +104,20 @@
 <!--Movie cards-->
 
 <body>
-    <!--Row 1-->
+
+  <div class="d-flex filter-bar align-items-center">
+
+    <div class="p-2">
+    Instert Filter Bar Here
+    </div>
+
+    <div class="ms-auto p-2 ">
+      <form class="d-flex movie-searchBar" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+      </form>
+    </div>
+  </div>
+     <!-- Row 1 -->
     <section class="movieContainer">
         <h2>Romance is in the air</h2>
         <div class="container-fluid scrolling-wrapper">
