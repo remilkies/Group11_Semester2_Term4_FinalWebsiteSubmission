@@ -145,7 +145,7 @@ input[type="search"],
 input[type="search"]:focus {
     border-radius: 15px;
     background-color: #F2E0C7;
-    width: 300px;
+    /* width: 300px; */
 
     font-family: "Comfortaa", sans-serif;
     font-size: 20px;
@@ -156,6 +156,9 @@ input[type="search"]:focus {
     box-shadow: none;
 }
 
+.navbar-searchBar{
+    width: 300px;
+}
 
 /* DO NOT TOUCH THIS PLEASE, THIS IS FOR THE STAR TO APEAR WHEN YOU HOVER ON NAV, PLEASE NO TOUCHY TOUCHY */
 
@@ -398,21 +401,24 @@ input[type="search"]:focus {
     padding-bottom: 5em;
 }
 
+
+
+
+
 /* THIS IS FOR THE MOVIE LIBRARY/WISHLIST PAGES */
 .filter-bar{
-    background-color: #F2E0C7;
-    color: #303030;
+    background-color: #303030;
     margin: 2%;
     border-radius: 30px;
     padding: 1%;
 }
 
-.movie-searchBar, .movie-searchBar input[type="search"],
-input[type="search"]:focus, input[placeholder="Search"] {
-    border-radius: 15px;
-    background-color: #303030;
-    color: #F2E0C7 !important;
+.movie-searchBar{
+    width: 400px !important;
 }
+
+
+
 
 
 /* THIS IS FOR THE INDIVIDUAL MOVIE PAGE */
