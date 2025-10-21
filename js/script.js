@@ -199,7 +199,7 @@ async function loadIndividualMovie(movieId) {
     }
 }
 
-// ========== INTERACTIONS ==========
+// INTERACTIONS 
 function setupInteractions() {
     console.log("Setting up interactions...");
     
