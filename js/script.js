@@ -44,14 +44,16 @@ async function loadMovieLibrary() {
         if (data.results && data.results.length > 0) {
             const cards = document.querySelectorAll('.movieCard');
             
-            cards.forEach((card, index) => {
-                if (data.results[index]) {
-                    const movie = data.results[index];
-                    updateMovieCard(card, movie, index);
-                }
-            });
-            
-            console.log("Movie library loaded successfully!");
+            // Use a slight delay to ensure DOM is fully ready
+            setTimeout(() => {
+                cards.forEach((card, index) => {
+                    if (data.results[index]) {
+                        const movie = data.results[index];
+                        updateMovieCard(card, movie, index);
+                    }
+                });
+                console.log("Movie library loaded successfully!");
+            }, 100);
         } else {
             console.log("No movie data found");
         }
@@ -64,29 +66,43 @@ async function loadMovieLibrary() {
 function updateMovieCard(card, movie, index) {
     console.log(`Updating card ${index} with: ${movie.title}`);
     
-    // Update poster
-    const posterImg = card.querySelector('.moviePoster img');
+    // Check if card has .moviePoster div or needs one created
+    let posterImg = card.querySelector('.moviePoster img');
+    
+    if (!posterImg) {
+        // Card doesn't have .moviePoster div, so create it
+        const moviePosterDiv = document.createElement('div');
+        moviePosterDiv.className = 'moviePoster';
+        
+        const img = document.createElement('img');
+        img.src = '';
+        moviePosterDiv.appendChild(img);
+        
+        // Insert at the beginning of the card (before button)
+        card.insertBefore(moviePosterDiv, card.firstChild);
+        
+        posterImg = img;
+        console.log(`Created .moviePoster div for card ${index}`);
+    }
+    
     if (posterImg && movie.poster_path) {
         const newSrc = IMG + movie.poster_path;
         console.log(`Setting image ${index} to:`, newSrc);
         
-        // Add load event listener before setting src
+        posterImg.src = newSrc;
+        posterImg.alt = movie.title;
+        
         posterImg.onload = function() {
             console.log(`Image ${index} loaded successfully`);
-            this.style.opacity = '1';
         };
         
         posterImg.onerror = function() {
             console.error(`Image ${index} failed to load`);
         };
         
-        posterImg.style.opacity = '0';
-        posterImg.src = newSrc;
-        posterImg.alt = movie.title;
-        
         console.log(`Image ${index} src after update:`, posterImg.src);
     } else {
-        console.error('Poster img not found or no poster_path in card', index);
+        console.error('Could not create poster img or no poster_path in card', index);
     }
     
     // Update title (it's inside the <h3> tag)
@@ -199,7 +215,7 @@ async function loadIndividualMovie(movieId) {
     }
 }
 
-// INTERACTIONS 
+//  INTERACTIONS 
 function setupInteractions() {
     console.log("Setting up interactions...");
     
