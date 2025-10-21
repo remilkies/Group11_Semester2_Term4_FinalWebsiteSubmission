@@ -1,3 +1,5 @@
 {
-    "codachi.showXP": true
+    "codachi.showXP": true,
+    "codachi.position": "explorer",
+    "liveServer.settings.port": 5501
 }
