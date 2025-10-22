@@ -43,34 +43,34 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-                <form class="d-flex" role="search">
+                <form class="d-flex navbar-searchBar" role="search">
                   <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                 </form>
 
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="index.html"> 
-                    <img src="../assets/icons/starIcon.png" class="nav-icon">
+                    <img src="assets/icons/starIconActive.png" class="nav-icon">
                     <h2>Home</h2>
                   </a>
                 </li>
 
                 <li class="nav-item">
                   <a class="nav-link" href="pages/watchlist.html">
-                    <img src="../assets/icons/starIcon.png" class="nav-icon">
+                    <img src="assets/icons/starIconActive.png" class="nav-icon">
                     <h2>Dream List</h2>
                   </a>
                 </li>
 
                 <li class="nav-item">
                   <a class="nav-link" href="pages/movie-library.html">
-                    <img src="../assets/icons/starIcon.png" class="nav-icon">
+                    <img src="assets/icons/starIconActive.png" class="nav-icon">
                     <h2>Library</h2>
                   </a>
                 </li>
 
                 <li class="nav-item dropdown">
                   <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="../assets/icons/starIcon.png" class="nav-icon">
+                    <img src="assets/icons/starIconActive.png" class="nav-icon">
                     <h2>Genres</h2>
                   </a>
 
@@ -78,14 +78,14 @@
 
                     <li class="nav-item">
                       <a class="nav-link" href="#">
-                        <img src="../assets/icons/starIcon.png" class="nav-icon">
+                        <img src="assets/icons/starIconActive.png" class="nav-icon">
                         <h2>Action</h2>
                       </a>
                     </li>
 
                     <li class="nav-item">
                       <a class="nav-link" href="#">
-                        <img src="../assets/icons/starIcon.png" class="nav-icon">
+                        <img src="assets/icons/starIconActive.png" class="nav-icon">
                         <h2>Horror</h2>
                       </a>
                     </li>
@@ -102,7 +102,7 @@
 
     </header>
 
-    <section name="splashContainer">
+    <section  id="splashContainer">
       <div class="movieFeature">
         <div id="carouselFeature" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner movie-feature">
@@ -233,6 +233,8 @@
     <section class="starPicks">
       <h1>Star Picks</h1>
       <h2>The constilation everyone's watching</h2>
+      <div class="container-fluid scrolling-wrapper">
+        <div class="row d-flex justify-content-center">
 
       <div class="container-fluid movieCard-container ">
         <div class="row g-1 justify-content-center justify-content-around" data-bs-spy="scroll" data-bs-target="movieCard" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
@@ -354,11 +356,10 @@
 
               </div>
 
-            </div>
+            </div> 
           </div>
 
         </div>
-      </div>
       </div>
 
     </section>
@@ -366,6 +367,8 @@
     <section class="starPicks">
       <h1>Top Rated</h1>
       <h2>The brightest stars, by rating</h2>
+      <div class="container-fluid scrolling-wrapper">
+        <div class="row d-flex justify-content-center">
 
       <div class="container-fluid movieCard-container ">
         <div class="row g-1 justify-content-center justify-content-around">
@@ -486,11 +489,10 @@
 
               </div>
 
-            </div>
+            </div> 
           </div>
 
         </div>
-      </div>
       </div>
 
     </section>
