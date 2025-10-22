@@ -81,62 +81,88 @@ class NewMovies {
     
     //API request
 
-    !async function(){
-const url = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
-const options = {
-	  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWM4YWRiNmE3NGIyZDViNTA1MmE3ZjBlMTA0NDA1ZiIsIm5iZiI6MTc1ODI5Mjg1NS43NzEwMDAxLCJzdWIiOiI2OGNkNmI3NzI1NjVlMzcxOTMxNDk2NDciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.AoEE9Ow4n3Zun2dAOqNR-kWFa3MW5RQ3DWYzRGSuZOc'
-  }
-};
+!async function(){
+    const BASE_URL = 'https://api.themoviedb.org/3';
+    
+    // Initial movie list URL
+    const initialURL = `${BASE_URL}/movie/now_playing?language=en-US&page=1`;
+    
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWM4YWRiNmE3NGIyZDViNTA1MmE3ZjBlMTA0NDA1ZiIsIm5iZiI6MTc1ODI5Mjg1NS43NzEwMDAxLCJzdWIiOiI2OGNkNmI3NzI1NjVlMzcxOTMxNDk2NDciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.AoEE9Ow4n3Zun2dAOqNR-kWFa3MW5RQ3DWYzRGSuZOc'
+        }
+    };
 
-let data = await fetch('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', options)
-        .then((response)=> response.json())
-        .then((result)=> {return result})
-        .catch((error)=> console.log(error));
+    let data = await fetch(initialURL, options)
+        .then((response) => response.json())
+        .catch((error) => { console.error("Error fetching movie list:", error); return null; });
 
-//may affect styling
-// needed to display the image: gives the API necessary information
-const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+    if (!data || !data.results) {
+        console.error("Movie list data is invalid or missing 'results'.");
+        return;
+    }
 
-        let movieList = [];
+    //may affect styling
+    // needed to display the image
+    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
-        for (i = 0; i < data.results.length; i++){
+    let movieList = [];
 
-        let movieID = data.results[i].id;
-        let title = data.results[i].title;
-        let poster = data.results[i].poster_path;
-        let director = data.results[i].known_for_department;
-        let rating = data.results[i].vote_average;
+    for (let i = 0; i < data.results.length; i++){
+        let movie = data.results[i];
 
-        movieList.push(window["movie_" + i] = new NewMovies(movieID, title, poster,director, rating));
+        let movieID = movie.id;
+        let title = movie.title;
+        let poster = movie.poster_path;
+        let rating = movie.vote_average.toFixed(1);
+
+        const creditsURL = `${BASE_URL}/movie/${movieID}/credits`;
+        
+        // Fetches the credits for the movie
+        let creditsResponse = await fetch(creditsURL, options);
+        let creditsData = await creditsResponse.json().catch(error => console.error(`Error fetching credits for ${title}:`, error));
+        
+        let director = 'N/A';
+        
+        // Finds the director
+        if (creditsData && creditsData.crew) {
+            const directorObject = creditsData.crew.find(member => member.job === 'Director');
+            if (directorObject) {
+                director = directorObject.name;
+            }
+        }
+
+        movieList.push(window["movie_" + i] = new NewMovies(movieID, title, poster, director, rating));
     }
 
     console.log(movieList);
 
-    //image slider titles
-    document.getElementById("titleFeature1").innerHTML = movieList[12].title;
-    document.getElementById("titleFeature2").innerHTML = movieList[6].title;
-    document.getElementById("titleFeature3").innerHTML = movieList[2].title;
-    document.getElementById("titleFeature4").innerHTML = movieList[3].title;
+        // Image slider titles
+        document.getElementById("titleFeature1").innerHTML = movieList[12].title;
+        document.getElementById("titleFeature2").innerHTML = movieList[6].title;
+        document.getElementById("titleFeature3").innerHTML = movieList[2].title;
+        document.getElementById("titleFeature4").innerHTML = movieList[3].title;
 
-    //image slider ratings
-    document.getElementById("featureRating1").innerHTML = movieList[12].rating;
-    document.getElementById("featureRating2").innerHTML = movieList[6].rating;
-    document.getElementById("featureRating3").innerHTML = movieList[2].rating;
-    document.getElementById("featureRating4").innerHTML = movieList[3].rating;
+        // Image slider ratings
+        document.getElementById("featureRating1").innerHTML = movieList[12].rating;
+        document.getElementById("featureRating2").innerHTML = movieList[6].rating;
+        document.getElementById("featureRating3").innerHTML = movieList[2].rating;
+        document.getElementById("featureRating4").innerHTML = movieList[3].rating;
 
-    //image slider posters
-    document.getElementById("imageFeature1").src = IMAGE_BASE_URL + movieList[12].poster;
-    document.getElementById("imageFeature2").src = IMAGE_BASE_URL + movieList[6].poster;
-    document.getElementById("imageFeature3").src = IMAGE_BASE_URL + movieList[2].poster;
-    document.getElementById("imageFeature4").src = IMAGE_BASE_URL + movieList[3].poster;
+        // Image slider posters
+        document.getElementById("imageFeature1").src = IMAGE_BASE_URL + movieList[12].poster;
+        document.getElementById("imageFeature2").src = IMAGE_BASE_URL + movieList[6].poster;
+        document.getElementById("imageFeature3").src = IMAGE_BASE_URL + movieList[2].poster;
+        document.getElementById("imageFeature4").src = IMAGE_BASE_URL + movieList[3].poster;
 
+        // Image slider directors
+        document.getElementById("directorFeature1").innerHTML = movieList[12].director; 
+        document.getElementById("directorFeature2").innerHTML = movieList[6].director;
+        document.getElementById("directorFeature3").innerHTML = movieList[2].director;
+        document.getElementById("directorFeature4").innerHTML = movieList[3].director;
 }();
-
-// Notes:
-// Get the right information for the director
 
 class PopularMovies {
   constructor(title, poster, overview){
@@ -173,7 +199,9 @@ let data = await fetch(url, options)
 
         let title = data.results[i].title;
         let poster = data.results[i].poster_path;
-        let overview = data.results[i].overview;
+        //OGoverview gets the overview and overview makes it shorter so that if it doesn't fit the content gets cut.
+        let OGoverview = data.results[i].overview;
+        let overview = OGoverview.length > 200 ? OGoverview.substring(0, 200) + ' ...' : OGoverview;
 
         popMovies.push(window["movie_" + i] = new PopularMovies(title, poster, overview));
     }
@@ -239,7 +267,8 @@ let data = await fetch(url, options)
 
         let title = data.results[i].title;
         let poster = data.results[i].poster_path;
-        let overview = data.results[i].overview;
+        let OGoverview = data.results[i].overview;
+        let overview = OGoverview.length > 200 ? OGoverview.substring(0, 200) + ' ...' : OGoverview;
 
         topMovies.push(window["movie_" + i] = new TopMovies(title, poster, overview));
     }
