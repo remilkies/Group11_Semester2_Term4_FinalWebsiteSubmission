@@ -332,7 +332,7 @@ input[type="search"]:focus {
 .movieCard {
     border-radius: 15px;
     cursor: pointer;
-    background-color: #9F9F9F;
+    background-color: #d6a3ae;
     overflow: hidden;
     /* width: 200px; */
     height: 326px;
