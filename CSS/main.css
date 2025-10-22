@@ -12,6 +12,7 @@
     font-style: normal;
 }
 
+
 body{
     background-color: #d6a3ae !important;
     font-family: "Comfortaa", sans-serif; /* default font */
@@ -357,10 +358,30 @@ input[type="search"]:focus {
 }
 
 
-.moviePoster img{
-    border-radius: 15px;
+.moviePoster {
+    flex: 0 0 200px;
+    height: 326px; /* Add explicit height */
+}
+
+.moviePoster img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    border-radius: 15px;
     display: block;
+}
+
+/* Update media queries too */
+@media (min-width: 768px) and (max-width: 991.98px){
+    .moviePoster{
+        height: 236px;
+    }
+}
+
+@media (min-width: 992px) {
+    .moviePoster{
+        height: 326px;
+    }
 }
 
   .movieCard:hover {
