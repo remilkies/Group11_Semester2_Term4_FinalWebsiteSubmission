@@ -325,9 +325,6 @@ input[type="search"]:focus {
     margin-bottom: 0;
 }
 
-.movie-container{
-    margin: 0 !important;
-}
 
 .movieCard {
     border-radius: 15px;
@@ -453,7 +450,7 @@ input[type="search"]:focus {
 .poster-container{
     display: flex;
     flex-direction: column;
-    align-items: center; /* centers horizontally */
+    align-items: center; 
     justify-content: center;
 }
 
@@ -531,16 +528,12 @@ input[type="search"]:focus {
     margin-bottom: 0 !important;
 }
 
-
-/* 
-.movie-actors h2{
-    margin-right: 5%;
-    margin-bottom: 0;
-} */
-
 .actor, .director{
     margin-bottom: 0 !important; 
 }
+
+
+
 
 
 /* display flex not on div around card > display block margin left auto margin right auto */
