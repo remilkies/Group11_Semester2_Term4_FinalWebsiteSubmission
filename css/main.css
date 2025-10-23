@@ -266,6 +266,10 @@ input[type="search"]:focus {
     height: 15px;
   }
 
+  .category h4{
+    margin-bottom: 0;
+  }
+
 .feature-info{
     margin: 0 !important;
     padding-bottom: 0 !important;
