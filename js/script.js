@@ -5,27 +5,55 @@ const IMG = "https://image.tmdb.org/t/p/w500";
 // Wait for DOM to be ready before running
 document.addEventListener('DOMContentLoaded', async function() {
     
-    // Check if we're on the movie library page
-    if (document.querySelector('.movieCard')) {
+    // BETTER PAGE DETECTION - Check URL instead of just elements
+    const currentPath = window.location.pathname;
+    const isLibraryPage = currentPath.includes('movie-library.html');
+    const isIndividualPage = currentPath.includes('movie-template.html');
+    const isHomepage = currentPath.includes('index.html') || currentPath === '/' || currentPath.endsWith('/');
+    
+    console.log('Page Detection:', { currentPath, isHomepage, isLibraryPage, isIndividualPage });
+    
+    // Only run library code on library page
+    if (isLibraryPage && document.querySelector('.movieCard')) {
         console.log("Loading movie library...");
         await loadMovieLibrary();
+        setupSearch(); // Add search functionality
     }
     
-    // Check if we're on the individual movie page
-    const urlParams = new URLSearchParams(window.location.search);
-    const movieId = urlParams.get('movieId');
-    if (movieId) {
-        console.log("Loading individual movie...");
-        await loadIndividualMovie(movieId);
+    // Only run individual movie code on individual page
+    if (isIndividualPage) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get('movieId');
+        
+        if (movieId) {
+            console.log("Loading individual movie...");
+            await loadIndividualMovie(movieId);
+        } else {
+            console.warn("No movieId in URL. Cannot load movie details.");
+        }
     }
     
-    // Setup interactions after content loads
+    // Setup interactions on all pages
     setupInteractions();
 });
 
 // MOVIE LIBRARY LOADING
 async function loadMovieLibrary() {
-    const url = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+    // Load different genres for each section
+    const sections = [
+        { container: '.movieContainer:nth-of-type(1)', genre: 10749, name: 'Romance' }, // Romance
+        { container: '.movieContainer:nth-of-type(2)', genre: 28, name: 'Action' },     // Action
+        { container: '.movieContainer:nth-of-type(3)', genre: 27, name: 'Horror' }      // Horror
+    ];
+
+    for (const section of sections) {
+        await loadSection(section.container, section.genre, section.name);
+    }
+}
+
+// Load movies for a specific section
+async function loadSection(containerSelector, genreId, genreName) {
+    const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=en-US&page=1&sort_by=popularity.desc`;
     const options = {
         method: 'GET',
         headers: {
@@ -38,27 +66,23 @@ async function loadMovieLibrary() {
         const response = await fetch(url, options);
         const data = await response.json();
         
-        console.log("TMDB Data:", data);
+        console.log(`${genreName} Movies:`, data);
 
-        // Update all the movie cards with the data
         if (data.results && data.results.length > 0) {
-            const cards = document.querySelectorAll('.movieCard');
+            const container = document.querySelector(containerSelector);
+            const cards = container.querySelectorAll('.movieCard');
             
-            // Use a slight delay to ensure DOM is fully ready
-            setTimeout(() => {
-                cards.forEach((card, index) => {
-                    if (data.results[index]) {
-                        const movie = data.results[index];
-                        updateMovieCard(card, movie, index);
-                    }
-                });
-                console.log("Movie library loaded successfully!");
-            }, 100);
-        } else {
-            console.log("No movie data found");
+            cards.forEach((card, index) => {
+                if (data.results[index]) {
+                    const movie = data.results[index];
+                    updateMovieCard(card, movie, index);
+                }
+            });
+            
+            console.log(`${genreName} section loaded successfully!`);
         }
     } catch (error) {
-        console.error("Error loading movie library:", error);
+        console.error(`Error loading ${genreName} section:`, error);
     }
 }
 
@@ -132,6 +156,11 @@ function updateMovieCard(card, movie, index) {
 async function loadIndividualMovie(movieId) {
     console.log("Loading movie ID:", movieId);
     
+    if (!movieId) {
+        console.error("No movie ID provided!");
+        return;
+    }
+    
     const options = {
         method: 'GET',
         headers: {
@@ -143,6 +172,8 @@ async function loadIndividualMovie(movieId) {
     try {
         // Load movie details
         const movieUrl = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`;
+        console.log("Fetching movie details from:", movieUrl);
+        
         const movieResponse = await fetch(movieUrl, options);
         const movieData = await movieResponse.json();
         
@@ -150,6 +181,8 @@ async function loadIndividualMovie(movieId) {
 
         // Load movie credits
         const creditsUrl = `https://api.themoviedb.org/3/movie/${movieId}/credits?language=en-US`;
+        console.log("Fetching credits from:", creditsUrl);
+        
         const creditsResponse = await fetch(creditsUrl, options);
         const creditsData = await creditsResponse.json();
         
@@ -162,12 +195,18 @@ async function loadIndividualMovie(movieId) {
             if (posterElement) {
                 posterElement.src = movieData.poster_path ? IMG + movieData.poster_path : '../../assets/images/default-poster.jpg';
                 posterElement.alt = movieData.title;
+                console.log(" Poster updated");
+            } else {
+                console.warn("Poster element #individualPoster not found");
             }
             
             // Update title
             const titleElement = document.getElementById('individualTitle');
             if (titleElement) {
                 titleElement.textContent = movieData.title || 'Title unavailable';
+                console.log(" Title updated:", movieData.title);
+            } else {
+                console.warn("Title element #individualTitle not found");
             }
             
             // Update rating
@@ -175,40 +214,87 @@ async function loadIndividualMovie(movieId) {
             if (ratingElement) {
                 const rating = movieData.vote_average ? movieData.vote_average.toFixed(1) : 'N/A';
                 ratingElement.innerHTML = `<img src="../../assets/icons/starIcon.png" style="height:15px" alt="Star"> ${rating}`;
+                console.log(" Rating updated:", rating);
+            } else {
+                console.warn("Rating element #rating not found");
             }
             
             // Update year
             const yearElement = document.getElementById('year');
             if (yearElement) {
                 yearElement.textContent = movieData.release_date ? movieData.release_date.slice(0, 4) : 'N/A';
+                console.log("Year updated");
+            } else {
+                console.warn("Year element #year not found");
             }
             
             // Update genre
             const genreElement = document.getElementById('genre');
             if (genreElement) {
                 genreElement.textContent = movieData.genres && movieData.genres[0] ? movieData.genres[0].name : 'Genre N/A';
+                console.log(" Genre updated");
+            } else {
+                console.warn(" Genre element #genre not found");
             }
             
             // Update description
             const descElement = document.getElementById('movieDesc');
             if (descElement) {
                 descElement.textContent = movieData.overview || 'No description available.';
+                console.log("Description updated");
+            } else {
+                console.warn("Description element #movieDesc not found");
             }
         }
 
-        // Update actors
-        if (creditsData && creditsData.cast) {
-            const actorElements = document.querySelectorAll('.movie-actors p.actor');
-            const actors = creditsData.cast.slice(0, 4);
-            
-            actorElements.forEach((element, index) => {
-                if (actors[index]) {
-                    element.textContent = actors[index].name + (index < 3 ? ',' : '');
+        // Update actors AND director
+        if (creditsData) {
+            // Find and display director(s)
+            if (creditsData.crew) {
+                // Get all directors (there can be multiple)
+                const directors = creditsData.crew.filter(member => member.job === 'Director');
+                
+                // Find director paragraph elements (skip the h2 heading)
+                const directorElements = document.querySelectorAll('.movie-directors p.director');
+                
+                if (directorElements.length > 0 && directors.length > 0) {
+                    directorElements.forEach((element, index) => {
+                        if (directors[index]) {
+                            element.textContent = directors[index].name + (index < directors.length - 1 ? ',' : '');
+                        } else {
+                            element.textContent = ''; // Clear placeholder if no more directors
+                        }
+                    });
+                    console.log("Directors updated:", directors.map(d => d.name).join(', '));
+                } else if (directors.length > 0) {
+                    console.warn("Director elements not found. Directors are:", directors.map(d => d.name).join(', '));
+                } else {
+                    console.warn("No directors found in credits data");
                 }
-            });
+            }
+            
+            // Update actors (top 4) - skip the "STARING" h2 heading
+            if (creditsData.cast) {
+                const actorElements = document.querySelectorAll('.movie-actors p.actor');
+                const actors = creditsData.cast.slice(0, Math.min(5, creditsData.cast.length)); // Get up to 5 actors(can change to any number this just fits the current interface)
+                
+                if (actorElements.length > 0) {
+                    actorElements.forEach((element, index) => {
+                        if (actors[index]) {
+                            element.textContent = actors[index].name + (index < actors.length - 1 ? ',' : '');
+                        } else {
+                            element.textContent = ''; // Clear placeholder
+                        }
+                    });
+                    console.log("Actors updated:", actors.map(a => a.name).join(', '));
+                } else {
+                    console.warn(" No actor elements found");
+                    console.log("Top actors:", actors.slice(0, 5).map(a => a.name));
+                }
+            }
         }
         
-        console.log("Individual movie page loaded!");
+        console.log(" Individual movie page loaded successfully!");
         
     } catch (error) {
         console.error("Error loading individual movie:", error);
@@ -258,6 +344,180 @@ function setupInteractions() {
                 card.css("z-index", 1);
             }, 100);
         });
+    }
+    
+    // Setup filter buttons (only on library page)
+    setupFilters();
+}
+
+// Setup filter/sort functionality
+function setupFilters() {
+    const filterBar = document.querySelector('.filter-bar');
+    if (!filterBar) return;
+    
+    const sortOptions = filterBar.querySelectorAll('.p-2');
+    
+    sortOptions.forEach((option, index) => {
+        // Skip the "Sort:" label (first element)
+        if (index === 0) return;
+        
+        option.style.cursor = 'pointer';
+        
+        option.addEventListener('click', async function() {
+            console.log('Filter clicked:', this.textContent);
+            
+            // Highlight active filter
+            sortOptions.forEach(opt => opt.style.fontWeight = 'normal');
+            this.style.fontWeight = 'bold';
+            
+            let sortBy = 'popularity.desc'; // default
+            
+            switch(this.textContent.trim()) {
+                case 'Trending':
+                    sortBy = 'popularity.desc';
+                    break;
+                case 'Release Date':
+                    sortBy = 'release_date.desc';
+                    break;
+                case 'Rating':
+                    sortBy = 'vote_average.desc';
+                    break;
+                case 'Genre':
+                    // For now, just keep current genre sorting
+                    sortBy = 'popularity.desc';
+                    break;
+            }
+            
+            // Reload all sections with new sort
+            await loadMovieLibraryWithSort(sortBy);
+        });
+    });
+}
+
+// Load movie library with custom sort
+async function loadMovieLibraryWithSort(sortBy) {
+    const sections = [
+        { container: '.movieContainer:nth-of-type(1)', genre: 10749, name: 'Romance' },
+        { container: '.movieContainer:nth-of-type(2)', genre: 28, name: 'Action' },
+        { container: '.movieContainer:nth-of-type(3)', genre: 27, name: 'Horror' }
+    ];
+
+    for (const section of sections) {
+        await loadSectionWithSort(section.container, section.genre, section.name, sortBy);
+    }
+}
+
+// Load section with custom sort
+async function loadSectionWithSort(containerSelector, genreId, genreName, sortBy) {
+    const url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=en-US&page=1&sort_by=${sortBy}${sortBy === 'vote_average.desc' ? '&vote_count.gte=100' : ''}`;
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${API_TOKEN}`
+        }
+    };
+
+    try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        
+        console.log(`${genreName} Movies (${sortBy}):`, data);
+
+        if (data.results && data.results.length > 0) {
+            const container = document.querySelector(containerSelector);
+            const cards = container.querySelectorAll('.movieCard');
+            
+            cards.forEach((card, index) => {
+                if (data.results[index]) {
+                    const movie = data.results[index];
+                    updateMovieCard(card, movie, index);
+                }
+            });
+        }
+    } catch (error) {
+        console.error(`Error loading ${genreName} section:`, error);
+    }
+}
+
+// Setup search functionality
+function setupSearch() {
+    const searchInput = document.querySelector('.movie-searchBar input[type="search"]');
+    
+    if (!searchInput) {
+        console.warn("Search bar not found");
+        return;
+    }
+    
+    console.log(" Search bar ready");
+    
+    // Consolidat search to avoid too many API calls
+    let searchTimeout;
+    
+    searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.trim();
+        
+        // Clear previous timeout
+        clearTimeout(searchTimeout);
+        
+        // If empty, reload default movies
+        if (query === '') {
+            loadMovieLibrary();
+            return;
+        }
+        
+        // Wait 500ms after user stops typing
+        searchTimeout = setTimeout(() => {
+            searchMovies(query);
+        }, 500);
+    });
+}
+
+// Search for movies by title
+async function searchMovies(query) {
+    console.log("Searching for:", query);
+    
+    const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}&language=en-US&page=1`;
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${API_TOKEN}`
+        }
+    };
+
+    try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        
+        console.log("Search results:", data);
+
+        if (data.results && data.results.length > 0) {
+            // Update all sections with search results
+            const sections = document.querySelectorAll('.movieContainer');
+            
+            sections.forEach((section, sectionIndex) => {
+                const cards = section.querySelectorAll('.movieCard');
+                const startIndex = sectionIndex * 10; // Each section shows 10 cards
+                
+                cards.forEach((card, cardIndex) => {
+                    const movieIndex = startIndex + cardIndex;
+                    if (data.results[movieIndex]) {
+                        updateMovieCard(card, data.results[movieIndex], movieIndex);
+                    } else {
+                        // Hide cards if not enough results
+                        card.style.display = 'none';
+                    }
+                });
+            });
+            
+            console.log(`Displayed ${data.results.length} search results`);
+        } else {
+            console.log("No results found for:", query);
+            // Show "no results" message or keep existing movies
+        }
+    } catch (error) {
+        console.error("Error searching movies:", error);
     }
 }
 
