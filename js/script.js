@@ -308,7 +308,7 @@ class NewMovies {
         let movieID = movie.id;
         let title = movie.title;
         let poster = movie.poster_path;
-        let rating = movie.vote_average.toFixed(1);
+        let rating = "Rating: " + Math.round(movie.vote_average) + "/10";
 
         const creditsURL = `${BASE_URL}/movie/${movieID}/credits`;
         
@@ -332,7 +332,7 @@ class NewMovies {
     console.log(movieList);
 
         // Image slider titles
-        document.getElementById("titleFeature1").innerHTML = movieList[12].title;
+        document.getElementById("titleFeature1").innerHTML = movieList[1].title;
         document.getElementById("titleFeature2").innerHTML = movieList[6].title;
         document.getElementById("titleFeature3").innerHTML = movieList[2].title;
         document.getElementById("titleFeature4").innerHTML = movieList[3].title;
@@ -344,13 +344,13 @@ class NewMovies {
         document.getElementById("featureRating4").innerHTML = movieList[3].rating;
 
         // Image slider posters
-        document.getElementById("imageFeature1").src = IMAGE_BASE_URL + movieList[12].poster;
+        document.getElementById("imageFeature1").src = IMAGE_BASE_URL + movieList[1].poster;
         document.getElementById("imageFeature2").src = IMAGE_BASE_URL + movieList[6].poster;
         document.getElementById("imageFeature3").src = IMAGE_BASE_URL + movieList[2].poster;
         document.getElementById("imageFeature4").src = IMAGE_BASE_URL + movieList[3].poster;
 
         // Image slider directors
-        document.getElementById("directorFeature1").innerHTML = movieList[12].director; 
+        document.getElementById("directorFeature1").innerHTML = movieList[1].director; 
         document.getElementById("directorFeature2").innerHTML = movieList[6].director;
         document.getElementById("directorFeature3").innerHTML = movieList[2].director;
         document.getElementById("directorFeature4").innerHTML = movieList[3].director;
@@ -391,7 +391,7 @@ let data = await fetch(url, options)
 
         let title = data.results[i].title;
         let poster = data.results[i].poster_path;
-        //OGoverview gets the overview and overview makes it shorter so that if it doesn't fit the content gets cut.
+        //OGoverview gets the overview and overview makes it shorter so that if it doesn't fit, the content gets cut.
         let OGoverview = data.results[i].overview;
         let overview = OGoverview.length > 200 ? OGoverview.substring(0, 200) + ' ...' : OGoverview;
 
@@ -401,23 +401,23 @@ let data = await fetch(url, options)
     console.log(popMovies);
 
     //popular movies titles
-    document.getElementById('titlePopular1').innerHTML = popMovies[0].title;
+    document.getElementById('titlePopular1').innerHTML = popMovies[5].title;
     document.getElementById('titlePopular2').innerHTML = popMovies[1].title;
-    document.getElementById('titlePopular3').innerHTML = popMovies[17].title;
+    document.getElementById('titlePopular3').innerHTML = popMovies[4].title;
     document.getElementById('titlePopular4').innerHTML = popMovies[3].title;
     document.getElementById('titlePopular5').innerHTML = popMovies[18].title;
 
     //popular movies descriptions
-    document.getElementById('Overview1').innerHTML = popMovies[0].overview;
+    document.getElementById('Overview1').innerHTML = popMovies[5].overview;
     document.getElementById('Overview2').innerHTML = popMovies[1].overview;
-    document.getElementById('Overview3').innerHTML = popMovies[17].overview;
+    document.getElementById('Overview3').innerHTML = popMovies[4].overview;
     document.getElementById('Overview4').innerHTML = popMovies[3].overview;
     document.getElementById('Overview5').innerHTML = popMovies[18].overview;
 
     //popular movies posters
-    document.getElementById("imagePopular1").src = IMAGE_BASE_URL + popMovies[0].poster;
+    document.getElementById("imagePopular1").src = IMAGE_BASE_URL + popMovies[5].poster;
     document.getElementById("imagePopular2").src = IMAGE_BASE_URL + popMovies[1].poster;
-    document.getElementById("imagePopular3").src = IMAGE_BASE_URL + popMovies[17].poster;
+    document.getElementById("imagePopular3").src = IMAGE_BASE_URL + popMovies[4].poster;
     document.getElementById("imagePopular4").src = IMAGE_BASE_URL + popMovies[3].poster;
     document.getElementById("imagePopular5").src = IMAGE_BASE_URL + popMovies[18].poster;
     
@@ -491,3 +491,29 @@ let data = await fetch(url, options)
     //need to display the information on the website
     
 }();
+
+//display username on homepage
+const container = document.querySelector('.container');
+const registerBtn = document.querySelector('.register-btn');
+const loginBtn = document.querySelector('.login-btn');
+
+registerBtn.addEventListener('click', () => {
+    container.classList.add('active');
+})
+
+loginBtn.addEventListener('click', () => {
+    container.classList.remove('active');
+})
+
+let username;
+
+document.getElementById("loginForm").addEventListener("submit", e => {
+    e.preventDefault();
+    username = document.getElementById("signInUse").value;
+    localStorage.setItem("userName", username);
+});
+
+function showName(){
+    let saveName = localStorage.getItem("userName");
+    document.getElementById("displayName").innerHTML = "Welcome " + saveName;
+}

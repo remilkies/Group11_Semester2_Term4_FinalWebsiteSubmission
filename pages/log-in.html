@@ -40,16 +40,16 @@
 <body>
     <div class="container" style="width: 32rem; border-radius: 12px; background-color: #2d2b2b;">
         <div class="card-body px-4 py-5">
-            <form>
+            <form id="LoginForm">
                 <h1>LOGIN</h1>
                 <label for="username"><b>Username</b></label>
                 <div class="inputbox">
-                    <input type="text" placeholder="Username" name="username" required>
+                    <input type="text" placeholder="Username" name="username" required id="signInUse">
                 </div>
 
                 <label for="psw"><b>Password</b></label>
                 <div class="inputbox">
-                    <input type="password" placeholder="Password" name="psw" required>
+                    <input type="password" placeholder="Password" name="psw" required id="signInPass">
                 </div>
 
                 <p><u><a href="../pages/sign-up.html"> I don't have my dream account.</a>
@@ -57,7 +57,7 @@
                         Forgot your password?</u></p>
 
                 <div class="clearfix">
-                    <button type="submit" class="signupbtn">LOGIN</button>
+                    <button type="submit" class="signupbtn login-btn">LOGIN</button>
                 </div>
             </form>
         </div>
