@@ -38,63 +38,77 @@
 </header>
 
 <body>
-    <!--Sign Up Section-->
-    <div class="container" style="width: 32rem; border-radius: 12px; background-color: #2d2b2b;">
-        <div class="card-body px-4 py-5">
-            <form>
-                <h1>SIGN UP</h1>
-                <label for="username"><b>Create Username</b></label>
-                <div class="inputbox">
-                    <input type="text" placeholder="Username" name="username" required>
-                </div>
+    <section>
+        <!--Sign Up Section-->
+        <div class="container" style="width: 32rem; border-radius: 12px; background-color: #2d2b2b;">
+            <div class="card-body px-4 py-5">
+                <form>
+                    <h1>SIGN UP</h1>
+                    <label for="username"><b>Create Username</b></label>
+                    <div class="inputbox">
+                        <input type="text" placeholder="Username" name="username"
+                            class="form-control rounded-pill border-0" style="background-color: #fae4c8; color: #000"
+                            required>
+                    </div>
 
-                <label for="email"><b>Email</b></label>
-                <div class="inputbox">
-                    <input type="text" placeholder="Email" name="email" required>
-                </div>
+                    <label for="email"><b>Email</b></label>
+                    <div class="inputbox">
+                        <input type="text" placeholder="Email" name="email" class="form-control rounded-pill border-0"
+                            style="background-color: #fae4c8; color: #000" required>
+                    </div>
 
-                <label for="psw"><b>Create Password</b></label>
-                <div class="inputbox">
-                    <input type="password" placeholder="Password" name="psw" required>
-                </div>
+                    <label for="psw"><b>Create Password</b></label>
+                    <div class="inputbox">
+                        <input type="password" placeholder="Password" name="psw"
+                            class="form-control rounded-pill border-0" style="background-color: #fae4c8; color: #000"
+                            required>
+                    </div>
 
-                <p><u><a href="../pages/log-in.html">Nevermind. I have an account.</a></u></p>
-
-                <div class="clearfix">
-                    <button type="submit" class="signupbtn"> JOIN THE DREAM TEAM</button>
-                </div>
-            </form>
+                    <p class="mt-3 mb-0 text-center"><u><a href="../pages/log-in.html " style="color: #cfcfcf;">Nevermind. I have an account.</a></u>
+                    </p>
+                </form>
+            </div>
         </div>
-    </div>
-    <!--Log In Section-->
-    <div class="container" style="width: 32rem; border-radius: 12px; background-color: #2d2b2b;">
-        <div class="card-body px-4 py-5">
-            <form>
-                <h1>LOGIN</h1>
-                <label for="username"><b>Username</b></label>
-                <div class="inputbox">
-                    <input type="text" placeholder="Username" name="username" required>
-                </div>
-                <label for="email"><b>Email</b></label>
-                <div class="inputbox">
-                    <input type="text" placeholder="Email" name="email" required>
-                </div>
-
-                <label for="psw"><b>Password</b></label>
-                <div class="inputbox">
-                    <input type="password" placeholder="Password" name="psw" required>
-                </div>
-
-                <p><u><a href="../pages/sign-up.html"> I don't have my dream account.</a>
-                        <br>
-                        Forgot your password?</u></p>
-
-                <div class="clearfix">
-                    <button type="submit" class="signupbtn">LOGIN</button>
-                </div>
-            </form>
+        <div class="clearfix text-center">
+            <button type="submit" class="signupbtn"> JOIN THE DREAM TEAM</button>
         </div>
-    </div>
+    </section>
+
+    <section>
+        <!--Log In Section-->
+        <div class="container" style="width: 32rem; border-radius: 12px; background-color: #2d2b2b;">
+            <div class="card-body px-4 py-5">
+                <form>
+                    <h1>LOGIN</h1>
+                    <label for="username"><b>Username</b></label>
+                    <div class="inputbox">
+                        <input type="text" placeholder="Username" name="username"
+                            class="form-control rounded-pill border-0" style="background-color: #fae4c8; color: #000"
+                            required>
+                    </div>
+                    <label for="email"><b>Email</b></label>
+                    <div class="inputbox">
+                        <input type="text" placeholder="Email" name="email" class="form-control rounded-pill border-0"
+                            style="background-color: #fae4c8; color: #000" required>
+                    </div>
+
+                    <label for="psw"><b>Password</b></label>
+                    <div class="inputbox">
+                        <input type="password" placeholder="Password" name="psw"
+                            class="form-control rounded-pill border-0" style="background-color: #fae4c8; color: #000"
+                            required>
+                    </div>
+
+                    <p class="mt-3 mb-0 text-center"><u><a href="../pages/sign-up.html" style="color: #cfcfcf;"> I don't have my dream account.</a>
+                            <br>
+                            Forgot your password?</u></p>
+                </form>
+            </div>
+        </div>
+        <div class="clearfix text-center">
+            <button type="submit" class="signupbtn">LOGIN</button>
+        </div>
+    </section>
 </body>
 
 <script src="../js/jQuery.js"></script>
