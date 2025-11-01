@@ -617,7 +617,8 @@ class NewMovies {
 }();
 
 class PopularMovies {
-  constructor(title, poster, overview){
+  constructor(movieID, title, poster, overview){
+        this.movieID = movieID;  // ADDED this line - KAZ
         this.title = title;
         this.poster = poster;
         this.overview = overview;
@@ -649,13 +650,14 @@ let data = await fetch(url, options)
 
         for (i = 0; i < data.results.length; i++){
 
+        let movieID = data.results[i].id;  // ADDED this line - KAZ
         let title = data.results[i].title;
         let poster = data.results[i].poster_path;
         //OGoverview gets the overview and overview makes it shorter so that if it doesn't fit the content gets cut.
         let OGoverview = data.results[i].overview;
         let overview = OGoverview.length > 200 ? OGoverview.substring(0, 200) + ' ...' : OGoverview;
 
-        popMovies.push(window["movie_" + i] = new PopularMovies(title, poster, overview));
+        popMovies.push(window["movie_" + i] = new PopularMovies(movieID, title, poster, overview)); // ADDED movieID
     }
 
     console.log(popMovies);
@@ -680,12 +682,37 @@ let data = await fetch(url, options)
     document.getElementById("imagePopular3").src = IMAGE_BASE_URL + popMovies[17].poster;
     document.getElementById("imagePopular4").src = IMAGE_BASE_URL + popMovies[3].poster;
     document.getElementById("imagePopular5").src = IMAGE_BASE_URL + popMovies[18].poster;
+
+    //  ADDED: Make Star Picks cards clickable
+    const popularMappings = [
+        { titleId: 'titlePopular1', index: 0 },
+        { titleId: 'titlePopular2', index: 1 },
+        { titleId: 'titlePopular3', index: 17 },
+        { titleId: 'titlePopular4', index: 3 },
+        { titleId: 'titlePopular5', index: 18 }
+    ];
+    
+    popularMappings.forEach(mapping => {
+        const h3Element = document.getElementById(mapping.titleId);
+        if (h3Element && popMovies[mapping.index]) {
+            const parentLink = h3Element.closest('a');
+            if (parentLink) {
+                parentLink.onclick = (e) => {
+                    e.preventDefault();
+                    window.location.href = `pages/individualMovie/movie-template.html?movieId=${popMovies[mapping.index].movieID}`;
+                };
+            }
+        }
+    });
+    console.log("Star Picks links activated");
+    //  END OF ADDITION 
     
 }();
 
 //Top Rated Movies
 class TopMovies {
-  constructor(title, poster, overview){
+  constructor(movieID, title, poster, overview){ // ADD movieID
+        this.movieID = movieID; // ADDED this line - KAZ
         this.title = title;
         this.poster = poster;
         this.overview = overview;
@@ -716,13 +743,14 @@ let data = await fetch(url, options)
         let topMovies = [];
 
         for (i = 0; i < data.results.length; i++){
-
+        
+        let movieID = data.results[i].id;  // ADDED this line - KAZ
         let title = data.results[i].title;
         let poster = data.results[i].poster_path;
         let OGoverview = data.results[i].overview;
         let overview = OGoverview.length > 200 ? OGoverview.substring(0, 200) + ' ...' : OGoverview;
 
-        topMovies.push(window["movie_" + i] = new TopMovies(title, poster, overview));
+        topMovies.push(window["movie_" + i] = new TopMovies(movieID, title, poster, overview)); // ADDED movieID - KAZ
     }
 
     console.log(topMovies);
@@ -749,5 +777,29 @@ let data = await fetch(url, options)
     document.getElementById("imageTop5").src = IMAGE_BASE_URL + topMovies[18].poster;
 
     //need to display the information on the website
+
+    //  ADDED: Make Top Rated cards clickable 
+    const topMappings = [
+        { titleId: 'titleTop1', index: 0 },
+        { titleId: 'titleTop2', index: 1 },
+        { titleId: 'titleTop3', index: 17 },
+        { titleId: 'titleTop4', index: 3 },
+        { titleId: 'titleTop5', index: 18 }
+    ];
+    
+    topMappings.forEach(mapping => {
+        const h3Element = document.getElementById(mapping.titleId);
+        if (h3Element && topMovies[mapping.index]) {
+            const parentLink = h3Element.closest('a');
+            if (parentLink) {
+                parentLink.onclick = (e) => {
+                    e.preventDefault();
+                    window.location.href = `pages/individualMovie/movie-template.html?movieId=${topMovies[mapping.index].movieID}`;
+                };
+            }
+        }
+    });
+    console.log("Top Rated links activated");
+    //  END OF ADDITION 
     
 }();
