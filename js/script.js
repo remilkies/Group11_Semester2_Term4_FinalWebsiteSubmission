@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Setup universal navbar search on ALL pages
     setupUniversalSearch();
     
+    // Setup universal navbar genre dropdown on ALL pages
+    setupUniversalGenreDropdown();
+    
     // Only run library code on library page
     if (isLibraryPage && document.querySelector('.movieCard')) {
         console.log("Loading movie library...");
@@ -23,10 +26,15 @@ document.addEventListener('DOMContentLoaded', async function() {
         // Check if there's a search query in URL
         const urlParams = new URLSearchParams(window.location.search);
         const searchQuery = urlParams.get('search');
+        const genreId = urlParams.get('genre');
+        const genreName = urlParams.get('genreName');
         
         if (searchQuery) {
             console.log("Search query detected:", searchQuery);
             await searchMovies(searchQuery);
+        } else if (genreId && genreName) {
+            console.log("Genre parameter detected:", genreName);
+            await loadAllSectionsWithGenre(parseInt(genreId), genreName);
         } else {
             await loadMovieLibrary();
         }
@@ -257,27 +265,27 @@ async function loadIndividualMovie(movieId) {
             const yearElement = document.getElementById('year');
             if (yearElement) {
                 yearElement.textContent = movieData.release_date ? movieData.release_date.slice(0, 4) : 'N/A';
-                console.log("Year updated");
+                console.log(" Year updated");
             } else {
-                console.warn("Year element #year not found");
+                console.warn(" Year element #year not found");
             }
             
             // Update genre
             const genreElement = document.getElementById('genre');
             if (genreElement) {
                 genreElement.textContent = movieData.genres && movieData.genres[0] ? movieData.genres[0].name : 'Genre N/A';
-                console.log("Genre updated");
+                console.log(" Genre updated");
             } else {
-                console.warn("Genre element #genre not found");
+                console.warn(" Genre element #genre not found");
             }
             
             // Update description
             const descElement = document.getElementById('movieDesc');
             if (descElement) {
                 descElement.textContent = movieData.overview || 'No description available.';
-                console.log("Description updated");
+                console.log(" Description updated");
             } else {
-                console.warn("Description element #movieDesc not found");
+                console.warn(" Description element #movieDesc not found");
             }
         }
 
@@ -296,11 +304,11 @@ async function loadIndividualMovie(movieId) {
                             element.textContent = '';
                         }
                     });
-                    console.log("Directors updated:", directors.map(d => d.name).join(', '));
+                    console.log(" Directors updated:", directors.map(d => d.name).join(', '));
                 } else if (directors.length > 0) {
-                    console.warn("Director elements not found. Directors are:", directors.map(d => d.name).join(', '));
+                    console.warn(" Director elements not found. Directors are:", directors.map(d => d.name).join(', '));
                 } else {
-                    console.warn("No directors found in credits data");
+                    console.warn(" No directors found in credits data");
                 }
             }
             
@@ -317,31 +325,107 @@ async function loadIndividualMovie(movieId) {
                             element.textContent = '';
                         }
                     });
-                    console.log("Actors updated:", actors.map(a => a.name).join(', '));
+                    console.log(" Actors updated:", actors.map(a => a.name).join(', '));
                 } else {
-                    console.warn("No actor elements found");
+                    console.warn(" No actor elements found");
                     console.log("Top actors:", actors.slice(0, 5).map(a => a.name));
                 }
             }
         }
         
-        console.log("Individual movie page loaded successfully!");
+        console.log(" Individual movie page loaded successfully!");
         
     } catch (error) {
-        console.error("Error loading individual movie:", error);
+        console.error(" Error loading individual movie:", error);
     }
 }
 
-// Setup search functionality (library page)
+// Universal genre dropdown for navbar (works on all pages)
+function setupUniversalGenreDropdown() {
+    // Find navbar genre dropdown menu
+    const genreDropdownMenu = document.querySelector('.nav-item.dropdown .dropdown-menu');
+    
+    if (!genreDropdownMenu) {
+        console.warn(" Navbar genre dropdown not found");
+        return;
+    }
+    
+    // Clear existing items
+    genreDropdownMenu.innerHTML = '';
+    
+    // Genre options with their TMDB IDs
+    const genres = [
+        { name: 'Action', id: 28 },
+        { name: 'Comedy', id: 35 },
+        { name: 'Horror', id: 27 },
+        { name: 'Romance', id: 10749 },
+        { name: 'Sci-Fi', id: 878 },
+        { name: 'Thriller', id: 53 },
+        { name: 'Animation', id: 16 },
+        { name: 'Drama', id: 18 }
+    ];
+    
+    genres.forEach(genre => {
+        const li = document.createElement('li');
+        li.className = 'nav-item';
+        
+        const link = document.createElement('a');
+        link.className = 'nav-link';
+        link.href = '#';
+        link.style.cursor = 'pointer';
+        link.innerHTML = `
+            <img src="assets/icons/starIconActive.png" class="nav-icon" style="height: 23px;">
+            <h2>${genre.name}</h2>
+        `;
+        
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const currentPath = window.location.pathname;
+            
+            if (currentPath.includes('movie-library.html')) {
+                // Already on library, just load genre
+                loadAllSectionsWithGenre(genre.id, genre.name);
+            } else {
+                // Redirect to library with genre parameter
+                let targetPath = '';
+                if (currentPath.includes('individualMovie')) {
+                    targetPath = `../movie-library.html?genre=${genre.id}&genreName=${encodeURIComponent(genre.name)}`;
+                } else if (currentPath.includes('pages/')) {
+                    targetPath = `movie-library.html?genre=${genre.id}&genreName=${encodeURIComponent(genre.name)}`;
+                } else {
+                    targetPath = `pages/movie-library.html?genre=${genre.id}&genreName=${encodeURIComponent(genre.name)}`;
+                }
+                window.location.href = targetPath;
+            }
+        });
+        
+        li.appendChild(link);
+        genreDropdownMenu.appendChild(li);
+    });
+    
+    console.log(' Universal navbar genre dropdown activated');
+}
+
+// Check for genre parameter in URL on library page load
+async function checkGenreParameter() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const genreId = urlParams.get('genre');
+    const genreName = urlParams.get('genreName');
+    
+    if (genreId && genreName) {
+        console.log('Genre parameter detected:', genreName);
+        await loadAllSectionsWithGenre(parseInt(genreId), genreName);
+    }
+}
 function setupSearch() {
     const searchInput = document.querySelector('.movie-searchBar input[type="search"]');
     
     if (!searchInput) {
-        console.warn("Search bar not found");
+        console.warn(" Search bar not found");
         return;
     }
     
-    console.log("Library search bar ready");
+    console.log(" Library search bar ready");
     
     let searchTimeout;
     
@@ -388,7 +472,7 @@ function setupUniversalSearch() {
                     
                     if (currentPath.includes('movie-library.html')) {
                         searchMovies(query);
-                    } else if (currentPath.includes('individualMovie')) {
+                    }else if (currentPath.includes('individualMovie')) {
     // Go up one folder to reach /pages/movie-library.html
     window.location.href = `../movie-library.html?search=${encodeURIComponent(query)}`;
 } 
@@ -543,6 +627,13 @@ function setupFilters() {
         if (index === 0) return; // Skip "Sort:" label
         
         option.style.cursor = 'pointer';
+        option.style.position = 'relative';
+        
+        // Special handling for Genre filter
+        if (option.textContent.trim() === 'Genre') {
+            setupGenreDropdown(option);
+            return;
+        }
         
         option.addEventListener('click', async function() {
             console.log('Filter clicked:', this.textContent);
@@ -569,14 +660,171 @@ function setupFilters() {
                 case 'Rating':
                     sortBy = 'vote_average.desc';
                     break;
-                case 'Genre':
-                    sortBy = 'popularity.desc';
-                    break;
             }
             
             await loadMovieLibraryWithSort(sortBy);
         });
     });
+}
+
+// Setup genre dropdown menu
+function setupGenreDropdown(genreOption) {
+    // Create dropdown menu
+    const dropdown = document.createElement('div');
+    dropdown.className = 'genre-dropdown';
+    dropdown.style.cssText = `
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #303030;
+        border-radius: 10px;
+        padding: 10px;
+        display: none;
+        z-index: 1000;
+        min-width: 150px;
+        margin-top: 5px;
+    `;
+    
+    // Genre options with their TMDB IDs
+    const genres = [
+        { name: 'Action', id: 28 },
+        { name: 'Comedy', id: 35 },
+        { name: 'Horror', id: 27 },
+        { name: 'Romance', id: 10749 },
+        { name: 'Sci-Fi', id: 878 },
+        { name: 'Thriller', id: 53 },
+        { name: 'Animation', id: 16 },
+        { name: 'Drama', id: 18 }
+    ];
+    
+    genres.forEach(genre => {
+        const genreItem = document.createElement('div');
+        genreItem.textContent = genre.name;
+        genreItem.style.cssText = `
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            color: #F2E0C7;
+            transition: background 0.2s;
+        `;
+        
+        genreItem.addEventListener('mouseenter', function() {
+            this.style.background = '#d6a3ae';
+        });
+        
+        genreItem.addEventListener('mouseleave', function() {
+            this.style.background = 'transparent';
+        });
+        
+        genreItem.addEventListener('click', async function(e) {
+            e.stopPropagation();
+            console.log('Genre selected:', genre.name);
+            
+            // Clear search
+            const searchInput = document.querySelector('.movie-searchBar input[type="search"]');
+            if (searchInput) {
+                searchInput.value = '';
+            }
+            window.history.pushState({}, '', window.location.pathname);
+            
+            // Load all sections with selected genre
+            await loadAllSectionsWithGenre(genre.id, genre.name);
+            
+            // Close dropdown
+            dropdown.style.display = 'none';
+        });
+        
+        dropdown.appendChild(genreItem);
+    });
+    
+    genreOption.appendChild(dropdown);
+    
+    // Toggle dropdown on click
+    genreOption.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isVisible = dropdown.style.display === 'block';
+        dropdown.style.display = isVisible ? 'none' : 'block';
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function() {
+        dropdown.style.display = 'none';
+    });
+    
+    console.log(' Genre dropdown activated');
+}
+
+// Load all sections with a specific genre
+async function loadAllSectionsWithGenre(genreId, genreName) {
+    console.log(`Loading all sections with genre: ${genreName}`);
+    
+    // Reset and show all sections
+    document.querySelectorAll('.movieContainer').forEach(section => {
+        section.style.display = '';
+    });
+    
+    document.querySelectorAll('.movieCard').forEach(card => {
+        card.style.display = '';
+        if (card.parentElement) {
+            card.parentElement.style.display = '';
+        }
+    });
+    
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${API_TOKEN}`
+        }
+    };
+
+    try {
+        // Fetch page 1 and page 2 to get 40 movies total
+        const page1Url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=en-US&page=1&sort_by=popularity.desc`;
+        const page2Url = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=en-US&page=2&sort_by=popularity.desc`;
+        
+        const [response1, response2] = await Promise.all([
+            fetch(page1Url, options),
+            fetch(page2Url, options)
+        ]);
+        
+        const data1 = await response1.json();
+        const data2 = await response2.json();
+        
+        // Combine results from both pages
+        const allMovies = [...data1.results, ...data2.results];
+        
+        console.log(`${genreName} Movies:`, allMovies.length, 'total');
+
+        if (allMovies.length > 0) {
+            const sections = document.querySelectorAll('.movieContainer');
+            
+            sections.forEach((section, sectionIndex) => {
+                const cards = section.querySelectorAll('.movieCard');
+                const startIndex = sectionIndex * 10;
+                
+                // Update section title
+                const sectionTitle = section.querySelector('h2');
+                if (sectionTitle) {
+                    if (!sectionTitle.dataset.originalText) {
+                        sectionTitle.dataset.originalText = sectionTitle.textContent;
+                    }
+                    sectionTitle.textContent = `${genreName} Movies - Page ${sectionIndex + 1}`;
+                }
+                
+                cards.forEach((card, cardIndex) => {
+                    const movieIndex = startIndex + cardIndex;
+                    if (allMovies[movieIndex]) {
+                        updateMovieCard(card, allMovies[movieIndex], movieIndex);
+                    }
+                });
+            });
+            
+            console.log(` Loaded ${allMovies.length} ${genreName} movies across all sections`);
+        }
+    } catch (error) {
+        console.error(`Error loading ${genreName} movies:`, error);
+    }
 }
 
 // Load movie library with custom sort
@@ -787,7 +1035,7 @@ let data = await fetch(url, options)
     document.getElementById("imagePopular4").src = IMAGE_BASE_URL + popMovies[3].poster;
     document.getElementById("imagePopular5").src = IMAGE_BASE_URL + popMovies[18].poster;
 
-    //  ADDED: Make Star Picks cards clickable
+    //  ADDED To Make Star Picks cards clickable
     const popularMappings = [
         { titleId: 'titlePopular1', index: 0 },
         { titleId: 'titlePopular2', index: 1 },
@@ -882,7 +1130,7 @@ let data = await fetch(url, options)
 
     //need to display the information on the website
 
-    //  ADDED: Make Top Rated cards clickable 
+    //  ADDED To Make Top Rated cards clickable 
     const topMappings = [
         { titleId: 'titleTop1', index: 0 },
         { titleId: 'titleTop2', index: 1 },
