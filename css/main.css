@@ -239,6 +239,8 @@ input[type="search"]:focus {
 
 .feature-img img{
     border-radius: 15px;
+    width: 100%;
+    height: 600px;
 
     width: 100%;
     height: auto;
@@ -363,8 +365,17 @@ input[type="search"]:focus {
     z-index: 3;
     opacity: 0;
     margin: 1em;
-}
 
+}
+    .card-text {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
+        max-width: 100%;
+        padding-right: 10px;
+      }
+      
+  
 .movieCard:hover .movieInfo {
     transform: translateX(0);
     opacity: 1;
