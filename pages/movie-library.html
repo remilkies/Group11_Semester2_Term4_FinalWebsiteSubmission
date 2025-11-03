@@ -125,7 +125,15 @@
      <!-- Row 1 -->
     <section class="movieContainer">
         <h2>Romance is in the air</h2>
-        <div id="movieRow1" class="container-fluid scrolling-wrapper movie-container slide">
+        <div class="carousel-controls">
+          <button id="leftArrown" class="scroll-btn">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="movie-scroll">
+            <div class="movie-track">
+
+              <div id="movieRow1" class="container-fluid scrolling-wrapper movie-container slide">
           <div class="d-flex align-content-start">
   
             <div class="p-2 col">
@@ -134,12 +142,12 @@
   
                 <div class="card-body movieInfo">
                    
-                  <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
                     <img src="../assets/buttons/leftButton.png" height="66px">
                     <h3>Card title</h3>
                     <img src="../assets/buttons/rightButton.png" height="66px">
                   </a>
-    
+                  
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     
                 </div>
@@ -322,17 +330,18 @@
               </div>
           </div>
 
-          <button class="carousel-control-prev carousel-button" type="button" data-bs-target="#movieRow1" data-bs-slide="prev">
+         
+
+              </div>
+
+            </div>
+          </div>
+
+          <button id="rightArrow" class="scroll-btn">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
           </button>
-
-          <button class="carousel-control-next carousel-button" type="button" data-bs-target="#movieRow1" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-
-        </div>
+        </div> 
+        
   
       </section>
 

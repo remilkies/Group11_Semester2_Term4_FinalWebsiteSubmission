@@ -452,7 +452,42 @@ input[type="search"]:focus {
     width: 400px !important;
 }
 
-
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .movie-scroll {
+    width: 90%; /* adjust depending on layout */
+  }
+  
+  .movie-track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* hide scrollbar */
+  }
+  
+  .movie-track::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scroll-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .scroll-btn:hover {
+    transform: scale(1.1);
+  }
+  
 
 
 
