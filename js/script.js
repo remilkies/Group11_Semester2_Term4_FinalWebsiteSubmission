@@ -230,6 +230,15 @@ async function loadIndividualMovie(movieId) {
         
         console.log("Credits Data:", creditsData);
 
+        // Load movie videos/trailers
+        const videosUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`;
+        console.log("Fetching videos from:", videosUrl);
+        
+        const videosResponse = await fetch(videosUrl, options);
+        const videosData = await videosResponse.json();
+        
+        console.log("Videos Data:", videosData);
+
         // Update the page with movie data
         if (movieData) {
             // Update poster
@@ -286,6 +295,33 @@ async function loadIndividualMovie(movieId) {
                 console.log("Description updated");
             } else {
                 console.warn("Description element #movieDesc not found");
+            }
+        }
+
+        // Update trailer button
+        if (videosData && videosData.results && videosData.results.length > 0) {
+            // Find official trailer or first YouTube video
+            const trailer = videosData.results.find(video => 
+                video.type === 'Trailer' && video.site === 'YouTube'
+            ) || videosData.results.find(video => video.site === 'YouTube');
+            
+            if (trailer) {
+                const trailerButton = document.querySelector('.trailerButton');
+                if (trailerButton) {
+                    const youtubeUrl = `https://www.youtube.com/watch?v=${trailer.key}`;
+                    
+                    trailerButton.onclick = (e) => {
+                        e.preventDefault();
+                        window.open(youtubeUrl, '_blank');
+                    };
+                    
+                    trailerButton.style.cursor = 'pointer';
+                    console.log("Trailer button linked to:", youtubeUrl);
+                } else {
+                    console.warn("Trailer button not found");
+                }
+            } else {
+                console.warn("No YouTube trailer found for this movie");
             }
         }
 
@@ -484,6 +520,7 @@ else {
     // From homepage or root
     window.location.href = `pages/movie-library.html?search=${encodeURIComponent(query)}`;
 }
+
                 }
             }
         });
