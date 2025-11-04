@@ -103,29 +103,30 @@
 </header>
 
 <!--Movie cards-->
-<body>
 
-<div class="d-flex filter-bar align-items-center flex-wrap">
+<body>
+  <div class="d-flex filter-bar align-items-center flex-wrap">
     <div class="me p-2">
       <form class="d-flex movie-searchBar" role="search" id="searchForm">
-        <input class="form-control me-2" type="search" placeholder="Search your dream list" aria-label="Search" id="searchInput"/>
+        <input class="form-control me-2" type="search" placeholder="Search your dream list" aria-label="Search"
+          id="searchInput" />
       </form>
     </div>
-    
-    <div class="d-flex ms-auto p-2"> 
+
+    <div class="d-flex ms-auto p-2">
       <div class="p-2">Sort:</div>
       <div class="p-2" style="cursor: pointer;" id="sortRecent">Recently Added</div>
       <div class="p-2" style="cursor: pointer;" id="sortTitle">Title</div>
       <div class="p-2" style="cursor: pointer;" id="sortRating">Rating</div>
     </div>
-</div>
-
-<!-- Empty State -->
-<div id="emptyState" style="display: none; text-align: center; padding: 100px 20px;">
-    <h2 style="margin-bottom: 20px;">Your Dream List is Empty</h2>
-    <p style="margin-bottom: 30px;">Start adding movies to your watchlist from the homepage or library!</p>
-    <a href="../index.html" class="btn btn-primary" style="padding: 10px 30px;">Browse Movies</a>
-</div>
+  </div>
+  
+  <!-- Empty State -->
+    <div id="emptyState" style="display: none; text-align: center; padding: 100px 20px;">
+     <p> <h2 style="margin-bottom: 20px;">Your Dream List is Empty</h2> </p>
+      <p style="margin-bottom: 30px;">Start adding movies to your watchlist from the homepage or library!</p>
+      <button><a href="../index.html" class="btn btn-primary" style="padding: 10px 30px;">Browse Movies</a> </button>
+    </div>
 
 <!-- Watchlist Container -->
 <section class="movieContainer" id="watchlistContainer">
@@ -137,10 +138,8 @@
     </div>
 </section>
 </body>
-
 <script src="../js/jQuery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
+  integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </html>
