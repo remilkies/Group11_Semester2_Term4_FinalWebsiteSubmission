@@ -107,8 +107,6 @@
 
   <div class="d-flex filter-bar align-items-center flex-wrap">
 
-    
-
     <div class="me p-2">
       <form class="d-flex movie-searchBar " role="search">
         <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search"/>
@@ -127,8 +125,13 @@
      <!-- Row 1 -->
     <section class="movieContainer">
         <h2>Romance is in the air</h2>
-        <div class="container-fluid scrolling-wrapper">
-          <div class="d-flex align-content-start">
+        <div class="carousel-controls">
+          <button id="leftArrow" class="scroll-btn">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="movie-scroll container-fluid scrolling-wrapper movie-container slide">
+          <div id="movieTrack" class="d-flex movie-track align-content-start">
   
             <div class="p-2 col">
               <div class="card movieCard">
@@ -136,12 +139,13 @@
   
                 <div class="card-body movieInfo">
                    
-                  <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                    <img src="../assets/buttons/leftButton.png" height="66px">
-                    <h3>Card title</h3>
-                    <img src="../assets/buttons/rightButton.png" height="66px">
-                  </a>
-    
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
+                </a>
+                  
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     
                 </div>
@@ -154,11 +158,12 @@
   
                 <div class="card-body movieInfo">
                    
-                  <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                    <img src="../assets/buttons/leftButton.png" height="66px">
-                    <h3>Card title</h3>
-                    <img src="../assets/buttons/rightButton.png" height="66px">
-                  </a>
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
+                </a>
     
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     
@@ -170,17 +175,18 @@
               <div class="card movieCard">
   
                 <div class="moviePoster">
-                  <img src="assets/images/kayMovie.jpg">
+                  <img src="../assets/images/kayMovie.jpg">
                 </div>
   
                 <button><img src="../assets/icons/watchlistIcon.png" data-default="../assets/icons/watchlistIcon.png" data-hover="../assets/icons/watchlistAdded.png" data-active="../assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
   
                 <div class="card-body movieInfo">
                    
-                <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                  <img src="../assets/buttons/leftButton.png" height="66px">
-                  <h3>Card title</h3>
-                  <img src="../assets/buttons/rightButton.png" height="66px">
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
                 </a>
   
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
@@ -196,11 +202,12 @@
   
                 <div class="card-body movieInfo">
                    
-                  <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                    <img src="../assets/buttons/leftButton.png" height="66px">
-                    <h3>Card title</h3>
-                    <img src="../assets/buttons/rightButton.png" height="66px">
-                  </a>
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
+                </a>
     
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     
@@ -215,11 +222,12 @@
   
                 <div class="card-body movieInfo">
                    
-                  <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                    <img src="../assets/buttons/leftButton.png" height="66px">
-                    <h3>Card title</h3>
-                    <img src="../assets/buttons/rightButton.png" height="66px">
-                  </a>
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
+                </a>
     
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     
@@ -234,10 +242,71 @@
     
                   <div class="card-body movieInfo">
                      
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
+      
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+      
+                    </div>
+    
+                </div> 
+              </div>
+
+              <div class="p-2 col">
+                <div class="card movieCard">
+                  <button><img src="../assets/icons/watchlistIcon.png" data-default="../assets/icons/watchlistIcon.png" data-hover="../assets/icons/watchlistAdded.png" data-active="../assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
+    
+                  <div class="card-body movieInfo">
+                     
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
+      
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+      
+                    </div>
+    
+                </div> 
+              </div>
+
+              <div class="p-2 col">
+                <div class="card movieCard">
+                  <button><img src="../assets/icons/watchlistIcon.png" data-default="../assets/icons/watchlistIcon.png" data-hover="../assets/icons/watchlistAdded.png" data-active="../assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
+    
+                  <div class="card-body movieInfo">
+                     
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
+      
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+      
+                    </div>
+    
+                </div> 
+              </div>
+
+              <div class="p-2 col">
+                <div class="card movieCard">
+                  <button><img src="../assets/icons/watchlistIcon.png" data-default="../assets/icons/watchlistIcon.png" data-hover="../assets/icons/watchlistAdded.png" data-active="../assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
+    
+                  <div class="card-body movieInfo">
+                     
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
                     </a>
       
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
@@ -253,68 +322,12 @@
     
                   <div class="card-body movieInfo">
                      
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
-      
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-      
-                    </div>
-    
-                </div> 
-              </div>
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
 
-              <div class="p-2 col">
-                <div class="card movieCard">
-                  <button><img src="../assets/icons/watchlistIcon.png" data-default="../assets/icons/watchlistIcon.png" data-hover="../assets/icons/watchlistAdded.png" data-active="../assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
-    
-                  <div class="card-body movieInfo">
-                     
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
-      
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-      
-                    </div>
-    
-                </div> 
-              </div>
-
-              <div class="p-2 col">
-                <div class="card movieCard">
-                  <button><img src="../assets/icons/watchlistIcon.png" data-default="../assets/icons/watchlistIcon.png" data-hover="../assets/icons/watchlistAdded.png" data-active="../assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
-    
-                  <div class="card-body movieInfo">
-                     
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
-      
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-      
-                    </div>
-    
-                </div> 
-              </div>
-
-              <div class="p-2 col">
-                <div class="card movieCard">
-                  <button><img src="../assets/icons/watchlistIcon.png" data-default="../assets/icons/watchlistIcon.png" data-hover="../assets/icons/watchlistAdded.png" data-active="../assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
-    
-                  <div class="card-body movieInfo">
-                     
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
       
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
       
@@ -323,7 +336,17 @@
                 </div> 
               </div>
           </div>
-        </div>
+            </div>
+            
+          <button id="rightArrow" class="scroll-btn">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+            </div>
+          </div>
+
+          
+        </div> 
+        
   
       </section>
 
@@ -339,11 +362,12 @@
   
                 <div class="card-body movieInfo">
                    
-                  <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                    <img src="../assets/buttons/leftButton.png" height="66px">
-                    <h3>Card title</h3>
-                    <img src="../assets/buttons/rightButton.png" height="66px">
-                  </a>
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
+                </a>
     
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     
@@ -357,11 +381,12 @@
   
                 <div class="card-body movieInfo">
                    
-                  <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                    <img src="../assets/buttons/leftButton.png" height="66px">
-                    <h3>Card title</h3>
-                    <img src="../assets/buttons/rightButton.png" height="66px">
-                  </a>
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
+                </a>
     
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     
@@ -373,17 +398,18 @@
               <div class="card movieCard">
   
                 <div class="moviePoster">
-                  <img src="assets/images/kayMovie.jpg">
+                  <img src="../assets/images/kayMovie.jpg">
                 </div>
   
                 <button><img src="../assets/icons/watchlistIcon.png" data-default="../assets/icons/watchlistIcon.png" data-hover="../assets/icons/watchlistAdded.png" data-active="../assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
   
                 <div class="card-body movieInfo">
                    
-                <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                  <img src="../assets/buttons/leftButton.png" height="66px">
-                  <h3>Card title</h3>
-                  <img src="../assets/buttons/rightButton.png" height="66px">
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
                 </a>
   
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
@@ -399,11 +425,12 @@
   
                 <div class="card-body movieInfo">
                    
-                  <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                    <img src="../assets/buttons/leftButton.png" height="66px">
-                    <h3>Card title</h3>
-                    <img src="../assets/buttons/rightButton.png" height="66px">
-                  </a>
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
+                </a>
     
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     
@@ -418,11 +445,12 @@
   
                 <div class="card-body movieInfo">
                    
-                  <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                    <img src="../assets/buttons/leftButton.png" height="66px">
-                    <h3>Card title</h3>
-                    <img src="../assets/buttons/rightButton.png" height="66px">
-                  </a>
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
+                </a>
     
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     
@@ -437,11 +465,12 @@
     
                   <div class="card-body movieInfo">
                      
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
       
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
       
@@ -456,11 +485,12 @@
     
                   <div class="card-body movieInfo">
                      
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
       
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
       
@@ -475,11 +505,12 @@
     
                   <div class="card-body movieInfo">
                      
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
       
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
       
@@ -494,11 +525,12 @@
     
                   <div class="card-body movieInfo">
                      
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
       
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
       
@@ -513,11 +545,12 @@
     
                   <div class="card-body movieInfo">
                      
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
       
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
       
@@ -542,11 +575,12 @@
   
                 <div class="card-body movieInfo">
                    
-                  <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                    <img src="../assets/buttons/leftButton.png" height="66px">
-                    <h3>Card title</h3>
-                    <img src="../assets/buttons/rightButton.png" height="66px">
-                  </a>
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
+                </a>
     
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     
@@ -560,11 +594,12 @@
   
                 <div class="card-body movieInfo">
                    
-                  <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                    <img src="../assets/buttons/leftButton.png" height="66px">
-                    <h3>Card title</h3>
-                    <img src="../assets/buttons/rightButton.png" height="66px">
-                  </a>
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
+                </a>
     
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     
@@ -576,17 +611,18 @@
               <div class="card movieCard">
   
                 <div class="moviePoster">
-                  <img src="assets/images/kayMovie.jpg">
+                  <img src="../assets/images/kayMovie.jpg">
                 </div>
   
                 <button><img src="../assets/icons/watchlistIcon.png" data-default="../assets/icons/watchlistIcon.png" data-hover="../assets/icons/watchlistAdded.png" data-active="../assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
   
                 <div class="card-body movieInfo">
                    
-                <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                  <img src="../assets/buttons/leftButton.png" height="66px">
-                  <h3>Card title</h3>
-                  <img src="../assets/buttons/rightButton.png" height="66px">
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
                 </a>
   
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
@@ -602,11 +638,11 @@
   
                 <div class="card-body movieInfo">
                    
-                  <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                    <img src="../assets/buttons/leftButton.png" height="66px">
-                    <h3>Card title</h3>
-                    <img src="../assets/buttons/rightButton.png" height="66px">
-                  </a>
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
+                </a>
     
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     
@@ -621,11 +657,12 @@
   
                 <div class="card-body movieInfo">
                    
-                  <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                    <img src="../assets/buttons/leftButton.png" height="66px">
-                    <h3>Card title</h3>
-                    <img src="../assets/buttons/rightButton.png" height="66px">
-                  </a>
+                  <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                    <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">Card title</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
+                </a>
     
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
     
@@ -640,11 +677,12 @@
     
                   <div class="card-body movieInfo">
                      
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
       
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
       
@@ -659,11 +697,12 @@
     
                   <div class="card-body movieInfo">
                      
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
       
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
       
@@ -678,11 +717,12 @@
     
                   <div class="card-body movieInfo">
                      
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
       
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
       
@@ -697,11 +737,12 @@
     
                   <div class="card-body movieInfo">
                      
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
       
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
       
@@ -716,11 +757,12 @@
     
                   <div class="card-body movieInfo">
                      
-                    <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                      <img src="../assets/buttons/leftButton.png" height="66px">
-                      <h3>Card title</h3>
-                      <img src="../assets/buttons/rightButton.png" height="66px">
-                    </a>
+                    <a class="movie-title card-title d-flex align-items-end" href="pages/individualMovie/movie-template.html">
+
+                      <img class="p-0" src="../assets/buttons/leftButton.png">
+                      <h3 class="p-0">Card title</h3>
+                      <img class="p-0" src="../assets/buttons/rightButton.png">
+                  </a>
       
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
       
@@ -735,7 +777,9 @@
 
 </body>
 <script src="../js/jQuery.js"></script>
+<script src="../js/movieLibrary-carousel.js"></script>
 <script src="../js/script.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>

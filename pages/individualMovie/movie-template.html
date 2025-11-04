@@ -21,15 +21,15 @@
 
     <header>
 
-    <nav class="navbar">
+      <nav class="navbar">
         <div class="container-fluid">
-
           <a class="navbar-profile" href="#">Welcome <br> Please Login</a>
-
-          <div class="pageTitle">
+          
+          <div class="pageTitle flex-fill">
             <h1>DREAM STREAM</h1>
-            <h2>THE STRAEMING SERVICE OF YOUR DREAMS</h2>
+            <h2>THE STREAMING SERVICE OF YOUR DREAMS</h2>
           </div>
+
           <button class="navbar-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <img src="../../assets/logo/logo.png">
           </button>
@@ -49,28 +49,28 @@
 
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="../../index.html"> 
-                    <img src="../../assets/icons/starIcon.png" class="nav-icon">
+                    <img src="../../assets/icons/starIconActive.png" class="nav-icon">
                     <h2>Home</h2>
                   </a>
                 </li>
 
                 <li class="nav-item">
                   <a class="nav-link" href="../../pages/watchlist.html">
-                    <img src="../../assets/icons/starIcon.png" class="nav-icon">
+                    <img src="../../assets/icons/starIconActive.png" class="nav-icon">
                     <h2>Dream List</h2>
                   </a>
                 </li>
 
                 <li class="nav-item">
                   <a class="nav-link" href="../../pages/movie-library.html">
-                    <img src="../../assets/icons/starIcon.png" class="nav-icon">
+                    <img src="../../assets/icons/starIconActive.png" class="nav-icon">
                     <h2>Library</h2>
                   </a>
                 </li>
 
                 <li class="nav-item dropdown">
                   <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="../../assets/icons/starIcon.png" class="nav-icon">
+                    <img src="../../assets/icons/starIconActive.png" class="nav-icon">
                     <h2>Genres</h2>
                   </a>
 
@@ -78,14 +78,14 @@
 
                     <li class="nav-item">
                       <a class="nav-link" href="#">
-                        <img src="../../assets/icons/starIcon.png" class="nav-icon">
+                        <img src="../../assets/icons/starIconActive.png" class="nav-icon">
                         <h2>Action</h2>
                       </a>
                     </li>
 
                     <li class="nav-item">
                       <a class="nav-link" href="#">
-                        <img src="../../assets/icons/starIcon.png" class="nav-icon">
+                        <img src="../../assets/icons/starIconActive.png" class="nav-icon">
                         <h2>Horror</h2>
                       </a>
                     </li>
@@ -98,7 +98,7 @@
 
           </div>
         </div>
-    </nav>
+      </nav>
   </header>
 <!-- WHEN YOU CLICK THE WATCH BUTTON IT CHANGES TO WATCHED -->
 
@@ -119,12 +119,13 @@
         </div>
 
         <div class="col-md-8">
-            <div class="movie-title">
-                <img src="../../assets/buttons/leftButton.png" height="66px">
-                <h3 id="individualTitle">Movie Title</h3>
-                <img src="../../assets/buttons/rightButton.png" height="66px">
+            <div class="movie-title d-flex align-items-end">
+                <img class="p-0" src="../../assets/buttons/leftButton.png">
+                <h3 class="p-0" id="individualTitle">Movie Title</h3>
+                <img class="p-0" src="../../assets/buttons/rightButton.png">
             </div>
 
+            
             <div class="movie-info d-flex flex-row">
                 <h4 class="p-2 category" id="rating"><img src="../../assets/icons/starIcon.png" style="height: 15px" class="starIcon">Rating</h4>
                 <h4 class="p-2 category" id="year">Year</h4>
@@ -171,7 +172,8 @@
 </div>
 
 </body>
-<script src="../../js/script.js"></script>
+
 <script src="../../js/jQuery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="../../js/script.js"></script>
 </html>

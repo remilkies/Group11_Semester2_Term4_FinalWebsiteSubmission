@@ -12,6 +12,7 @@
     font-style: normal;
 }
 
+
 body{
     background-color: #d6a3ae !important;
     font-family: "Comfortaa", sans-serif; /* default font */
@@ -65,12 +66,6 @@ h3{ /* movie titles */
         bottom: 10px;
         padding: 13.3px;
     }
-}
-
-.movie-title{/* MAKE TITLES INLINE WITH THE BUTTON HALVES */
-    display: inline-flex;
-    align-items: center;
-    align-self: stretch;
 }
 
 button{
@@ -240,6 +235,14 @@ input[type="search"]:focus {
     border-radius: 15px;
     width: 100%;
     height: 600px;
+
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9; /* optional, keeps consistent shape */
+    object-fit: cover; /* prevents distortion */
+    border-radius: 15px;
+    display: block;
+      
 }
 
 .feature-title{
@@ -265,6 +268,10 @@ input[type="search"]:focus {
     height: 15px;
   }
 
+  .category h4{
+    margin-bottom: 0;
+  }
+
 .feature-info{
     margin: 0 !important;
     padding-bottom: 0 !important;
@@ -280,10 +287,10 @@ input[type="search"]:focus {
 /* CSS FOR BOOKMARK ICON */
 .watchlistIconFeature{
     position: absolute;
-    top: 35px;
-    right: 15px;
+    top: 35px !important;
+    right: 15px !important;
     height: 57px;
-    z-index: 5;
+    z-index: 5 !important;
 }
 
 .watchlistIcon{
@@ -318,18 +325,21 @@ input[type="search"]:focus {
     display: inline-block;
   }
 
-
 .movieContainer h2{
-    position: absolute;
     margin-left:2%;
     text-align: start !important;
+    margin-bottom: 0;
 }
+
+
 .movieCard {
     border-radius: 15px;
     cursor: pointer;
-    background-color: #9F9F9F;
+    background-color: #d6a3ae;
     overflow: hidden;
     /* width: 200px; */
+    height: 326px;
+    width: 222px;
 }
 
 .card-title{
@@ -349,18 +359,47 @@ input[type="search"]:focus {
     z-index: 3;
     opacity: 0;
     margin: 1em;
-}
 
+}
+    .card-text {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
+        max-width: 100%;
+        padding-right: 10px;
+      }
+      
+  
 .movieCard:hover .movieInfo {
     transform: translateX(0);
     opacity: 1;
 }
 
 
-.moviePoster img{
-    border-radius: 15px;
+.moviePoster {
+    flex: 0 0 200px;
+    height: 326px; /* Add explicit height */
+}
+
+.moviePoster img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    border-radius: 15px;
     display: block;
+}
+
+/* Update media queries too */
+@media (min-width: 768px) and (max-width: 991.98px){
+    .moviePoster{
+        height: 236px;
+    }
+}
+
+@media (min-width: 992px) {
+    .moviePoster{
+        height: 326px;
+    }
 }
 
   .movieCard:hover {
@@ -380,10 +419,6 @@ input[type="search"]:focus {
     display: block;
   }
 
-    .movieCard{
-        height: 326px;
-        width: 222px;
-    }
 
     .moviePoster img{
         height: 326px;
@@ -417,11 +452,75 @@ input[type="search"]:focus {
     width: 400px !important;
 }
 
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    position: relative;
+  }
+  
+  .movie-scroll {
+    width: 90%;
+  }
+  
+  .movie-track {
 
-
+    width: 2000px;
+    
+    display: flex;
+    gap: 1rem;
+    scroll-behavior: smooth;
+    overflow-x: auto;
+  }
+  
+  .scroll-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .scroll-btn:hover {
+    transform: scale(1.1);
+  }  
+  
 
 
 /* THIS IS FOR THE INDIVIDUAL MOVIE PAGE */
+
+.movie-title{
+    display: inline-flex;
+    align-items: center;
+    align-self: stretch;
+    
+    height: 66px;
+    align-items: stretch; 
+  }
+  
+  .movie-title h3{
+    margin: 0;          /* controls spacing between lines */
+    display: block;              /* ensures it's the height source */
+    text-align: center !important;
+    height: 86%;
+
+  }
+  
+  /* let the side images match the h3 height */
+  .movie-title img {
+    width: auto;                 /* keep natural aspect ratio */
+    height: auto;                /* allow stretching via align-self */
+    align-self: stretch;         /* IMPORTANT: forces the img to match the tallest sibling */
+    object-fit: cover;         
+
+  }
+
+  #individualTitle{
+    height: 86%;
+  }
+  
+
 .movie-container{
     margin-top: 3em;
     margin-bottom: 3em;
@@ -430,7 +529,7 @@ input[type="search"]:focus {
 .poster-container{
     display: flex;
     flex-direction: column;
-    align-items: center; /* centers horizontally */
+    align-items: center; 
     justify-content: center;
 }
 
@@ -508,16 +607,12 @@ input[type="search"]:focus {
     margin-bottom: 0 !important;
 }
 
-
-/* 
-.movie-actors h2{
-    margin-right: 5%;
-    margin-bottom: 0;
-} */
-
 .actor, .director{
     margin-bottom: 0 !important; 
 }
+
+
+
 
 
 /* display flex not on div around card > display block margin left auto margin right auto */
