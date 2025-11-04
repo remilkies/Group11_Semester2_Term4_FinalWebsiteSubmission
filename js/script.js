@@ -955,7 +955,8 @@ class NewMovies {
 
     //may affect styling
     // needed to display the image
-    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original'; //CHANGE BY KAZ
+
 
     let movieList = [];
 
@@ -964,7 +965,8 @@ class NewMovies {
 
         let movieID = movie.id;
         let title = movie.title;
-        let poster = movie.poster_path;
+        let poster = movie.backdrop_path || movie.poster_path; // fallback if missing - CHANGE BY KAZ
+
         let rating = movie.vote_average.toFixed(1);
 
         const creditsURL = `${BASE_URL}/movie/${movieID}/credits`;
@@ -987,6 +989,28 @@ class NewMovies {
     }
 
     console.log(movieList);
+
+
+    // ADDITION ADDED BY KAZ - MAKES CAROUSEL TITLES CLICKABLE (WITHOUT A HREF LINKS)
+    const titleMappings = [
+  { titleId: 'titleFeature1', index: 12 },
+  { titleId: 'titleFeature2', index: 6 },
+  { titleId: 'titleFeature3', index: 2 },
+  { titleId: 'titleFeature4', index: 3 }
+];
+
+titleMappings.forEach(mapping => {
+  const titleEl = document.getElementById(mapping.titleId);
+  const movie = movieList[mapping.index];
+
+  if (titleEl && movie) {
+    titleEl.style.cursor = 'pointer';
+    titleEl.addEventListener('click', () => {
+      window.location.href = `pages/individualMovie/movie-template.html?movieId=${movie.movieID}`;
+    });
+  }
+});
+
 
         // Image slider titles
         document.getElementById("titleFeature1").innerHTML = movieList[12].title;
@@ -1041,7 +1065,8 @@ let data = await fetch(url, options)
 
     //may affect styling
     // needed to display the image: gives the API necessary information
-    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original'; // KAZ CHANGE - NO LONGER LIMITED TO 500px IMG PATHS
+
 
         let popMovies = [];
 
@@ -1135,7 +1160,8 @@ let data = await fetch(url, options)
 
     //may affect styling
     // needed to display the image: gives the API necessary information
-    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original';
+
 
         let topMovies = [];
 
