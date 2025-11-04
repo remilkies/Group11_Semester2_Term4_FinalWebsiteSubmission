@@ -457,24 +457,22 @@ input[type="search"]:focus {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    position: relative;
     width: 100%;
+    position: relative;
   }
   
   .movie-scroll {
-    width: 90%; /* adjust depending on layout */
+    width: 90%;
   }
   
   .movie-track {
+
+    width: 2000px;
+    
     display: flex;
     gap: 1rem;
-    overflow-x: auto;
     scroll-behavior: smooth;
-    scrollbar-width: none; /* hide scrollbar */
-  }
-  
-  .movie-track::-webkit-scrollbar {
-    display: none;
+    overflow-x: auto;
   }
   
   .scroll-btn {
@@ -486,9 +484,8 @@ input[type="search"]:focus {
   
   .scroll-btn:hover {
     transform: scale(1.1);
-  }
+  }  
   
-
 
 
 /* THIS IS FOR THE INDIVIDUAL MOVIE PAGE */
@@ -505,7 +502,7 @@ input[type="search"]:focus {
   .movie-title h3{
     margin: 0;          /* controls spacing between lines */
     display: block;              /* ensures it's the height source */
-    text-align: center;
+    text-align: center !important;
     height: 86%;
 
   }
