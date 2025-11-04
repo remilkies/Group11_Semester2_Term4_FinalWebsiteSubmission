@@ -241,14 +241,6 @@ input[type="search"]:focus {
     border-radius: 15px;
     width: 100%;
     height: 600px;
-
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9; /* optional, keeps consistent shape */
-    object-fit: cover; /* prevents distortion */
-    border-radius: 15px;
-    display: block;
-      
 }
 
 .feature-title{
@@ -272,10 +264,6 @@ input[type="search"]:focus {
   .starIcon{
     margin-right: 5px;
     height: 15px;
-  }
-
-  .category h4{
-    margin-bottom: 0;
   }
 
 .feature-info{
@@ -365,17 +353,8 @@ input[type="search"]:focus {
     z-index: 3;
     opacity: 0;
     margin: 1em;
-
 }
-    .card-text {
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        white-space: normal;
-        max-width: 100%;
-        padding-right: 10px;
-      }
-      
-  
+
 .movieCard:hover .movieInfo {
     transform: translateX(0);
     opacity: 1;
