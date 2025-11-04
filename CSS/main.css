@@ -452,8 +452,40 @@ input[type="search"]:focus {
     width: 400px !important;
 }
 
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    position: relative;
+  }
+  
+  .movie-scroll {
+    width: 90%;
+  }
+  
+  .movie-track {
 
-
+    width: 2000px;
+    
+    display: flex;
+    gap: 1rem;
+    scroll-behavior: smooth;
+    overflow-x: auto;
+  }
+  
+  .scroll-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .scroll-btn:hover {
+    transform: scale(1.1);
+  }  
+  
 
 
 /* THIS IS FOR THE INDIVIDUAL MOVIE PAGE */
@@ -470,7 +502,7 @@ input[type="search"]:focus {
   .movie-title h3{
     margin: 0;          /* controls spacing between lines */
     display: block;              /* ensures it's the height source */
-    text-align: center;
+    text-align: center !important;
     height: 86%;
 
   }
