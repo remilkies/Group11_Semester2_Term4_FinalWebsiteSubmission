@@ -1497,3 +1497,63 @@ function setupIndividualMovieWatchlist(movieData) {
 setupUniversalWatchlist();
 
 console.log('Universal Watchlist System Loaded');
+
+//display username on homepage
+const container = document.querySelector('.container');
+const registerBtn = document.querySelector('.register-btn');
+const loginBtn = document.querySelector('.login-btn');
+
+registerBtn.addEventListener('click', () => {
+    container.classList.add('active');
+})
+
+loginBtn.addEventListener('click', () => {
+    container.classList.remove('active');
+})
+
+let username;
+
+document.getElementById("loginForm").addEventListener("submit", e => {
+    e.preventDefault();
+    username = document.getElementById("signInUse").value;
+    localStorage.setItem("userName", username);
+});
+
+// function showName(){
+//     let saveName = localStorage.getItem("userName");
+//     document.getElementById("displayName").innerHTML = "Welcome " + saveName;
+// }
+
+function showName(){
+    let saveName = localStorage.getItem("userName");
+
+    if (saveName !== null) {
+        document.getElementById("displayName").innerHTML = "Welcome " + saveName;
+    } else {
+        document.getElementById("displayName").innerHTML = "Welcome Please Login";  
+    }
+}
+
+//movie library page
+
+function showNameL(){
+    let saveName = localStorage.getItem("userName");
+
+    if (saveName !== null) {
+        document.getElementById("displayNameL").innerHTML = "Welcome " + saveName;
+    } else {
+        document.getElementById("displayNameL").innerHTML = "Welcome Please Login";  
+    }
+}
+
+//Watch list page
+
+function showNameW(){
+    let saveName = localStorage.getItem("userName");
+
+    if (saveName !== null) {
+        document.getElementById("displayNameW").innerHTML = "Welcome " + saveName;
+    } else {
+        document.getElementById("displayNameW").innerHTML = "Welcome Please Login";  
+    }
+}
