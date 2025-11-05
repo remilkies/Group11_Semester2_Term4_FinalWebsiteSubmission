@@ -486,7 +486,10 @@ input[type="search"]:focus {
     transform: scale(1.1);
   }  
   
- .scrolling-wrapper::-webkit-scrollbar {
+.scrolling-wrapper::-webkit-scrollbar {
+    display: none; 
+}
+.movie-track::-webkit-scrollbar {
     display: none; 
 }
 
