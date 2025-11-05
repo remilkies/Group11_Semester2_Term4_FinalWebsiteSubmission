@@ -513,7 +513,41 @@ document.getElementById("loginForm").addEventListener("submit", e => {
     localStorage.setItem("userName", username);
 });
 
+// function showName(){
+//     let saveName = localStorage.getItem("userName");
+//     document.getElementById("displayName").innerHTML = "Welcome " + saveName;
+// }
+
 function showName(){
     let saveName = localStorage.getItem("userName");
-    document.getElementById("displayName").innerHTML = "Welcome " + saveName;
+
+    if (saveName !== null) {
+        document.getElementById("displayName").innerHTML = "Welcome " + saveName;
+    } else {
+        document.getElementById("displayName").innerHTML = "Welcome Please Login";  
+    }
+}
+
+//movie library page
+
+function showNameL(){
+    let saveName = localStorage.getItem("userName");
+
+    if (saveName !== null) {
+        document.getElementById("displayNameL").innerHTML = "Welcome " + saveName;
+    } else {
+        document.getElementById("displayNameL").innerHTML = "Welcome Please Login";  
+    }
+}
+
+//Watch list page
+
+function showNameW(){
+    let saveName = localStorage.getItem("userName");
+
+    if (saveName !== null) {
+        document.getElementById("displayNameW").innerHTML = "Welcome " + saveName;
+    } else {
+        document.getElementById("displayNameW").innerHTML = "Welcome Please Login";  
+    }
 }
