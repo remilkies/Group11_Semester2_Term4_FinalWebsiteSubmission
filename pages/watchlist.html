@@ -185,10 +185,10 @@ function createMovieCard(movie) {
                 </button>
 
                 <div class="card-body movieInfo">
-                    <a class="movie-title card-title" href="individualMovie/movie-template.html?movieId=${movie.movieID}">
-                        <img src="../assets/buttons/leftButton.png" height="66px">
-                        <h3>${movie.title}</h3>
-                        <img src="../assets/buttons/rightButton.png" height="66px">
+                    <a class="movie-title card-title d-flex align-items-end" href="individualMovie/movie-template.html?movieId=${movie.movieID}">
+                        <img class="p-0" src="../assets/buttons/leftButton.png">
+                    <h3 class="p-0">${movie.title}</h3>
+                    <img class="p-0" src="../assets/buttons/rightButton.png">
                     </a>
                     <p class="card-text">${truncatedOverview}</p>
                     ${movie.rating ? `<p class="card-text"><small>⭐ ${movie.rating}/10</small></p>` : ''}
