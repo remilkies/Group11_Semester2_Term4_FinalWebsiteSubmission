@@ -17,17 +17,17 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body onload="showName()">
+<body>
 
     <header>
 
     <nav class="navbar">
         <div class="container-fluid">
-          <a class="navbar-profile" href="pages/sign-up.html"><p id="displayName">Welcome <br> Please Login</p></a>
+          <a class="navbar-profile" href="pages/log-in.html">Welcome <br> Please Login</a>
           
           <div class="pageTitle">
             <h1>DREAM STREAM</h1>
-            <h2>THE STREAMING SERVICE OF YOUR DREAMS</h2>
+            <h2>THE STRAEMING SERVICE OF YOUR DREAMS</h2>
           </div>
 
           <button class="navbar-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -143,7 +143,7 @@
 
 
               <div class="feature-img">
-                <img src="assets/images/movieKaz.jpg" class="d-block w-100" alt="...">
+                <img src="assets/images/movieKaz.jpg" class="d-block w-100" alt="..." id="imageFeature2">
               </div>
 
               <div class="feature-overlay">
@@ -171,7 +171,7 @@
             <button><img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png" data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png" class="watchlistIconFeature"></button>
 
               <div class="feature-img">
-                <img src="assets/images/JoMovie.jpg" class="d-block w-100" alt="...">
+                <img src="assets/images/JoMovie.jpg" class="d-block w-100" alt="..." id="imageFeature3">
               </div>
               
               <div class="feature-overlay">
@@ -200,7 +200,7 @@
             <button><img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png" data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png" class="watchlistIconFeature"></button>
 
               <div class="feature-img">
-              <img src="assets/images/kayMovie.jpg" class="d-block w-100" alt="...">
+              <img src="assets/images/kayMovie.jpg" class="d-block w-100" alt="..." id="imageFeature4">
               </div>
 
               <div class="feature-overlay">
@@ -247,45 +247,11 @@
       <div class="container-fluid scrolling-wrapper">
         <div class="row d-flex justify-content-center">
 
-          <div class="col-md-2">
-            <div class="card movieCard">
-              <button><img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png" data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
+      <div class="container-fluid movieCard-container ">
+        <div class="row g-1 justify-content-center justify-content-around" data-bs-spy="scroll" data-bs-target="movieCard" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
 
-              <div class="card-body movieInfo">
-                 
-                <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                  <img src="assets/buttons/leftButton.png" height="66px">
-                  <h3>Card title</h3>
-                  <img src="assets/buttons/rightButton.png" height="66px">
-                </a>
-  
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-  
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-md-2">
-            <div class="card movieCard">
-              <button><img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png" data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
-
-              <div class="card-body movieInfo">
-                 
-                <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                  <img src="assets/buttons/leftButton.png" height="66px">
-                  <h3>Card title</h3>
-                  <img src="assets/buttons/rightButton.png" height="66px">
-                </a>
-  
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-  
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-2">
-            <div class="card movieCard">
+          <div class="col-2">
+            <div class=" card movieCard">
 
               <div class="moviePoster">
                 <img src="..." id="imagePopular1">
@@ -302,7 +268,7 @@
                   <img class="p-0" src="assets/buttons/rightButton.png">
               </a>
 
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                <p class="card-text" id="Overview1"></p>
 
               </div>
 
@@ -420,48 +386,14 @@
       <div class="container-fluid scrolling-wrapper">
         <div class="row d-flex justify-content-center">
 
-          <div class="col-md-2">
-            <div class="card movieCard">
-              <button><img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png" data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
+      <div class="container-fluid movieCard-container ">
+        <div class="row g-1 justify-content-center justify-content-around">
 
-              <div class="card-body movieInfo">
-                 
-                <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                  <img src="assets/buttons/leftButton.png" height="66px">
-                  <h3>Card title</h3>
-                  <img src="assets/buttons/rightButton.png" height="66px">
-                </a>
-  
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-  
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-md-2">
-            <div class="card movieCard">
-              <button><img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png" data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
-
-              <div class="card-body movieInfo">
-                 
-                <a class="movie-title card-title" href="pages/individualMovie/movie-template.html">
-                  <img src="assets/buttons/leftButton.png" height="66px">
-                  <h3>Card title</h3>
-                  <img src="assets/buttons/rightButton.png" height="66px">
-                </a>
-  
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-  
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-2">
-            <div class="card movieCard">
+          <div class="col-2">
+            <div class=" card movieCard">
 
               <div class="moviePoster">
-                <img src="assets/images/kayMovie.jpg">
+                <img src="assets/images/kayMovie.jpg" id="imageTop1">
               </div>
 
               <button><img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png" data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
@@ -475,15 +407,20 @@
                   <img class="p-0" src="assets/buttons/rightButton.png">
               </a>
 
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                <p class="card-text" id="OverviewTop1"></p>
 
               </div>
 
             </div>
           </div>
 
-          <div class="col-md-2">
-            <div class="card movieCard">
+          <div class="col-2">
+            <div class=" card movieCard">
+
+              <div class="moviePoster">
+                <img src="assets/images/kayMovie.jpg" id="imageTop2">
+              </div>
+
               <button><img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png" data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
 
               <div class="card-body movieInfo">
@@ -502,8 +439,13 @@
             </div>
           </div>
 
-          <div class="col-md-2">
-            <div class="card movieCard">
+          <div class="col-2">
+            <div class=" card movieCard">
+
+              <div class="moviePoster">
+                <img src="assets/images/kayMovie.jpg" id="imageTop3">
+              </div>
+
               <button><img src="assets/icons/watchlistIcon.png" data-default="assets/icons/watchlistIcon.png" data-hover="assets/icons/watchlistAdded.png" data-active="assets/icons/watchlistAdded.png" class="watchlistIcon"></button>
 
               <div class="card-body movieInfo">
