@@ -19,23 +19,88 @@
 </head>
 
 <header>
+
     <nav class="navbar">
         <div class="container-fluid">
-            <a class="navbar-profile" href="#">Welcome <br> Please Sign Up</a>
+          <a class="navbar-profile" href="#">Welcome <br> Please Login</a>
+          
+          <div class="pageTitle flex-fill">
+            <h1>DREAM LIBRARY</h1>
+            <h2>YOUR GATEWAT TO DREAMS WATING TO BE STREAMED</h2>
+          </div>
 
-            <div class="pageTitle flex-fill">
-                <h1>DREAM LIBRARY</h1>
-                <h2>YOUR GATEWAY TO DREAMS WAITING TO BE STREAMED</h2>
+          <button class="navbar-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <img src="../assets/logo/logo.png">
+          </button>
+
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+
+              <h1 class="navbar-header inline-flex"><img src="../assets/logo/logo.png">Browse</h1> 
+              <!-- THIS WORKS SO WHY DOES THIS NOT -->
+              
+
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+                <form class="d-flex navbar-searchBar" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                </form>
+
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="../index.html"> 
+                    <img src="../assets/icons/starIconActive.png" class="nav-icon">
+                    <h2>Home</h2>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="../pages/watchlist.html">
+                    <img src="../assets/icons/starIconActive.png" class="nav-icon">
+                    <h2>Dream List</h2>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="../pages/movie-library.html">
+                    <img src="../assets/icons/starIconActive.png" class="nav-icon">
+                    <h2>Library</h2>
+                  </a>
+                </li>
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="../assets/icons/starIconActive.png" class="nav-icon">
+                    <h2>Genres</h2>
+                  </a>
+
+                  <ul class="dropdown-menu">
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <img src="../assets/icons/starIconActive.png" class="nav-icon">
+                        <h2>Action</h2>
+                      </a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <img src="../assets/icons/starIconActive.png" class="nav-icon">
+                        <h2>Horror</h2>
+                      </a>
+                    </li>
+
+                  </ul>
+                </li>
+
+              </ul>
             </div>
 
-            <button class="navbar-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <img src="../assets/logo/logo.png">
-            </button>
+          </div>
         </div>
-    </nav>
+      </nav>
 
-</header>
+    </header>
+
 
 <body>
     <!--Sign Up Section-->
@@ -72,39 +137,7 @@
         </div>
     </div>
 
-    <!--Log In Section-->
-    <div class="container" id="log-in" style="width: 32rem; border-radius: 12px; background-color: #2d2b2b;">
-        <div class="card-body px-4 py-5">
-            <form id="loginForm">
-                <h1>LOGIN</h1>
-                <label for="username"><b>Username</b></label>
-                <div class="inputbox">
-                    <input id="signInUse" type="text" placeholder="Username" name="username" class="form-control rounded-pill border-0"
-                        style="background-color: #fae4c8; color: #000" required>
-                </div>
-                <label for="email"><b>Email</b></label>
-                <div class="inputbox">
-                    <input id="signInEmail" type="email" placeholder="Email" name="email" class="form-control rounded-pill border-0"
-                        style="background-color: #fae4c8; color: #303030" required>
-                </div>
 
-                <label for="psw"><b>Password</b></label>
-                <div class="inputbox">
-                    <input id="signInPass" type="password" placeholder="Password" name="psw" class="form-control rounded-pill border-0"
-                        style="background-color: #fae4c8; color: #303030" required>
-                </div>
-
-                <p class="mt-3 mb-0 text-center"><u><a href="../pages/sign-up.html" style="color: #cfcfcf;"> I don't
-                            have my dream account.</a>
-                        <br>
-                        Forgot your password?</u></p>
-                <div class="clearfix text-center">
-                    <button type="submit" class="btn btn login-btn" style="padding: 10px 30px; color: #cfcfcf; 
-  background-color: #CC9DA7;">LOGIN</button>
-                </div>
-            </form>
-        </div>
-    </div>
 </body>
 
 <script src="../js/jQuery.js"></script>
