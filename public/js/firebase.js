@@ -45,9 +45,9 @@ document.getElementById('signupForm').addEventListener("submit", async(e)=>{
     let password = document.getElementById('signUpPass').value;
 
     try{
-        await createUserWithEmailAndPassword(auth, email, password, username);
+        await createUserWithEmailAndPassword(auth, email, password);
         alert("Account has been created successfully");
-        window.location.href = ".../pages/sign-up.html";
+        window.location.href = "../pages/sign-up.html";
     }catch (error){
         alert(error.message);
     }
@@ -56,11 +56,13 @@ document.getElementById('signupForm').addEventListener("submit", async(e)=>{
 
 document.getElementById('loginForm').addEventListener("submit", async(e)=>{
     e.preventDefault();
+    let email = document.getElementById('signInEmail').value;
     let username = document.getElementById('signInUse').value;
     let password = document.getElementById('signInPass').value;
+    
 
     try{
-        await signInWithEmailAndPassword(auth, username, password);
+        await signInWithEmailAndPassword(auth, email, password);
         alert("Login is successful");
         window.location.href = "../index.html"; //redirect
     }catch (error){
