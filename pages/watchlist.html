@@ -131,11 +131,14 @@
     </div>
 </section>
 
+
+
+
 <script>
 
-  // ============================================
-// WATCHLIST PAGE SCRIPT - Save as: js/watchlist-page.js
-// Full functionality: Search, Sort, Remove
+// ============================================
+// WATCHLIST PAGE SCRIPT - COMPLETE VERSION
+// Full functionality: Search, Sort, Remove, Interactions
 // ============================================
 
 const WatchlistManager = {
@@ -175,8 +178,14 @@ function createMovieCard(movie) {
                     <img src="${posterUrl}" alt="${movie.title}">
                 </div>
 
-                <button class="remove-btn watchlistIcon" data-movie-id="${movie.movieID}">
-                    <img src="../assets/icons/watchlistAdded.png" class="watchlistIcon" alt="Remove">
+                <button class="watchlist-remove-btn" data-movie-id="${movie.movieID}" style="position: absolute; top: 10px; right: 10px; z-index: 100; background: none; border: none; padding: 0; cursor: pointer;">
+                    <img src="../assets/icons/watchlistAdded.png" 
+                         data-default="../assets/icons/watchlistIcon.png" 
+                         data-hover="../assets/icons/watchlistAdded.png" 
+                         data-active="../assets/icons/watchlistAdded.png" 
+                         class="watchlistIcon" 
+                         style="width: 40px; height: 40px;"
+                         alt="Remove from watchlist">
                 </button>
 
                 <div class="card-body movieInfo">
@@ -238,7 +247,7 @@ function loadWatchlist(sortBy = 'recent') {
     container.innerHTML = sortedMovies.map(movie => createMovieCard(movie)).join('');
     
     // Attach remove handlers
-    document.querySelectorAll('.remove-btn').forEach(btn => {
+    document.querySelectorAll('.watchlist-remove-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
@@ -247,6 +256,71 @@ function loadWatchlist(sortBy = 'recent') {
             loadWatchlist(currentSort);
         });
     });
+    
+    // Setup icon hover interactions
+    setupIconInteractions();
+    
+    // Setup card interactions (jQuery animations)
+    setupCardInteractions();
+}
+
+// Setup icon hover interactions for watchlist buttons
+function setupIconInteractions() {
+    document.querySelectorAll(".watchlistIcon").forEach((icon) => {
+        // Remove old handlers
+        icon.replaceWith(icon.cloneNode(true));
+    });
+    
+    // Re-query after cloning
+    document.querySelectorAll(".watchlistIcon").forEach((icon) => {
+        icon.addEventListener("mouseenter", () => {
+            if (icon.dataset.hover) {
+                icon.src = icon.dataset.hover;
+            }
+        });
+        
+        icon.addEventListener("mouseleave", () => {
+            // Since it's in watchlist, keep it as active/added
+            if (icon.dataset.active) {
+                icon.src = icon.dataset.active;
+            }
+        });
+    });
+    
+    console.log('Icon interactions setup for', document.querySelectorAll(".watchlistIcon").length, 'icons');
+}
+
+// Setup card hover interactions for dynamically loaded cards
+function setupCardInteractions() {
+    // Check if jQuery is loaded
+    if (typeof $ === 'undefined') {
+        console.warn('jQuery not loaded, card animations disabled');
+        return;
+    }
+    
+    // Remove old handlers first
+    $(".movieCard").off("mouseenter mouseleave");
+    
+    // Add new handlers
+    $(".movieCard").on("mouseenter", function() {
+        const card = $(this);
+        card.stop(true, false); // Stop any ongoing animations
+        card.animate({width: '600px'}, 500);
+        card.css("z-index", 10);
+        card.css("transform", "scale(1.15)");
+    });
+    
+    $(".movieCard").on("mouseleave", function() {
+        const card = $(this);
+        card.stop(true, false); // Stop any ongoing animations
+        card.animate({width: '222px'}, 100);
+        card.css("transform", "scale(1)");
+        setTimeout(() => {
+            card.css("z-index", 1);
+        }, 100);
+    });
+    
+    console.log('Card interactions setup for', $(".movieCard").length, 'cards');
 }
 
 // Search
@@ -305,9 +379,11 @@ function setupSortButtons() {
 }
 
 function init() {
+    console.log('Initializing watchlist page...');
     loadWatchlist();
     setupSearch();
     setupSortButtons();
+    console.log('Watchlist page ready!');
 }
 
 if (document.readyState === 'loading') {
@@ -317,6 +393,7 @@ if (document.readyState === 'loading') {
 }
 </script>
 
+<script src="../js/jQuery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
