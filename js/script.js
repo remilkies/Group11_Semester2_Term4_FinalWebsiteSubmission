@@ -1,4 +1,4 @@
-//  MOVIE LIBRARY PAGE - 
+//  COMPLETE SCRIPT.JS - FINAL VERSION WITH UNIVERSAL WATCHLIST
 window.API_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWM4YWRiNmE3NGIyZDViNTA1MmE3ZjBlMTA0NDA1ZiIsIm5iZiI6MTc1ODI5Mjg1NS43NzEwMDAxLCJzdWIiOiI2OGNkNmI3NzI1NjVlMzcxOTMxNDk2NDciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.AoEE9Ow4n3Zun2dAOqNR-kWFa3MW5RQ3DWYzRGSuZOc';
 const IMG = "https://image.tmdb.org/t/p/w500";
 
@@ -192,6 +192,9 @@ function updateMovieCard(card, movie, index) {
     if (linkElement) {
         linkElement.href = `../pages/individualMovie/movie-template.html?movieId=${movie.id}`;
     }
+    
+    // ATTACH WATCHLIST DATA - This makes library watchlist work!
+    attachLibraryWatchlistData(card, movie);
 }
 
 //  INDIVIDUAL MOVIE PAGE 
@@ -371,6 +374,9 @@ async function loadIndividualMovie(movieId) {
         
         console.log("Individual movie page loaded successfully!");
         
+        // Setup watchlist for individual movie page
+        setupIndividualMovieWatchlist(movieData);
+        
     } catch (error) {
         console.error("Error loading individual movie:", error);
     }
@@ -442,17 +448,6 @@ function setupUniversalGenreDropdown() {
     console.log('Universal navbar genre dropdown activated');
 }
 
-// Check for genre parameter in URL on library page load
-async function checkGenreParameter() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const genreId = urlParams.get('genre');
-    const genreName = urlParams.get('genreName');
-    
-    if (genreId && genreName) {
-        console.log('Genre parameter detected:', genreName);
-        await loadAllSectionsWithGenre(parseInt(genreId), genreName);
-    }
-}
 function setupSearch() {
     const searchInput = document.querySelector('.movie-searchBar input[type="search"]');
     
@@ -509,18 +504,12 @@ function setupUniversalSearch() {
                     if (currentPath.includes('movie-library.html')) {
                         searchMovies(query);
                     } else if (currentPath.includes('individualMovie')) {
-    // Go up one folder to reach /pages/movie-library.html
-    window.location.href = `../movie-library.html?search=${encodeURIComponent(query)}`;
-} 
-else if (currentPath.includes('pages/')) {
-    // Already in /pages, go directly to movie-library.html
-    window.location.href = `movie-library.html?search=${encodeURIComponent(query)}`;
-} 
-else {
-    // From homepage or root
-    window.location.href = `pages/movie-library.html?search=${encodeURIComponent(query)}`;
-}
-
+                        window.location.href = `../movie-library.html?search=${encodeURIComponent(query)}`;
+                    } else if (currentPath.includes('pages/')) {
+                        window.location.href = `movie-library.html?search=${encodeURIComponent(query)}`;
+                    } else {
+                        window.location.href = `pages/movie-library.html?search=${encodeURIComponent(query)}`;
+                    }
                 }
             }
         });
@@ -617,7 +606,7 @@ function setupInteractions() {
     console.log("Setting up interactions...");
     
     // Icon interactions
-    document.querySelectorAll(".watchlistIcon, .watchlistIconFeature, .watchButton").forEach((icon) => {
+    document.querySelectorAll(".watchlistIcon, .watchlistIconFeature, .watchButton, .individual-watchButton, .individual-watchlistIcon").forEach((icon) => {
         let isActive = false;
         
         icon.addEventListener("mouseenter", () => {
@@ -630,11 +619,6 @@ function setupInteractions() {
             if (!isActive && icon.dataset.default) {
                 icon.src = icon.dataset.default;
             }
-        });
-        
-        icon.addEventListener("click", () => {
-            isActive = !isActive;
-            icon.src = isActive ? icon.dataset.active : icon.dataset.default;
         });
     });
     
@@ -918,7 +902,6 @@ async function loadSectionWithSort(containerSelector, genreId, genreName, sortBy
     }
 }
 
-
 //Homepage
 class NewMovies {
   constructor(movieID, title, poster, director, rating){
@@ -953,10 +936,7 @@ class NewMovies {
         return;
     }
 
-    //may affect styling
-    // needed to display the image
-    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original'; //CHANGE BY KAZ
-
+    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original';
 
     let movieList = [];
 
@@ -965,19 +945,16 @@ class NewMovies {
 
         let movieID = movie.id;
         let title = movie.title;
-        let poster = movie.backdrop_path || movie.poster_path; // fallback if missing - CHANGE BY KAZ
-
+        let poster = movie.backdrop_path || movie.poster_path;
         let rating = movie.vote_average.toFixed(1);
 
         const creditsURL = `${BASE_URL}/movie/${movieID}/credits`;
         
-        // Fetches the credits for the movie
         let creditsResponse = await fetch(creditsURL, options);
         let creditsData = await creditsResponse.json().catch(error => console.error(`Error fetching credits for ${title}:`, error));
         
         let director = 'N/A';
         
-        // Finds the director
         if (creditsData && creditsData.crew) {
             const directorObject = creditsData.crew.find(member => member.job === 'Director');
             if (directorObject) {
@@ -990,172 +967,160 @@ class NewMovies {
 
     console.log(movieList);
 
-// CAROUSEL AUTO SLIDER
+    // CAROUSEL AUTO SLIDER
+    document.addEventListener("DOMContentLoaded", () => {
+        const track = document.getElementById("movieTrack");
+        const btnLeft = document.getElementById("leftArrow");
+        const btnRight = document.getElementById("rightArrow");
 
-document.addEventListener("DOMContentLoaded", () => {
+        if (!track || !btnLeft || !btnRight) return;
 
-const track = document.getElementById("movieTrack");
-const btnLeft = document.getElementById("leftArrow");
-const btnRight = document.getElementById("rightArrow");
+        const scrollAmount = 250;
 
-const scrollAmount = 250; // adjust per card width + gap
+        const cards = Array.from(track.children);
+        cards.slice(0, 3).forEach(card => {
+            const clone = card.cloneNode(true);
+            track.appendChild(clone);
+        });
+        cards.slice(-3).forEach(card => {
+            const clone = card.cloneNode(true);
+            track.insertBefore(clone, track.firstChild);
+        });
 
-// Clone first and last few cards for the infinite loop illusion
-const cards = Array.from(track.children);
-cards.slice(0, 3).forEach(card => {
-  const clone = card.cloneNode(true);
-  track.appendChild(clone);
-});
-cards.slice(-3).forEach(card => {
-  const clone = card.cloneNode(true);
-  track.insertBefore(clone, track.firstChild);
-});
+        track.scrollLeft = track.scrollWidth / 3;
 
-// Set initial scroll position to the “real” start
-track.scrollLeft = track.scrollWidth / 3;
+        btnRight.addEventListener("click", () => {
+            track.scrollBy({ left: scrollAmount, behavior: "smooth" });
+            setTimeout(checkLoop, 500);
+        });
 
-// Button controls
-btnRight.addEventListener("click", () => {
-  track.scrollBy({ left: scrollAmount, behavior: "smooth" });
-  setTimeout(checkLoop, 500);
-});
+        btnLeft.addEventListener("click", () => {
+            track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+            setTimeout(checkLoop, 500);
+        });
 
-btnLeft.addEventListener("click", () => {
-  track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-  setTimeout(checkLoop, 500);
-});
+        function checkLoop() {
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            const oneSection = track.scrollWidth / 3;
 
-function checkLoop() {
-  const maxScroll = track.scrollWidth - track.clientWidth;
-  const oneSection = track.scrollWidth / 3;
-
-  if (track.scrollLeft >= maxScroll - oneSection) {
-    // reached end — jump back to start
-    track.scrollLeft = oneSection;
-  } else if (track.scrollLeft <= 0) {
-    // reached start — jump to end
-    track.scrollLeft = maxScroll - (2 * oneSection);
-  }
-}
-});
-    
-    // ADDITION ADDED BY KAZ - MAKES CAROUSEL TITLES CLICKABLE (WITHOUT A HREF LINKS)
-    const titleMappings = [
-  { titleId: 'titleFeature1', index: 12 },
-  { titleId: 'titleFeature2', index: 6 },
-  { titleId: 'titleFeature3', index: 2 },
-  { titleId: 'titleFeature4', index: 3 }
-];
-
-titleMappings.forEach(mapping => {
-  const titleEl = document.getElementById(mapping.titleId);
-  const movie = movieList[mapping.index];
-
-  if (titleEl && movie) {
-    titleEl.style.cursor = 'pointer';
-    titleEl.addEventListener('click', () => {
-      window.location.href = `pages/individualMovie/movie-template.html?movieId=${movie.movieID}`;
+            if (track.scrollLeft >= maxScroll - oneSection) {
+                track.scrollLeft = oneSection;
+            } else if (track.scrollLeft <= 0) {
+                track.scrollLeft = maxScroll - (2 * oneSection);
+            }
+        }
     });
-  }
-});
+    
+    // Make carousel titles clickable
+    const titleMappings = [
+        { titleId: 'titleFeature1', index: 12 },
+        { titleId: 'titleFeature2', index: 6 },
+        { titleId: 'titleFeature3', index: 2 },
+        { titleId: 'titleFeature4', index: 3 }
+    ];
 
+    titleMappings.forEach(mapping => {
+        const titleEl = document.getElementById(mapping.titleId);
+        const movie = movieList[mapping.index];
 
+        if (titleEl && movie) {
+            titleEl.style.cursor = 'pointer';
+            titleEl.addEventListener('click', () => {
+                window.location.href = `pages/individualMovie/movie-template.html?movieId=${movie.movieID}`;
+            });
+        }
+    });
 
+    // Image slider titles
+    document.getElementById("titleFeature1").innerHTML = movieList[12].title;
+    document.getElementById("titleFeature2").innerHTML = movieList[6].title;
+    document.getElementById("titleFeature3").innerHTML = movieList[2].title;
+    document.getElementById("titleFeature4").innerHTML = movieList[3].title;
 
-        // Image slider titles
-        document.getElementById("titleFeature1").innerHTML = movieList[12].title;
-        document.getElementById("titleFeature2").innerHTML = movieList[6].title;
-        document.getElementById("titleFeature3").innerHTML = movieList[2].title;
-        document.getElementById("titleFeature4").innerHTML = movieList[3].title;
+    // Image slider ratings
+    document.getElementById("featureRating1").innerHTML = movieList[12].rating;
+    document.getElementById("featureRating2").innerHTML = movieList[6].rating;
+    document.getElementById("featureRating3").innerHTML = movieList[2].rating;
+    document.getElementById("featureRating4").innerHTML = movieList[3].rating;
 
-        // Image slider ratings
-        document.getElementById("featureRating1").innerHTML = movieList[12].rating;
-        document.getElementById("featureRating2").innerHTML = movieList[6].rating;
-        document.getElementById("featureRating3").innerHTML = movieList[2].rating;
-        document.getElementById("featureRating4").innerHTML = movieList[3].rating;
+    // Image slider posters
+    document.getElementById("imageFeature1").src = IMAGE_BASE_URL + movieList[12].poster;
+    document.getElementById("imageFeature2").src = IMAGE_BASE_URL + movieList[6].poster;
+    document.getElementById("imageFeature3").src = IMAGE_BASE_URL + movieList[2].poster;
+    document.getElementById("imageFeature4").src = IMAGE_BASE_URL + movieList[3].poster;
 
-        // Image slider posters
-        document.getElementById("imageFeature1").src = IMAGE_BASE_URL + movieList[12].poster;
-        document.getElementById("imageFeature2").src = IMAGE_BASE_URL + movieList[6].poster;
-        document.getElementById("imageFeature3").src = IMAGE_BASE_URL + movieList[2].poster;
-        document.getElementById("imageFeature4").src = IMAGE_BASE_URL + movieList[3].poster;
-
-        // Image slider directors
-        document.getElementById("directorFeature1").innerHTML = movieList[12].director; 
-        document.getElementById("directorFeature2").innerHTML = movieList[6].director;
-        document.getElementById("directorFeature3").innerHTML = movieList[2].director;
-        document.getElementById("directorFeature4").innerHTML = movieList[3].director;
+    // Image slider directors
+    document.getElementById("directorFeature1").innerHTML = movieList[12].director; 
+    document.getElementById("directorFeature2").innerHTML = movieList[6].director;
+    document.getElementById("directorFeature3").innerHTML = movieList[2].director;
+    document.getElementById("directorFeature4").innerHTML = movieList[3].director;
+    
+    // Attach watchlist data to carousel
+    attachFeatureData(movieList);
 }();
 
 class PopularMovies {
   constructor(movieID, title, poster, overview){
-        this.movieID = movieID;  // ADDED this line - KAZ
+        this.movieID = movieID;
         this.title = title;
         this.poster = poster;
         this.overview = overview;
     }
 }
-    
-    //API request
 
-    !async function(){
-const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
-const options = {
-	  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWM4YWRiNmE3NGIyZDViNTA1MmE3ZjBlMTA0NDA1ZiIsIm5iZiI6MTc1ODI5Mjg1NS43NzEwMDAxLCJzdWIiOiI2OGNkNmI3NzI1NjVlMzcxOTMxNDk2NDciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.AoEE9Ow4n3Zun2dAOqNR-kWFa3MW5RQ3DWYzRGSuZOc'
-  }
-};
+!async function(){
+    const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWM4YWRiNmE3NGIyZDViNTA1MmE3ZjBlMTA0NDA1ZiIsIm5iZiI6MTc1ODI5Mjg1NS43NzEwMDAxLCJzdWIiOiI2OGNkNmI3NzI1NjVlMzcxOTMxNDk2NDciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.AoEE9Ow4n3Zun2dAOqNR-kWFa3MW5RQ3DWYzRGSuZOc'
+        }
+    };
 
-let data = await fetch(url, options)
+    let data = await fetch(url, options)
         .then((response)=> response.json())
         .then((result)=> {return result})
         .catch((error)=> console.log(error));
 
-    //may affect styling
-    // needed to display the image: gives the API necessary information
-    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original'; // KAZ CHANGE - NO LONGER LIMITED TO 500px IMG PATHS
+    const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original';
 
+    let popMovies = [];
 
-        let popMovies = [];
-
-        for (i = 0; i < data.results.length; i++){
-
-        let movieID = data.results[i].id;  // ADDED this line - KAZ
+    for (i = 0; i < data.results.length; i++){
+        let movieID = data.results[i].id;
         let title = data.results[i].title;
         let poster = data.results[i].poster_path;
-        //OGoverview gets the overview and overview makes it shorter so that if it doesn't fit the content gets cut.
         let OGoverview = data.results[i].overview;
         let overview = OGoverview.length > 200 ? OGoverview.substring(0, 200) + ' ...' : OGoverview;
 
-        popMovies.push(window["movie_" + i] = new PopularMovies(movieID, title, poster, overview)); // ADDED movieID
+        popMovies.push(window["movie_" + i] = new PopularMovies(movieID, title, poster, overview));
     }
 
     console.log(popMovies);
 
-    //popular movies titles
+    // Popular movies titles
     document.getElementById('titlePopular1').innerHTML = popMovies[0].title;
     document.getElementById('titlePopular2').innerHTML = popMovies[1].title;
     document.getElementById('titlePopular3').innerHTML = popMovies[17].title;
     document.getElementById('titlePopular4').innerHTML = popMovies[3].title;
     document.getElementById('titlePopular5').innerHTML = popMovies[18].title;
 
-    //popular movies descriptions
+    // Popular movies descriptions
     document.getElementById('Overview1').innerHTML = popMovies[0].overview;
     document.getElementById('Overview2').innerHTML = popMovies[1].overview;
     document.getElementById('Overview3').innerHTML = popMovies[17].overview;
     document.getElementById('Overview4').innerHTML = popMovies[3].overview;
     document.getElementById('Overview5').innerHTML = popMovies[18].overview;
 
-    //popular movies posters
+    // Popular movies posters
     document.getElementById("imagePopular1").src = IMAGE_BASE_URL + popMovies[0].poster;
     document.getElementById("imagePopular2").src = IMAGE_BASE_URL + popMovies[1].poster;
     document.getElementById("imagePopular3").src = IMAGE_BASE_URL + popMovies[17].poster;
     document.getElementById("imagePopular4").src = IMAGE_BASE_URL + popMovies[3].poster;
     document.getElementById("imagePopular5").src = IMAGE_BASE_URL + popMovies[18].poster;
 
-    //  ADDED To Make Star Picks cards clickable
+    // Make Star Picks cards clickable
     const popularMappings = [
         { titleId: 'titlePopular1', index: 0 },
         { titleId: 'titlePopular2', index: 1 },
@@ -1177,81 +1142,74 @@ let data = await fetch(url, options)
         }
     });
     console.log("Star Picks links activated");
-    //  END OF ADDITION 
     
+    // Attach watchlist data to popular movies
+    attachPopularData(popMovies);
 }();
 
-//Top Rated Movies
+// Top Rated Movies
 class TopMovies {
-  constructor(movieID, title, poster, overview){ // ADD movieID
-        this.movieID = movieID; // ADDED this line - KAZ
+  constructor(movieID, title, poster, overview){
+        this.movieID = movieID;
         this.title = title;
         this.poster = poster;
         this.overview = overview;
     }
 }
-    
-    //API request
 
-    !async function(){
-const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200';
-const options = {
-	  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWM4YWRiNmE3NGIyZDViNTA1MmE3ZjBlMTA0NDA1ZiIsIm5iZiI6MTc1ODI5Mjg1NS43NzEwMDAxLCJzdWIiOiI2OGNkNmI3NzI1NjVlMzcxOTMxNDk2NDciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.AoEE9Ow4n3Zun2dAOqNR-kWFa3MW5RQ3DWYzRGSuZOc'
-  }
-};
+!async function(){
+    const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200';
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2OWM4YWRiNmE3NGIyZDViNTA1MmE3ZjBlMTA0NDA1ZiIsIm5iZiI6MTc1ODI5Mjg1NS43NzEwMDAxLCJzdWIiOiI2OGNkNmI3NzI1NjVlMzcxOTMxNDk2NDciLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.AoEE9Ow4n3Zun2dAOqNR-kWFa3MW5RQ3DWYzRGSuZOc'
+        }
+    };
 
-let data = await fetch(url, options)
+    let data = await fetch(url, options)
         .then((response)=> response.json())
         .then((result)=> {return result})
         .catch((error)=> console.log(error));
 
-    //may affect styling
-    // needed to display the image: gives the API necessary information
     const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original';
 
+    let topMovies = [];
 
-        let topMovies = [];
-
-        for (i = 0; i < data.results.length; i++){
-        
-        let movieID = data.results[i].id;  // ADDED this line - KAZ
+    for (i = 0; i < data.results.length; i++){
+        let movieID = data.results[i].id;
         let title = data.results[i].title;
         let poster = data.results[i].poster_path;
         let OGoverview = data.results[i].overview;
         let overview = OGoverview.length > 200 ? OGoverview.substring(0, 200) + ' ...' : OGoverview;
 
-        topMovies.push(window["movie_" + i] = new TopMovies(movieID, title, poster, overview)); // ADDED movieID - KAZ
+        topMovies.push(window["movie_" + i] = new TopMovies(movieID, title, poster, overview));
     }
 
     console.log(topMovies);
 
-    //Top Rated movies titles
+    // Top Rated movies titles
     document.getElementById('titleTop1').innerHTML = topMovies[0].title;
     document.getElementById('titleTop2').innerHTML = topMovies[1].title;
     document.getElementById('titleTop3').innerHTML = topMovies[17].title;
     document.getElementById('titleTop4').innerHTML = topMovies[3].title;
     document.getElementById('titleTop5').innerHTML = topMovies[18].title;
 
-    //Top Rated movies descriptions
+    // Top Rated movies descriptions
     document.getElementById('OverviewTop1').innerHTML = topMovies[0].overview;
     document.getElementById('OverviewTop2').innerHTML = topMovies[1].overview;
     document.getElementById('OverviewTop3').innerHTML = topMovies[17].overview;
     document.getElementById('OverviewTop4').innerHTML = topMovies[3].overview;
     document.getElementById('OverviewTop5').innerHTML = topMovies[18].overview;
 
-    //Top Rated movies posters
+    // Top Rated movies posters
     document.getElementById("imageTop1").src = IMAGE_BASE_URL + topMovies[0].poster;
     document.getElementById("imageTop2").src = IMAGE_BASE_URL + topMovies[1].poster;
     document.getElementById("imageTop3").src = IMAGE_BASE_URL + topMovies[17].poster;
     document.getElementById("imageTop4").src = IMAGE_BASE_URL + topMovies[3].poster;
     document.getElementById("imageTop5").src = IMAGE_BASE_URL + topMovies[18].poster;
 
-    //need to display the information on the website
-
-    //  ADDED To Make Top Rated cards clickable 
+    // Make Top Rated cards clickable 
     const topMappings = [
         { titleId: 'titleTop1', index: 0 },
         { titleId: 'titleTop2', index: 1 },
@@ -1273,6 +1231,267 @@ let data = await fetch(url, options)
         }
     });
     console.log("Top Rated links activated");
-    //  END OF ADDITION 
     
+    // Attach watchlist data to top rated movies
+    attachTopRatedData(topMovies);
 }();
+
+// UNIVERSAL WATCHLIST SYSTEM
+// Works on ALL pages: Homepage, Library, Individual Movie
+
+const WatchlistManager = {
+    KEY: 'dreamStreamWatchlist',
+    
+    getAll() {
+        try {
+            const data = localStorage.getItem(this.KEY);
+            return data ? JSON.parse(data) : [];
+        } catch (e) {
+            console.error('Error reading watchlist:', e);
+            return [];
+        }
+    },
+    
+    add(movie) {
+        try {
+            const watchlist = this.getAll();
+            if (!watchlist.find(m => m.movieID === movie.movieID)) {
+                movie.addedDate = new Date().toISOString();
+                watchlist.push(movie);
+                localStorage.setItem(this.KEY, JSON.stringify(watchlist));
+                console.log(' Added to watchlist:', movie.title);
+                return true;
+            }
+            return false;
+        } catch (e) {
+            console.error('Error adding to watchlist:', e);
+            return false;
+        }
+    },
+    
+    remove(movieID) {
+        try {
+            let watchlist = this.getAll();
+            watchlist = watchlist.filter(m => m.movieID !== movieID);
+            localStorage.setItem(this.KEY, JSON.stringify(watchlist));
+            console.log('🗑️ Removed from watchlist, ID:', movieID);
+        } catch (e) {
+            console.error('Error removing from watchlist:', e);
+        }
+    },
+    
+    has(movieID) {
+        const watchlist = this.getAll();
+        return watchlist.some(m => m.movieID === movieID);
+    }
+};
+
+// Show notification
+function showWatchlistNotification(message) {
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        z-index: 99999;
+        font-family: 'Comfortaa', sans-serif;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        transition: opacity 0.3s;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => notification.remove(), 300);
+    }, 2000);
+}
+
+// Update button visual state
+function updateWatchlistButton(button, isInWatchlist) {
+    if (!button) return;
+    if (isInWatchlist) {
+        button.src = button.dataset.active || button.dataset.hover || button.src;
+    } else {
+        button.src = button.dataset.default || button.src;
+    }
+}
+
+// UNIVERSAL WATCHLIST HANDLER - Works on ALL pages
+function setupUniversalWatchlist() {
+    console.log('Setting up UNIVERSAL watchlist system...');
+    
+    setTimeout(() => {
+        document.body.addEventListener('click', function(e) {
+            const target = e.target;
+            
+            // Check if it's a watchlist button
+            if (target.classList.contains('watchlistIcon') || 
+                target.classList.contains('watchlistIconFeature') ||
+                target.classList.contains('individual-watchlistIcon') ||
+                target.classList.contains('individual-watchButton')) {
+                
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log('Watchlist button clicked');
+                
+                const movieDataStr = target.dataset.movieData;
+                
+                if (!movieDataStr) {
+                    console.error('No movie data on button');
+                    return;
+                }
+                
+                try {
+                    const movieData = JSON.parse(movieDataStr);
+                    console.log('📽️ Movie:', movieData.title);
+                    
+                    if (WatchlistManager.has(movieData.movieID)) {
+                        WatchlistManager.remove(movieData.movieID);
+                        updateWatchlistButton(target, false);
+                        showWatchlistNotification('Removed from Dream List');
+                    } else {
+                        WatchlistManager.add(movieData);
+                        updateWatchlistButton(target, true);
+                        showWatchlistNotification('Added to Dream List ⭐');
+                    }
+                } catch (e) {
+                    console.error('Error parsing movie data:', e);
+                }
+            }
+        });
+        
+        console.log(' Universal watchlist handlers active');
+    }, 100);
+}
+
+// HOMEPAGE: Attach data to Popular section
+function attachPopularData(popMovies) {
+    const mappings = [
+        { id: 'titlePopular1', index: 0 },
+        { id: 'titlePopular2', index: 1 },
+        { id: 'titlePopular3', index: 17 },
+        { id: 'titlePopular4', index: 3 },
+        { id: 'titlePopular5', index: 18 }
+    ];
+    
+    mappings.forEach(map => {
+        const titleEl = document.getElementById(map.id);
+        if (titleEl && popMovies[map.index]) {
+            const card = titleEl.closest('.movieCard');
+            const btn = card?.querySelector('.watchlistIcon');
+            if (btn) {
+                btn.dataset.movieData = JSON.stringify(popMovies[map.index]);
+                updateWatchlistButton(btn, WatchlistManager.has(popMovies[map.index].movieID));
+            }
+        }
+    });
+    console.log(' Popular movies watchlist ready');
+}
+
+// HOMEPAGE: Attach data to Top Rated section
+function attachTopRatedData(topMovies) {
+    const mappings = [
+        { id: 'titleTop1', index: 0 },
+        { id: 'titleTop2', index: 1 },
+        { id: 'titleTop3', index: 17 },
+        { id: 'titleTop4', index: 3 },
+        { id: 'titleTop5', index: 18 }
+    ];
+    
+    mappings.forEach(map => {
+        const titleEl = document.getElementById(map.id);
+        if (titleEl && topMovies[map.index]) {
+            const card = titleEl.closest('.movieCard');
+            const btn = card?.querySelector('.watchlistIcon');
+            if (btn) {
+                btn.dataset.movieData = JSON.stringify(topMovies[map.index]);
+                updateWatchlistButton(btn, WatchlistManager.has(topMovies[map.index].movieID));
+            }
+        }
+    });
+    console.log(' Top rated watchlist ready');
+}
+
+// HOMEPAGE: Attach data to Feature Carousel
+function attachFeatureData(movieList) {
+    const mappings = [
+        { id: 'titleFeature1', index: 12 },
+        { id: 'titleFeature2', index: 6 },
+        { id: 'titleFeature3', index: 2 },
+        { id: 'titleFeature4', index: 3 }
+    ];
+    
+    mappings.forEach(map => {
+        const titleEl = document.getElementById(map.id);
+        if (titleEl && movieList[map.index]) {
+            const item = titleEl.closest('.carousel-item');
+            const btn = item?.querySelector('.watchlistIconFeature');
+            if (btn) {
+                btn.dataset.movieData = JSON.stringify(movieList[map.index]);
+                updateWatchlistButton(btn, WatchlistManager.has(movieList[map.index].movieID));
+            }
+        }
+    });
+    console.log(' Feature carousel watchlist ready');
+}
+
+// LIBRARY PAGE: Attach data when cards are updated
+function attachLibraryWatchlistData(card, movie) {
+    const btn = card.querySelector('.watchlistIcon');
+    if (btn && movie) {
+        const movieData = {
+            movieID: movie.id,
+            title: movie.title,
+            poster: movie.poster_path,
+            overview: movie.overview,
+            rating: movie.vote_average ? movie.vote_average.toFixed(1) : null
+        };
+        btn.dataset.movieData = JSON.stringify(movieData);
+        updateWatchlistButton(btn, WatchlistManager.has(movie.id));
+    }
+}
+
+// INDIVIDUAL MOVIE PAGE: Setup watchlist button
+function setupIndividualMovieWatchlist(movieData) {
+    // Find BOTH watchlist buttons on individual movie page
+    const watchlistIcon = document.querySelector('.individual-watchlistIcon');
+    const watchButton = document.querySelector('.individual-watchButton');
+    
+    const movieForWatchlist = {
+        movieID: movieData.id,
+        title: movieData.title,
+        poster: movieData.poster_path,
+        overview: movieData.overview,
+        rating: movieData.vote_average ? movieData.vote_average.toFixed(1) : null
+    };
+    
+    // Attach to star icon
+    if (watchlistIcon) {
+        watchlistIcon.dataset.movieData = JSON.stringify(movieForWatchlist);
+        updateWatchlistButton(watchlistIcon, WatchlistManager.has(movieData.id));
+        console.log(' Individual movie watchlist icon ready');
+    }
+    
+    // Attach to watch button
+    if (watchButton) {
+        watchButton.dataset.movieData = JSON.stringify(movieForWatchlist);
+        updateWatchlistButton(watchButton, WatchlistManager.has(movieData.id));
+        console.log(' Individual movie watch button ready');
+    }
+    
+    if (!watchlistIcon && !watchButton) {
+        console.warn('No watchlist buttons found on individual movie page');
+    }
+}
+
+// Initialize universal watchlist on ALL pages
+setupUniversalWatchlist();
+
+console.log('Universal Watchlist System Loaded');
